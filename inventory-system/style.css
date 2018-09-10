@@ -3,9 +3,7 @@ body{
     background-image: url(elements/bg-outer.jpg);
     background-size: cover;
     display: block;
-    
 }
-
 
 @font-face {
     font-family: Roboto-Light;
@@ -18,7 +16,7 @@ body{
     margin:0 auto;
     background-color: #2088cb;
     display: block;
-   
+    border-radius: 10px;
 }
 .box>.logo{
     width: 61%;
@@ -29,7 +27,9 @@ body{
     background-repeat: no-repeat;
     background-position: center;
     background-size: 40%;
+    border-radius: 10px 0 0 10px;
 }
+
 img{
     width:35%;
     margin: 0 auto;
@@ -42,23 +42,27 @@ img{
     float: right;
     margin-top: 12%;
 }
+
 .box-login{
     width: 80%;
     display: block;
     margin: 0 auto;
 }
+
 .input{
     padding-top: 30%;
     padding-left: 10%;
     padding-right: 20%;
 }
+
 .login-form>.box-login>p{
     color: #ffffff;
     font-family: 'Roboto-Light';
     font-size: 16pt;
 }
+
 .btn-login {
-    width: 25%;
+    width: 20%;
     display: block;
     border: none;
     border-radius: 20px;
@@ -69,6 +73,7 @@ img{
     font-family: 'Roboto-Light';
     outline: none;
 }
+
 .login-form>.box-login>form>input{
     width: 75%;
     display: block;
@@ -79,4 +84,3 @@ img{
     font-family: 'Roboto-Light';
     outline: none; /*hide active border on active cursor*/
 }
-
