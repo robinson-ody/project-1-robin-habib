@@ -3,7 +3,6 @@ body{
     background-image: url(../elements/bg-outer.jpg);
     background-size: cover;
     display: block;
-    
 }
 
 
@@ -18,7 +17,7 @@ body{
     margin:0 auto;
     background-color: #2088cb;
     display: block;
-   
+    border-radius: 10px;
 }
 .box>.logo{
     width: 61%;
@@ -29,6 +28,7 @@ body{
     background-repeat: no-repeat;
     background-position: center;
     background-size: 40%;
+    border-radius: 10px 0 0 10px;
 }
 img{
     width:35%;
@@ -58,7 +58,7 @@ img{
     font-size: 16pt;
 }
 .btn-login {
-    width: 25%;
+    width: 22%;
     display: block;
     border: none;
     border-radius: 20px;
