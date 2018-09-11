@@ -1,6 +1,6 @@
 body{
     padding: 5%;
-    background-image: url(elements/bg-outer.jpg);
+    background-image: url(../elements/bg-outer.jpg);
     background-size: cover;
     display: block;
     
@@ -9,7 +9,7 @@ body{
 
 @font-face {
     font-family: Roboto-Light;
-    src: url(elements/font/Roboto-Light.ttf);
+    src: url(../elements/font/Roboto-Light.ttf);
 }
 
 .box{
@@ -25,7 +25,7 @@ body{
     height: 100%;
     background-color: #ffffff;
     display: inline-block;
-    background-image: url(elements/Blibli-logo.png);
+    background-image: url(../elements/Blibli-logo.png);
     background-repeat: no-repeat;
     background-position: center;
     background-size: 40%;
