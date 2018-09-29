@@ -4,8 +4,7 @@ import './App.css';
 class App extends Component {
   render() {
     document.title = "Login Page | Blibli Inventory System"
-    
-    
+
     return (
       <div className="App">
 
