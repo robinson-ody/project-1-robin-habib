@@ -122,3 +122,7 @@ form input{
     height: 2px;
     opacity: 0.2;
 }
+
+.menu {
+    cursor: pointer;
+}
