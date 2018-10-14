@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <title>Login Page</title>
     <link rel="stylesheet" href="../css/style.css">
@@ -20,9 +20,9 @@
             <p>
                 Please enter your username and password to login
             </p>
-            <form id="logininp" name="login" action="actionLogin.html" onsubmit="" method="POST">
-                <input type="text" name="usernameInput" placeholder="Username..." autofocus required>
-                <input type="password" name="passwordInput" placeholder="Password..." autofocus required>
+            <form name="login" action="actionLogin.html" onsubmit="validateForm()" method="post">
+                <input type="text" name="username" placeholder="Username..." autofocus required>
+                <input type="password" name="password" placeholder="Password..." autofocus required>
                 <button type="submit" class="btn-login">Log In</button>
             </form>
         </div>
