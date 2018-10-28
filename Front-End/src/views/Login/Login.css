@@ -64,13 +64,3 @@ form input{
   font-family: 'Roboto-Light', sans-serif;
   outline: none;
 }
-
-.content {
-    display: inline-block;
-    background-color: #e0d9db;
-    width: 80%;
-    height: 626px;
-    box-sizing: border-box;
-    vertical-align: top;
-    padding: 5px 30px;
-}

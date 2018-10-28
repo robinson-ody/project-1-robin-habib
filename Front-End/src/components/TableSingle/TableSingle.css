@@ -1,0 +1,115 @@
+.tableHeader {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 97%;
+    height: 82px;
+    border-radius: 5px;
+    box-shadow: 2px 0 5px 0 rgba(0, 0, 0, 0.35);
+    padding: 2.4%;
+    background-color: #2088cb;
+    margin: auto;
+    position: relative;
+    z-index: 2;
+}
+
+.tableTitle {
+    height: 18px;
+    font-family: Roboto, sans-serif;
+    font-size: 21px;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 0.45;
+    letter-spacing: normal;
+    text-align: left;
+    color: rgb(247, 243, 244);
+    margin-bottom: 11px;
+}
+
+.tableSubTitle {
+    height: 14px;
+    opacity: 0.7;
+    font-family: Roboto, sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 0.47;
+    letter-spacing: normal;
+    text-align: left;
+    color: rgba(247, 243, 244, 0.7);
+}
+
+.tableBody {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    height: 478px;
+    box-shadow: 2px 0 5px 0 rgba(0, 0, 0, 0.35);
+    background-color: #fafbfc;
+    position: relative;
+    top: -50px;
+    z-index: 1;
+    width: 100%;
+    border-radius: 10px;
+    padding-top: 65px;
+    padding-left: 20px;
+}
+
+.tableSingle {
+    height: 528px;
+}
+
+.tableBody th {
+    height: 16px;
+    font-family: Roboto, sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 0.47;
+    letter-spacing: normal;
+    text-align: left;
+    color: #2088cb;
+}
+
+th, td {
+    padding: 10px 0;
+}
+
+table {
+    width: 100%;
+    border-spacing: 0;
+}
+
+thead, tbody, tr, th, td {
+    display: block;
+}
+
+tr:after {
+    content: '';
+    display: block;
+    visibility: hidden;
+    clear: both;
+    height: 1px;
+}
+
+tbody {
+    height: 371px;
+    overflow-y: auto;
+    overflow-x: auto;
+}
+
+tbody td, thead th {
+    float: left;
+}
+
+.widthChkbox {
+    width: 40px;
+}
+
+th.widthChkbox {
+    position: relative;
+    top: -4.5px
+}

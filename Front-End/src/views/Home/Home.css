@@ -1,0 +1,12 @@
+.content {
+    display: inline-block;
+    background-color: #e0d9db;
+    width: 80%;
+    box-sizing: border-box;
+    vertical-align: top;
+    padding: 5px 30px;
+}
+
+body{
+    background-color: #fafbfc;
+}

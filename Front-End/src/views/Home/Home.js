@@ -1,11 +1,11 @@
 import React from 'react';
-import logo from '../../elements/blibli-logo.png';
 import '../Login/Login.css';
 import Inventory from '../Inventory/Inventory';
 import Employee from '../Employee/Employee';
 import Transaction from '../Transaction/Transaction';
 import ReturnItem from '../ReturnItem/ReturnItem';
 import Sidebar from '../../components/Sidebar/Sidebar';
+import './Home.css';
 
 export default class Home extends React.Component{
     constructor(){
@@ -30,9 +30,11 @@ export default class Home extends React.Component{
         };
 
         return(
-		    <div>
+		    <div className='home'>
                 <Sidebar pageView={(view)=> this.setState({view: view})} />
-                <div className='content'><View/></div>
+                <div className='content'>
+                    <View/>
+                </div>
 			</div>
 		)
 	}
