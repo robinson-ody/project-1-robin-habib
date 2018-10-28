@@ -1,5 +1,5 @@
 .App {
-  background: url("elements/bg-outer.jpg");
+  background: url("../../elements/bg-outer.jpg");
   height: 561px;
   padding-top: 65px;
 }
@@ -15,7 +15,7 @@
   float: left;
   height: 500px;
   border-radius: 10px 0 0 10px;
-  background: white url(./elements/blibli-logo.png) no-repeat center;
+  background: white url(../../elements/blibli-logo.png) no-repeat center;
   background-size: 40%;
 }
 
@@ -65,15 +65,6 @@ form input{
   outline: none;
 }
 
-.sidebar {
-    width: 20%;
-    height: 626px;
-    box-shadow: 2px 0 18px 0 rgba(0, 0, 0, 0.35);
-    background-color: #fafbfc;
-    text-align: center;
-    display: inline-block;
-}
-
 .content {
     display: inline-block;
     background-color: #e0d9db;
@@ -82,46 +73,4 @@ form input{
     box-sizing: border-box;
     vertical-align: top;
     padding: 5px 30px;
-}
-
-.logo {
-    width: 55%;
-    margin: 27px 0 20px 0;
-}
-
-.menu-container{
-    margin-top: 23px;
-}
-
-.menu-container .menu{
-    width: 80%;
-    height: 52px;
-    border-radius: 5px;
-    margin: 16px auto;
-    padding-top: 22px;
-    box-sizing: border-box;
-    font-size: 15px;
-    font-family: Roboto, sans-serif;
-    font-weight: 300;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 0.45;
-    letter-spacing: normal;
-    color: #a9afbb;
-}
-
-.menu-container .active{
-    background-color: rgb(32, 136, 203);
-    box-shadow: 2px 0 5px 0 rgba(0, 0, 0, 0.35);
-    color: rgb(244, 247, 249);
-}
-
-.divider{
-    width: 75%;
-    height: 2px;
-    opacity: 0.2;
-}
-
-.menu {
-    cursor: pointer;
 }

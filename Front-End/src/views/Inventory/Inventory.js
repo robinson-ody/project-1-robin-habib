@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '../Header/Header'
+import Header from '../../components/Header/Header'
 
 export default class Inventory extends React.Component{
 	render(){

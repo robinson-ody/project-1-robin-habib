@@ -6,8 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface LoginRepository extends MongoRepository<Login,String>/*<entity that you want to store,type of the id>*/ {
-    List<Login> findByUsername(String username);
-    List<Login> findByPassword(String password);
-    List<Login> findByRole(String role);
+public interface LoginRepository extends MongoRepository<Login,String> { // <entity that you want to store,type of the id>
+    Login findByUsername(String username);
+    Login findByPassword(String password);
 }

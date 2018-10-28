@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './App.css';
+import './Login.css';
 
-class App extends Component {
+class Login extends Component {
   render() {
     document.title = "Login Page | Blibli Inventory System"
 
@@ -15,7 +15,7 @@ class App extends Component {
           <div id="container-right">
             <p>Please enter your username and password to login</p>
 
-            <form action="/auth/actionLogin" method="POST">
+            <form action="http://localhost:8080/auth/login" method="POST">
               <input type="text" name="username" placeholder="Username..." />
               <input type="password" name="password" placeholder="Password..." />
               <button type="submit" className="btn-login">Log In</button>
@@ -27,4 +27,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Login;

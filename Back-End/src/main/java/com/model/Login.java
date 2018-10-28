@@ -8,6 +8,7 @@ import javax.annotation.Generated;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+
 @Entity
 @Document(collection = "Login")
 public class Login {
@@ -18,13 +19,20 @@ public class Login {
     private String password;
     private String role;
 
+    public Login(){}
 
     public Login(String username, String password, String role){
-        this.username=username;
-        this.password=password;
-        this.role=role;
+        this.username = username;
+        this.password = password;
+        this.role = role;
     }
 
+//    @Override
+//    public String toString() {
+//        return String.format(
+//                "Login[username='%s', password='%s', role='%s'",
+//                username, password, role);
+//    }
 
     public String getRole() { return role; }
     public String getPassword() { return password; }
