@@ -75,7 +75,7 @@
 }
 
 th, td {
-    padding: 10px 0;
+    padding: 17px 0;
 }
 
 table {
@@ -96,7 +96,7 @@ tr:after {
 }
 
 tbody {
-    height: 371px;
+    height: 350px;
     overflow-y: auto;
     overflow-x: auto;
 }
@@ -105,11 +105,66 @@ tbody td, thead th {
     float: left;
 }
 
-.widthChkbox {
-    width: 40px;
+.chkbox {
+    margin-right: 20px;
 }
 
-th.widthChkbox {
+th.chkbox {
     position: relative;
     top: -4.5px
+}
+
+.inventory {
+    width: 120px;
+    margin-right: 30px;
+}
+
+.detail{
+    width: 180px;
+    margin-right: 30px;
+}
+
+.stock {
+    width: 45px;
+    text-align: center;
+    margin-right: 30px;
+}
+
+.available {
+    width: 70px;
+    text-align: center;
+    margin-right: 30px;
+}
+
+.price {
+    width: 130px;
+    text-align: left;
+    margin-right: 30px;
+}
+
+.moneyValue{
+    float: right;
+}
+
+td.productImage {
+    cursor: pointer;
+}
+
+.productImage {
+    width: 50px;
+    margin-right: 30px;
+    text-align: center;
+}
+
+.seeUsers {
+    width: 71px;
+    margin-right: 30px;
+    color: #2088cb;
+    cursor: pointer;
+}
+
+.deleteIcon {
+    width: 50px;
+    text-align: center;
+    cursor: pointer;
 }
