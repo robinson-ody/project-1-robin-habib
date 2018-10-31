@@ -11,35 +11,14 @@ export default class Sidebar extends React.Component {
     }
 
     render() {
-        const menuClick = (pageView, activeView)=> {
-            this.props.pageView(pageView);
-            this.setState({activeView})
+        const menuClick = (view)=> {
+            document.getElementById(this.state.activeView).className = 'menu';
+
+            this.props.pageView(view);
+            this.setState({activeView : view});
+
+            document.getElementById(view).className = 'menu active';
         };
-
-        let inventoryClass = "";
-        let employeeClass = "";
-        let transactionClass = "";
-        let returnClass = "";
-
-        if(this.state.activeView === 'inventory'){
-            inventoryClass = "menu active"
-        }else
-            inventoryClass = "menu";
-
-        if(this.state.activeView === 'employee'){
-            employeeClass = "menu active"
-        }else
-            employeeClass = "menu";
-
-        if(this.state.activeView === 'transaction'){
-            transactionClass = "menu active"
-        }else
-            transactionClass = "menu";
-
-        if(this.state.activeView === 'returnItem'){
-            returnClass = "menu active"
-        }else
-            returnClass = "menu";
 
         return(
             <div className='sidebar'>
@@ -48,10 +27,16 @@ export default class Sidebar extends React.Component {
                 <hr className='divider' />
 
                 <div className='menu-container'>
-                    <div onClick={()=> menuClick('inventory', 'inventory')} className={inventoryClass}>Inventory</div>
-                    <div onClick={()=> menuClick('employee', 'employee')} className={employeeClass}>Employee</div>
-                    <div onClick={()=> menuClick('transaction', 'transaction')} className={transactionClass}>Transaction</div>
-                    <div onClick={()=> menuClick('returnItem', 'returnItem')} className={returnClass}>Return Item</div>
+                    <div id='inventory' onClick={(ev)=> menuClick(ev.target.valueOf().id)} className='menu active'>Inventory</div>
+                    <div id='employee' onClick={(ev)=> menuClick(ev.target.valueOf().id)} className='menu'>Employee</div>
+                    <div id='transaction' onClick={(ev)=> menuClick(ev.target.valueOf().id)} className='menu'>Transaction</div>
+                    <div id='returnItem' onClick={(ev)=> menuClick(ev.target.valueOf().id)} className='menu'>Return Item</div>
+                </div>
+
+                <div className='menu-container logoutContainer'>
+                    <div className='menu logoutBtn'>
+                        <div className='tulisanLogout'>Log Out</div>
+                    </div>
                 </div>
             </div>
         )

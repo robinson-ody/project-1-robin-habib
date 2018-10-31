@@ -2,6 +2,8 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Roboto-Light', sans-serif;
+    --primary: #2088cb;
+    --light: #fafbfc;
 }
 
 @font-face {

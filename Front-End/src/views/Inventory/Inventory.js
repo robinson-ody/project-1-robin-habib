@@ -7,7 +7,7 @@ export default class Inventory extends React.Component{
 		return(
 			<div>
 				<Header pageName="Inventory" />
-                <TableSingle title='Inventory List' subTitle='item' />
+                <TableSingle title='Inventory List' version='inventory' placeholder='Search Items...'/>
 			</div>
 		)
 	}

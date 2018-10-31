@@ -1,9 +1,19 @@
 import React from 'react';
 import './TableSingle.css';
 import image from '../../elements/black.png';
-import trashIcon from '../../elements/trash.png'
+import trashIcon from '../../elements/trash-copy-8.png'
+import addNewBtn from '../../elements/add-new-btn.png'
+import SearchBar from '../SearchBar/SearchBar';
+import PrintIcon from '../../elements/print-icon.png';
 
 export default class TableSingle extends React.Component {
+    componentDidMount() {
+        if(this.props.version !== 'inventory'){
+            document.getElementById('assignInventory').style.display = "none";
+            document.getElementById('printIcon').style.display = 'none';
+        }
+    }
+
     render() {
         const productData = [
             {id : 123456789001, nama : 'Item Example Number 1', stock : 100, available : 10, price: '1.000.000'},
@@ -18,13 +28,16 @@ export default class TableSingle extends React.Component {
             {id : 123456789010, nama : 'Item Example Number 10', stock : 1000, available : 100, price: '10.000.000'},
             {id : 123456789011, nama : 'Item Example Number 11', stock : 1100, available : 110, price: '11.000.000'},
             {id : 123456789012, nama : 'Item Example Number 12', stock : 1200, available : 120, price: '12.000.000'}
-        ]
+        ];
 
         return(
             <div className='tableSingle'>
                 <div className='tableHeader'>
                     <div className='tableTitle'>{this.props.title}</div>
-                    <div className='tableSubTitle'>List of all {this.props.subTitle} in the company</div>
+                    <img src={addNewBtn} alt='Add New Button' className='addNewBtn' title='Add New Product' />
+                    <SearchBar placeholder={this.props.placeholder} />
+                    <div id='assignInventory' className='assignInventory'><span className='tulisanAssignInventory'>Assign Inventory</span></div>
+                    <img src={PrintIcon} id='printIcon' className='printIcon' alt='Print Icon' />
                 </div>
 
                 <div className='tableBody'>
@@ -45,16 +58,16 @@ export default class TableSingle extends React.Component {
 
                         <tbody>
                             {productData.map((item, index)=>(
-                                <tr>
+                                <tr key={index}>
                                     <td className='chkbox'><input type='checkbox' /></td>
                                     <td className='inventory'>{item.id}</td>
                                     <td className='detail'>{item.nama}</td>
                                     <td className='stock'>{item.stock}</td>
                                     <td className='available'>{item.available}</td>
                                     <td className='price'>Rp <span className='moneyValue'>{item.price}</span></td>
-                                    <td className='productImage'><img src={image} width='20px' /></td>
+                                    <td className='productImage'><img src={image} width='20px' alt='Product'/></td>
                                     <td className='seeUsers'>See Users</td>
-                                    <td className='deleteIcon'><img src={trashIcon} width='20px' /></td>
+                                    <td className='deleteIcon'><img src={trashIcon} width='15px' alt='Trash icon' /></td>
                                 </tr>
                                 ))
                             }

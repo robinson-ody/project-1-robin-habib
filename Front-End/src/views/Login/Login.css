@@ -64,3 +64,7 @@ form input{
   font-family: 'Roboto-Light', sans-serif;
   outline: none;
 }
+
+button {
+  cursor: pointer;
+}

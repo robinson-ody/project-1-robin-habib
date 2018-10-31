@@ -41,9 +41,28 @@
     text-align: center;
     display: inline-block;
     min-height: 626px;
+    position: relative;
+    z-index: 2;
 }
 
 .logo {
     width: 55%;
     margin: 27px 0 20px 0;
+}
+
+.logoutBtn {
+    width: 230px;
+    height: 52px;
+    border-radius: 5px;
+    box-shadow: 2px 0 5px 0 rgba(0, 0, 0, 0.35);
+    background-color: #797b7d;
+}
+
+.logoutContainer {
+    margin-top: 155px;
+}
+
+.tulisanLogout {
+    text-decoration: none;
+    color: rgb(244, 247, 249);
 }

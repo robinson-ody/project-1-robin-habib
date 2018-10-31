@@ -7,7 +7,7 @@ export default class Employee extends React.Component{
         return(
             <div>
                 <Header pageName="Employee" />
-                <TableSingle title='Employee List' subTitle='employee' />
+                <TableSingle title='Employee List' version='employee' placeholder='Search Employees...' />
             </div>
         )
     }
