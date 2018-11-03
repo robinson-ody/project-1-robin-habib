@@ -1,3 +1,4 @@
+/*
 package com.model;
 
 import org.springframework.data.annotation.Id;
@@ -38,4 +39,4 @@ public class Login {
     public String getPassword() { return password; }
     public String getUsername() { return username; }
     public String getId() { return id; }
-}
+}*/
