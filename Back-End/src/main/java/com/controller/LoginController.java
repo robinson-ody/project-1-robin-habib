@@ -1,3 +1,4 @@
+/*
 package com.controller;
 
 import com.repository.LoginRepository;
@@ -27,12 +28,14 @@ import java.util.Objects;
 
 @Controller
 public class LoginController {
+*/
 /*
     private LoginRepository loginRepository;
     public LoginController(LoginRepository loginRepository){
         this.loginRepository = loginRepository;
     }
-*/
+*//*
+
 
     @GetMapping("/login")
     public String loginPage(Model model) {
@@ -46,13 +49,16 @@ public class LoginController {
     }
 
 
+*/
 /*
     @GetMapping("/login")
     public String HomePage() {
         return "login";
     }
-*/
+*//*
 
+
+*/
 /*    @RequestMapping(value="/actionLogin", method=RequestMethod.POST)
     @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:5000"})
         @ResponseBody
@@ -75,8 +81,10 @@ public class LoginController {
                 } else {
                     return "login";
                     console.write("Please Input the Correct Username and Password");
-                }*/
+                }*//*
 
+
+*/
 /*            String usernameLogin = loginRepository.findByUsername(parameterMap.get("username").toString()).toString();
             String passwordLogin = loginRepository.findByPassword(parameterMap.get("password").toString()).toString();
             if (usernameLogin != null) {
@@ -89,8 +97,10 @@ public class LoginController {
             } else {
                 System.out.println("Please Input the Correct Username and Password");
                 return "login";
-        }*/
+        }*//*
 
+
+*/
 /*            String userLogin = formData.get("username").toString();
             String passLogin = formData.get("password").toString();
 
@@ -100,5 +110,6 @@ public class LoginController {
             } else {
                 System.out.println("Please Input the Correct Username and Password");
                 return "login";
-            }*/
-    }
+            }*//*
+
+    }*/

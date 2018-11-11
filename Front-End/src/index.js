@@ -5,5 +5,5 @@ import Login from './views/Login/Login';
 import Home from './views/Home/Home';
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<Home />, document.getElementById('root'));
+ReactDOM.render(<Login />, document.getElementById('root'));
 registerServiceWorker();

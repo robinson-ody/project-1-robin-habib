@@ -1,3 +1,4 @@
+/*
 package com;
 
 import java.util.Arrays;
@@ -15,6 +16,10 @@ import org.springframework.stereotype.Repository;
 public class DbSeeder implements CommandLineRunner {
 
     private LoginRepository loginRepository;
+<<<<<<< HEAD
+=======
+
+>>>>>>> be05c94e52926ab251ddbf5bb541b6ed93d691a4
     public static void main(String[] args) {
         SpringApplication.run(DbSeeder.class, args);
     }
@@ -72,3 +77,4 @@ public class DbSeeder implements CommandLineRunner {
     }
 
 }
+*/

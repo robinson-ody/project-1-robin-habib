@@ -13,7 +13,7 @@ class Login extends Component {
                     <div id="container-right">
                         <p>Please enter your username and password to login</p>
 
-                        <form action="/login" method="POST">
+                        <form th:action="@{loocalhost:8080/login}" method="POST">
                             <input type="text" name="username" placeholder="Username..." />
                             <input type="password" name="password" placeholder="Password..." />
                             <button onClick={()=> this.props.isAuth('true')} type="submit" className="btn-login">Log In</button>

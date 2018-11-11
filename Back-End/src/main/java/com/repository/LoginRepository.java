@@ -1,3 +1,4 @@
+/*
 package com.repository;
 
 import com.model.Login;
@@ -9,4 +10,4 @@ import java.util.List;
 public interface LoginRepository extends MongoRepository<Login,String> { // <entity that you want to store,type of the id>
     Login findByUsername(String username);
     Login findByPassword(String password);
-}
+}*/
