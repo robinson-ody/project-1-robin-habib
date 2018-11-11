@@ -12,6 +12,10 @@ export default class TableDouble extends React.Component {
 
     }}
 
+    historyChanger(activeHistory){
+        this.setState({activeHistory: activeHistory})
+    };
+
     render() {
         const historyData = [
             {id : 20180901001, requestDate : '1 September 2018', staff : 'Habib'},
@@ -46,7 +50,7 @@ export default class TableDouble extends React.Component {
 
                             <tbody>
                             {historyData.map((item, index)=>(
-                                <tr>
+                                <tr key={index} onClick={()=> this.historyChanger(item.id)}>
                                     <td className='assignment'>{item.id}</td>
                                     <td className='requestDate'>{item.requestDate}</td>
                                     <td className='staff'>{item.staff}</td>
@@ -60,7 +64,7 @@ export default class TableDouble extends React.Component {
 
                 <div className='tableRight'>
                     <div className='tableHeaderDouble'>
-                        <div className='tableTitleDouble'>{this.props.activeHistory}</div>
+                        <div className='tableTitleDouble'>{this.state.activeHistory}</div>
                     </div>
 
                     <div className='tableBodyDouble'>
@@ -76,7 +80,7 @@ export default class TableDouble extends React.Component {
                             <tbody>
 
                             {dataDummy.map((item, index)=>(
-                                <tr>
+                                <tr key={index}>
                                     <td className='itemName'>{item.itemName}</td>
                                     <td className='itemQty'>{item.qty}</td>
                                     <td className='itemStatus'>{item.statusItem}</td>

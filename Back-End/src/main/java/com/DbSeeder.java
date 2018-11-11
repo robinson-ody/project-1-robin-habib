@@ -15,7 +15,6 @@ import org.springframework.stereotype.Repository;
 public class DbSeeder implements CommandLineRunner {
 
     private LoginRepository loginRepository;
-#######################
     public static void main(String[] args) {
         SpringApplication.run(DbSeeder.class, args);
     }
