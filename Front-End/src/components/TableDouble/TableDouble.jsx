@@ -8,22 +8,26 @@ export default class TableDouble extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            activeHistory : ''
+            activeHistory : '',
 
-    }}
+            historyData : [
+                {id : 20180901001, requestDate : '1 September 2018', staff : 'Habib'},
+                {id : 20180902001, requestDate : '2 September 2018', staff : 'Robin'},
+                {id : 20180902002, requestDate : '2 September 2018', staff : 'Habib'},
+                {id : 20180903001, requestDate : '3 September 2018', staff : 'Robin'},
+            ]        
+        }
+    }
+
+    componentDidMount(){
+        this.setState({activeHistory: this.state.historyData[0].id})
+    };
 
     historyChanger(activeHistory){
         this.setState({activeHistory: activeHistory})
     };
 
     render() {
-        const historyData = [
-            {id : 20180901001, requestDate : '1 September 2018', staff : 'Habib'},
-            {id : 20180902001, requestDate : '2 September 2018', staff : 'Robin'},
-            {id : 20180902002, requestDate : '2 September 2018', staff : 'Habib'},
-            {id : 20180903001, requestDate : '3 September 2018', staff : 'Robin'},
-        ];
-
         const dataDummy = [
             {itemName: 'Meja', qty : 1, statusItem: 'Pending'},
             {itemName: 'Kursi', qty : 1, statusItem: 'Approved'},
@@ -49,7 +53,7 @@ export default class TableDouble extends React.Component {
                             </thead>
 
                             <tbody>
-                            {historyData.map((item, index)=>(
+                            {this.state.historyData.map((item, index)=>(
                                 <tr key={index} onClick={()=> this.historyChanger(item.id)}>
                                     <td className='assignment'>{item.id}</td>
                                     <td className='requestDate'>{item.requestDate}</td>
