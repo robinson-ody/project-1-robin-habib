@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login Page</title>
+    <link rel="stylesheet" type="text/css"
+          href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" th:href="@{/css/style.css}"
+          href="../css/style.css" />
+</head>
+<body>
+<div class="box">
+    <div class="logo">
+    </div>
+    <div class="login-form">
+        <form name="login" th:action="@{/login}"  method="post">
+            <fieldset>
+                <div th:if="${param.error}">
+                    <div id="alert" class="alert alert-danger">
+                        Invalid username and password.
+                    </div>
+                </div>
+                <div th:if="${param.logout}">
+                    <div id="alert" class="alert alert-info">
+                        You have been logged out.
+                    </div>
+                </div>
+                <p>
+                    Please enter your username and password to login
+                </p>
+                <input type="text" name="username" id="username"
+                       placeholder="Username" required="true" autofocus="true"/>
+                <input type="password" name="password" id="password"
+                       placeholder="Password" required="true"/>
+                <button id="login" type="submit" class="btn-login" value="Log In">Sign In</button>
+            </fieldset>
+        </form>
+    </div>
+</div>
+<!--<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+
+<script>
+    $("#login").click(function(){
+        var username = document.getElementById("username").value
+        var password = document.getElementById("password").value
+        console.log('username: ' + username)
+        $.ajax({
+            type: 'POST',
+            url: 'http://localhost:8080/future/auth/login',
+            data:
+                '{"username": "' + username + '", "password": "' + password + '"}',
+            headers: {
+                "Content-Type": "application/json", "Accept": "application/json"
+            },
+            dataType:"json", //to parse string into JSON object,
+            success: function(data, status){
+                alert("call success. result: " + data);
+            },
+            error: function(error){
+                alert('errorCode: ' + error.status + ' . Message: ' + error.responseText);
+            }
+        });
+    });
+</script>-->
+</body>
+</html>

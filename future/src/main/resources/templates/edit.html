@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="default">
+<head>
+    <title>Edit Inventory</title>
+</head>
+<body>
+<div layout:fragment="content" class="row">
+    <div class="col-xs-8 col-md-8">
+        <h3>
+            <a href="/about" class="btn btn-lg btn-primary"><span class="glyphicon glyphicon-list"></span> Inventory</a>
+        </h3>
+        <h2>Edit Inventory</h2>
+        <form action="/update">
+            <div class="form-group">
+                <label>Inventory-ID:</label>
+                <input type="text" class="form-control" name="inventoryId" />
+            </div>
+            <div class="form-group">
+                <label>Detail</label>
+                <textarea class="form-control" name="detail" cols="60" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Stock</label>
+                <input type="number" class="form-control" name="stock" />
+            </div>
+            <div class="form-group">
+                <label>Price</label>
+                <input type="number" class="form-control" name="price" />
+            </div>
+            <div class="form-group">
+                <label>Product Image URL:</label>
+                <input type="url" class="form-control" name="inventoryImg" />
+            </div>
+            <input type="hidden" name="id" th:value="${inventory._id}" />
+            <button type="submit" class="btn btn-success">Save</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
