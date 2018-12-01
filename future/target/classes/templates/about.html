@@ -1,28 +1,18 @@
 <!DOCTYPE HTML>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorator="default">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-    <script type="text/javascript" src="../js/script.js"></script>
-    <title>Inventory List</title>
+    <title>Admin</title>
+    <link rel="stylesheet" type="text/css"
+          href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" th:href="@{/css/style.css}"
+          href="../css/style.css" />
 </head>
 <body>
-<div layout:fragment="content" class="row">
-    <div class="col-xs-8 col-md-8">
-
-        <ul>
-            <li> <a id = "one" href = "#" > Inventory List </a></li >
-            <li> <a id = "two" href = "#" > Add Inventory </a></li >
-        </ul>
-        <div class="container-right"></div>
-
-        <form th:action="@{/logout}" method="post">
-            <input type="submit" value="Sign Out"/>
-        </form>
-    </div>
+<div class="container">
+    <h1>Normal page</h1>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
 </div>
 </body>
 </html>
-
