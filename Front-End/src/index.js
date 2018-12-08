@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Login from './views/Login/Login';
+// import Login from './views/Login/Login';
 import Home from './views/Home/Home';
 import registerServiceWorker from './registerServiceWorker';
 
