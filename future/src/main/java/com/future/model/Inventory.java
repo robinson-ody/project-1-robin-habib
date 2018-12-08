@@ -15,9 +15,9 @@ public class Inventory {
 
     @Id
     private String id;
-    public String detail;
-    public Integer stock;
-    public Integer price;
+    private String detail;
+    private Integer stock;
+    private Integer price;
     @NotBlank
     @Size(max=100)
     @Indexed(unique=true)
