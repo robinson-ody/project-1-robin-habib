@@ -2,7 +2,6 @@ package com.future.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.service.ApiInfo;
@@ -16,12 +15,28 @@ import static springfox.documentation.builders.PathSelectors.regex;
 public class SwaggerConfig {
 
     @Bean
-    public Docket api() {
+    public Docket productApi(){
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.any())
-                .paths(PathSelectors.any())
-                .build();
-    };
+                .apis(RequestHandlerSelectors.basePackage("com.future"))
+                .paths(regex("/*"))
+                .build()
+                .apiInfo(metaInfo());
 
+    }
+    private ApiInfo metaInfo() {
+
+        ApiInfo apiInfo = new ApiInfo(
+                "Project Future Program",
+                "Spring Boot Swagger API",
+                "1.0",
+                "Terms of Service",
+                new Contact("Habib - Robin", "",
+                        ""),
+                "",
+                ""
+        );
+
+        return apiInfo;
+    }
 }

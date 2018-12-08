@@ -79,7 +79,4 @@ input{
     font-family: 'Roboto-Light';
     outline: none; /*hide active border on active cursor*/
 }
-.alert{
-    width: 96%;
-}
 
