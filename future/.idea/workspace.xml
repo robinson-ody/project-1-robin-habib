@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="664bdedb-3518-4140-bed6-3b91308a0f48" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../Back-End/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Back-End/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Back-End/src/main/resources/templates/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Back-End/src/main/resources/templates/about.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/components/TableSingle/TableSingle.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/components/TableSingle/TableSingle.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/components/TableSingle/TableSingle.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/components/TableSingle/TableSingle.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/views/Employee/Employee.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/views/Employee/Employee.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/views/Inventory/Inventory.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/views/Inventory/Inventory.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/mongoSettings.xml" beforeDir="false" />
+    <list default="true" id="7608d3d4-427d-4d15-b53a-17c31cadc338" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/future/controller/InventoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/future/controller/InventoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../futureProgram/src/main/java/com/futureProgram/controller/InventoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../futureProgram/src/main/java/com/futureProgram/controller/InventoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/future/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/future/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/future/controller/DefaultController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/future/controller/DefaultController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/future/config/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/future/config/SecurityConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/future/controller/DefaultController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/future/controller/DefaultController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/future/controller/InventoryController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/future/controller/InventoryController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/future/model/Inventory.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/future/model/Inventory.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,7 +18,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FUSProjectUsageTrigger">
-    <session id="1988036429">
+    <session id="-799595882">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
           <entry key="project.closed" value="4" />
@@ -50,16 +46,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="html" value="10" />
-          <entry key="java" value="121" />
-          <entry key="js" value="1" />
+          <entry key="java" value="880" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="10" />
-          <entry key="JAVA" value="121" />
-          <entry key="JavaScript" value="1" />
+          <entry key="JAVA" value="880" />
         </counts>
       </usages-collector>
     </session>
@@ -67,22 +59,153 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/future/controller/DefaultController.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/future/model/Employee.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="24" column="17" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
+            <state relative-caret-position="255">
+              <caret line="20" column="27" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#524#525#0" expanded="true" />
+                <element signature="e#560#561#0" expanded="true" />
+                <element signature="e#588#589#0" expanded="true" />
+                <element signature="e#619#620#0" expanded="true" />
+                <element signature="e#646#647#0" expanded="true" />
+                <element signature="e#686#687#0" expanded="true" />
+                <element signature="e#718#719#0" expanded="true" />
+                <element signature="e#751#752#0" expanded="true" />
+                <element signature="e#782#783#0" expanded="true" />
+                <element signature="e#828#829#0" expanded="true" />
+                <element signature="e#868#869#0" expanded="true" />
+                <element signature="e#901#902#0" expanded="true" />
+                <element signature="e#930#931#0" expanded="true" />
+                <element signature="e#974#975#0" expanded="true" />
+                <element signature="e#1010#1011#0" expanded="true" />
+                <element signature="e#1045#1046#0" expanded="true" />
+                <element signature="e#1076#1077#0" expanded="true" />
+                <element signature="e#1124#1125#0" expanded="true" />
+                <element signature="e#1164#1165#0" expanded="true" />
+                <element signature="e#1199#1200#0" expanded="true" />
+                <element signature="e#1230#1231#0" expanded="true" />
+                <element signature="e#1278#1279#0" expanded="true" />
+                <element signature="e#1318#1319#0" expanded="true" />
+                <element signature="e#1349#1350#0" expanded="true" />
+                <element signature="e#1376#1377#0" expanded="true" />
+                <element signature="e#1416#1417#0" expanded="true" />
+                <element signature="e#1448#1449#0" expanded="true" />
+                <element signature="e#1485#1486#0" expanded="true" />
+                <element signature="e#1518#1519#0" expanded="true" />
+                <element signature="e#1570#1571#0" expanded="true" />
+                <element signature="e#1614#1615#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/future/repository/AssignmentRepository.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="5" column="68" selection-start-line="5" selection-start-column="68" selection-end-line="5" selection-end-column="68" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/future/model/Assignment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="7" selection-start-line="7" selection-end-line="7" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#329#330#0" expanded="true" />
+                <element signature="e#354#355#0" expanded="true" />
+                <element signature="e#390#391#0" expanded="true" />
+                <element signature="e#418#419#0" expanded="true" />
+                <element signature="e#457#458#0" expanded="true" />
+                <element signature="e#492#493#0" expanded="true" />
+                <element signature="e#548#549#0" expanded="true" />
+                <element signature="e#596#597#0" expanded="true" />
+                <element signature="e#627#628#0" expanded="true" />
+                <element signature="e#653#654#0" expanded="true" />
+                <element signature="e#692#693#0" expanded="true" />
+                <element signature="e#722#723#0" expanded="true" />
+                <element signature="e#755#756#0" expanded="true" />
+                <element signature="e#784#785#0" expanded="true" />
+                <element signature="e#828#829#0" expanded="true" />
+                <element signature="e#864#865#0" expanded="true" />
+                <element signature="e#900#901#0" expanded="true" />
+                <element signature="e#934#935#0" expanded="true" />
+                <element signature="e#986#987#0" expanded="true" />
+                <element signature="e#1032#1033#0" expanded="true" />
+                <element signature="e#1068#1069#0" expanded="true" />
+                <element signature="e#1102#1103#0" expanded="true" />
+                <element signature="e#1154#1155#0" expanded="true" />
+                <element signature="e#1200#1201#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/future/controller/AssignmentController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="697">
+              <caret line="50" column="5" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/future/config/SecurityConfig.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="26" column="27" selection-start-line="26" selection-start-column="27" selection-end-line="26" selection-end-column="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/future/repository/SearchInventoryRepository.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <element signature="e#0#802#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/future/controller/DefaultController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="21" column="23" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/future/FutureApplication.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/future/controller/InventoryController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="27" column="34" selection-start-line="27" selection-start-column="34" selection-end-line="27" selection-end-column="34" />
+            <state relative-caret-position="544">
+              <caret line="45" column="33" selection-start-line="45" selection-start-column="33" selection-end-line="45" selection-end-column="33" />
               <folding>
-                <element signature="e#694#695#0" expanded="true" />
-                <element signature="e#764#765#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -90,15 +213,39 @@
       </file>
     </leaf>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GradleLocalSettings">
+    <option name="projectSyncType">
+      <map>
+        <entry key="$USER_HOME$/Downloads/springboot-mvc-data-mongodb-master" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../Learning/intermidiate/spring-boot-mongodb-react-java-crud-master" value="PREVIEW" />
+      </map>
+    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/resources/static/js/script.js" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/about.html" />
+        <option value="$PROJECT_DIR$/src/main/java/com/future/repository/InventoryRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/future/model/Inventory.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/future/model/Employee.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/future/controller/InventoryController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/future/repository/EmployeeRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/future/model/Assignment.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/future/repository/AssignmentRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/future/controller/EmployeeController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/future/controller/AssignmentController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/future/controller/DefaultController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/future/config/SecurityConfig.java" />
       </list>
     </option>
   </component>
@@ -111,17 +258,20 @@
   <component name="MavenImportPreferences">
     <option name="importingSettings">
       <MavenImportingSettings>
+        <option name="downloadSourcesAutomatically" value="true" />
         <option name="importAutomatically" value="true" />
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1376" />
     <option name="height" value="744" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -140,6 +290,11 @@
             <path>
               <item name="future" type="b2602c69:ProjectViewProjectNode" />
               <item name="future" type="462c0819:PsiDirectoryNode" />
+              <item name=".idea" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="future" type="b2602c69:ProjectViewProjectNode" />
+              <item name="future" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -161,6 +316,15 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="future" type="b2602c69:ProjectViewProjectNode" />
+              <item name="future" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="future" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -169,6 +333,17 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="future" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="future" type="b2602c69:ProjectViewProjectNode" />
+              <item name="future" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="future" type="462c0819:PsiDirectoryNode" />
               <item name="controller" type="462c0819:PsiDirectoryNode" />
             </path>
@@ -178,6 +353,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="future" type="462c0819:PsiDirectoryNode" />
               <item name="model" type="462c0819:PsiDirectoryNode" />
             </path>
@@ -186,6 +362,26 @@
               <item name="future" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="future" type="462c0819:PsiDirectoryNode" />
+              <item name="repository" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="future" type="b2602c69:ProjectViewProjectNode" />
+              <item name="future" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="future" type="462c0819:PsiDirectoryNode" />
+              <item name="services" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="future" type="b2602c69:ProjectViewProjectNode" />
+              <item name="future" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -203,7 +399,7 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="future" type="b2602c69:ProjectViewProjectNode" />
@@ -217,6 +413,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -228,10 +425,11 @@
     <property name="RequestMappingsPanelWidth2" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Front-End" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544283754035" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -259,44 +457,43 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="664bdedb-3518-4140-bed6-3b91308a0f48" name="Default Changelist" comment="" />
-      <created>1543643631289</created>
+      <changelist id="7608d3d4-427d-4d15-b53a-17c31cadc338" name="Default Changelist" comment="" />
+      <created>1544277154559</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1543643631289</updated>
-      <workItem from="1543643634793" duration="393000" />
-      <workItem from="1543657573835" duration="7293000" />
-      <workItem from="1544194328020" duration="1570000" />
-      <workItem from="1544274976484" duration="3807000" />
-      <workItem from="1544343085490" duration="189000" />
+      <updated>1544277154559</updated>
+      <workItem from="1544277206490" duration="5269000" />
+      <workItem from="1544331260495" duration="5477000" />
+      <workItem from="1544343574542" duration="224000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13322000" />
+    <option name="totallyTimeSpent" value="10970000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17776097" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15506808" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
       <window_info id="UI Designer" order="4" />
       <window_info id="Favorites" order="5" side_tool="true" />
       <window_info id="Capture Tool" order="6" />
-      <window_info id="Web" order="7" side_tool="true" />
+      <window_info id="Learn" order="7" />
+      <window_info id="Web" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.20949264" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49921507" weight="0.27213115" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Spring" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50078493" side_tool="true" weight="0.8607595" />
       <window_info anchor="bottom" id="Messages" order="10" />
       <window_info anchor="bottom" id="Java Enterprise" order="11" />
       <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
@@ -306,11 +503,12 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="right" id="Maven Projects" order="5" />
-      <window_info anchor="right" id="Database" order="6" />
-      <window_info anchor="right" id="Palette&#9;" order="7" />
-      <window_info anchor="right" id="Theme Preview" order="8" />
-      <window_info anchor="right" id="Bean Validation" order="9" />
+      <window_info anchor="right" id="Mongo Explorer" order="5" />
+      <window_info anchor="right" id="Maven Projects" order="6" />
+      <window_info anchor="right" id="Database" order="7" />
+      <window_info anchor="right" id="Palette&#9;" order="8" />
+      <window_info anchor="right" id="Theme Preview" order="9" />
+      <window_info anchor="right" id="Bean Validation" order="10" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -320,25 +518,159 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/about.html">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/future/model/Inventory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="10" lean-forward="true" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="10" />
+        <state relative-caret-position="-1396">
+          <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/script.js">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/future/repository/InventoryRepository.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="63" column="10" selection-start-line="63" selection-start-column="10" selection-end-line="63" selection-end-column="10" />
+        <state relative-caret-position="85">
+          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/future/repository/EmployeeRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="5" column="65" selection-start-line="5" selection-start-column="65" selection-end-line="5" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/future/controller/EmployeeController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="45" selection-start-line="45" selection-end-line="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/future/model/Employee.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="20" column="27" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#524#525#0" expanded="true" />
+            <element signature="e#560#561#0" expanded="true" />
+            <element signature="e#588#589#0" expanded="true" />
+            <element signature="e#619#620#0" expanded="true" />
+            <element signature="e#646#647#0" expanded="true" />
+            <element signature="e#686#687#0" expanded="true" />
+            <element signature="e#718#719#0" expanded="true" />
+            <element signature="e#751#752#0" expanded="true" />
+            <element signature="e#782#783#0" expanded="true" />
+            <element signature="e#828#829#0" expanded="true" />
+            <element signature="e#868#869#0" expanded="true" />
+            <element signature="e#901#902#0" expanded="true" />
+            <element signature="e#930#931#0" expanded="true" />
+            <element signature="e#974#975#0" expanded="true" />
+            <element signature="e#1010#1011#0" expanded="true" />
+            <element signature="e#1045#1046#0" expanded="true" />
+            <element signature="e#1076#1077#0" expanded="true" />
+            <element signature="e#1124#1125#0" expanded="true" />
+            <element signature="e#1164#1165#0" expanded="true" />
+            <element signature="e#1199#1200#0" expanded="true" />
+            <element signature="e#1230#1231#0" expanded="true" />
+            <element signature="e#1278#1279#0" expanded="true" />
+            <element signature="e#1318#1319#0" expanded="true" />
+            <element signature="e#1349#1350#0" expanded="true" />
+            <element signature="e#1376#1377#0" expanded="true" />
+            <element signature="e#1416#1417#0" expanded="true" />
+            <element signature="e#1448#1449#0" expanded="true" />
+            <element signature="e#1485#1486#0" expanded="true" />
+            <element signature="e#1518#1519#0" expanded="true" />
+            <element signature="e#1570#1571#0" expanded="true" />
+            <element signature="e#1614#1615#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/future/repository/AssignmentRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="5" column="68" selection-start-line="5" selection-start-column="68" selection-end-line="5" selection-end-column="68" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/future/model/Assignment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#329#330#0" expanded="true" />
+            <element signature="e#354#355#0" expanded="true" />
+            <element signature="e#390#391#0" expanded="true" />
+            <element signature="e#418#419#0" expanded="true" />
+            <element signature="e#457#458#0" expanded="true" />
+            <element signature="e#492#493#0" expanded="true" />
+            <element signature="e#548#549#0" expanded="true" />
+            <element signature="e#596#597#0" expanded="true" />
+            <element signature="e#627#628#0" expanded="true" />
+            <element signature="e#653#654#0" expanded="true" />
+            <element signature="e#692#693#0" expanded="true" />
+            <element signature="e#722#723#0" expanded="true" />
+            <element signature="e#755#756#0" expanded="true" />
+            <element signature="e#784#785#0" expanded="true" />
+            <element signature="e#828#829#0" expanded="true" />
+            <element signature="e#864#865#0" expanded="true" />
+            <element signature="e#900#901#0" expanded="true" />
+            <element signature="e#934#935#0" expanded="true" />
+            <element signature="e#986#987#0" expanded="true" />
+            <element signature="e#1032#1033#0" expanded="true" />
+            <element signature="e#1068#1069#0" expanded="true" />
+            <element signature="e#1102#1103#0" expanded="true" />
+            <element signature="e#1154#1155#0" expanded="true" />
+            <element signature="e#1200#1201#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/future/controller/AssignmentController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="697">
+          <caret line="50" column="5" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/future/repository/SearchInventoryRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#802#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/future/model/Users.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="19" column="25" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
+        <state relative-caret-position="255">
+          <caret line="21" column="23" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/future/FutureApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/future/controller/InventoryController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="45" column="33" selection-start-line="45" selection-start-column="33" selection-end-line="45" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/future/controller/DefaultController.java">
@@ -348,7 +680,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/future/controller/InventoryController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/future/config/SecurityConfig.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="24" column="5" lean-forward="true" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />

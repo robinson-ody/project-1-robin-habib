@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>HOME</title>
+    <link rel="stylesheet" type="text/css"
+          href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" th:href="@{/css/style.css}"
+          href="../css/style.css" />
+</head>
+<body>
+    <div class="container">
+        <h1 th:inline="text">WELCOME [[${#httpServletRequest.remoteUser}]]!</h1>
+        <h2>1. <a th:href="@{/admin}">Admin page</a></h2>
+        <h2>2. <a th:href="@{/user}">User page</a></h2>
+        <h2>3. <a th:href="@{/about}">Normal page</a></h2>
+    </div>
+</body>
+</html>
