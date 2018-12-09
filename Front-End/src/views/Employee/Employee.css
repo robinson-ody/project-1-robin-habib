@@ -1,0 +1,141 @@
+.tableHeader {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 96.5%;
+    height: 82px;
+    border-radius: 5px;
+    box-shadow: 2px 0 5px 0 rgba(0, 0, 0, 0.35);
+    padding: 2.8% 0 2.4%  2.4%;
+    background-color: #2088cb;
+    margin: auto;
+    position: relative;
+    z-index: 2;
+}
+
+.tableTitle {
+    height: 18px;
+    font-family: Roboto, sans-serif;
+    font-size: 21px;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 0.45;
+    letter-spacing: normal;
+    text-align: left;
+    color: rgb(247, 243, 244);
+    margin-top: 5px;
+    margin-left: 5px;
+    float: left;
+}
+
+.tableBody {
+    box-sizing: border-box;
+    height: 465px;
+    box-shadow: 2px 0 5px 0 rgba(0, 0, 0, 0.35);
+    background-color: #fafbfc;
+    position: relative;
+    top: -40px;
+    z-index: 1;
+    width: 100%;
+    border-radius: 10px;
+    padding-top: 55px;
+    padding-left: 20px;
+}
+
+.tableSingle {
+    height: 528px;
+}
+
+.tableBody th {
+    height: 16px;
+    font-family: Roboto, sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 0.47;
+    text-align: left;
+    color: #2088cb;
+}
+
+th, td {
+    padding: 17px 0;
+}
+
+table {
+    width: 100%;
+    border-spacing: 0;
+}
+
+thead, tbody, tr, th, td {
+    display: block;
+}
+
+tr:after {
+    content: '';
+    display: block;
+    visibility: hidden;
+    clear: both;
+    height: 1px;
+}
+
+tbody {
+    height: 350px;
+    overflow-y: auto;
+    overflow-x: auto;
+}
+
+tbody td, thead th {
+    float: left;
+}
+
+.chkbox {
+    margin-right: 20px;
+}
+
+th.chkbox {
+    position: relative;
+    top: -4.5px
+}
+
+.gender, .birthday, .name, .division, .superior {
+    margin-right: 30px;
+}
+
+.deleteIcon {
+    width: 50px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.addNewBtn {
+    float: right;
+    vertical-align: top;
+    position: relative;
+    top: -20px;
+    cursor: pointer;
+}
+
+.birthday{
+    width: 130px;
+}
+
+.name{
+    width: 180px;
+}
+
+.gender{
+    width: 90px;
+    text-align: center;
+}
+
+th.gender{
+    text-align: center;
+}
+
+.division{
+    width: 90px;
+}
+
+.superior{
+    width: 90px;
+}
