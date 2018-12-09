@@ -19,7 +19,7 @@ public class DefaultController {
 
     @GetMapping("/admin")
     public String admin() {
-        return "/admin";
+        return "http://localhost:3000";
     }
 
     @GetMapping("/user")
