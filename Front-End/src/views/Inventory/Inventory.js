@@ -24,7 +24,7 @@ export default class Inventory extends React.Component{
 		return(
 			<div>
 				<Header pageName="Inventory" />
-                <TableSingle title='Inventory List' version='inventory' placeholder='Search Items...'
+                <TableSingle title='Inventory' version='inventory' placeholder='Search Items...'
 							 data={this.state.data}/>
 			</div>
 		)

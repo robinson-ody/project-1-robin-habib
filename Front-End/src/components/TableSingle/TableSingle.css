@@ -97,32 +97,31 @@ th.chkbox {
     top: -4.5px
 }
 
+.inventory, .detail, .stock, .available, .price, .productImage, .seeUsers, .gender, .birthday, .name, .division, .superior {
+    margin-right: 30px;
+}
+
 .inventory {
     width: 120px;
-    margin-right: 30px;
 }
 
 .detail{
     width: 180px;
-    margin-right: 30px;
 }
 
 .stock {
     width: 45px;
     text-align: center;
-    margin-right: 30px;
 }
 
 .available {
     width: 70px;
     text-align: center;
-    margin-right: 30px;
 }
 
 .price {
     width: 130px;
     text-align: left;
-    margin-right: 30px;
 }
 
 .moneyValue{
@@ -135,13 +134,11 @@ td.productImage {
 
 .productImage {
     width: 50px;
-    margin-right: 30px;
     text-align: center;
 }
 
 .seeUsers {
     width: 71px;
-    margin-right: 30px;
     color: #2088cb;
     cursor: pointer;
 }
@@ -187,4 +184,29 @@ td.productImage {
     float: right;
     margin-right: 50px;
     cursor: pointer;
+}
+
+.birthday{
+    width: 130px;
+}
+
+.name{
+    width: 180px;
+}
+
+.gender{
+    width: 90px;
+    text-align: center;
+}
+
+th.gender{
+    text-align: center;
+}
+
+.division{
+    width: 90px;
+}
+
+.superior{
+    width: 90px;
 }

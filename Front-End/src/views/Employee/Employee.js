@@ -16,7 +16,10 @@ export default class Employee extends React.Component{
 
         super(props);
         this.state = {
-            data : []
+            data : [],
+            dummy : [
+                {employeeId : '20181208', name: 'Muhammad Habib', birthday: '7 November 1996', gender: 'Male', division: 'Technology', superior: 'Anthonius'}
+            ]
         }
     }
 
@@ -24,8 +27,8 @@ export default class Employee extends React.Component{
         return(
             <div>
                 <Header pageName="Employee" />
-                <TableSingle title='Employee List' version='employee' placeholder='Search Employees...'
-                             data={this.state.data}/>
+                <TableSingle title='Employee' version='employee' placeholder='Search Employees...'
+                             data={this.state.dummy}/>
             </div>
         )
     }

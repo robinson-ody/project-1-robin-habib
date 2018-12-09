@@ -46,7 +46,7 @@ public class InventoryController {
     }
 
     @DeleteMapping
-    public void deleteInvetory(@RequestParam("id") String id) {
+    public void deleteInventory(@RequestParam("id") String id) {
         inventoryService.deleteInventory(id);
     }
 
