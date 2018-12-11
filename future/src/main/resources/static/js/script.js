@@ -1,3 +1,19 @@
+var fileList = document.querySelector("#file-list");
+(function() {
+    fetch("/files").then(function(response) {
+        response.json().then(function(data) {
+            if (Array.isArray(data) && data.length) {
+                for (var i=0;i<data.length;i++) {
+                    var li = document.createElement("li");
+                    var name = data[i];
+                    li.innerHTML = "<a href='/files/"+name+"'>"+name+"</a>";
+                    fileList.appendChild(li);
+                }
+            }
+        });
+    })
+})();
+
 $(function(){
     var $inventory=$('#inventory');
     var $inventoryId=$('#inventoryId');

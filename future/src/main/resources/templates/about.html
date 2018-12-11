@@ -18,7 +18,17 @@
                     <li> <a id = "one" href = "#" > Inventory List </a></li >
                     <li> <a id = "two" href = "#" > Add Inventory </a></li >
                 </ul>
+                <div>
+                    <form action="/files" method="POST" enctype="multipart/form-data">
+                        <input type="file" name="file">
+                        <input type="submit" value="Submit">
+                    </form>
+                </div>
+                <div>
+                    <ul id="file-list"></ul>
+                </div>
 
+               
                 <div class="container-right"></div>
 
                 <form th:action="@{/logout}" method="post">
