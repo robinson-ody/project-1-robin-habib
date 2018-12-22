@@ -25,7 +25,7 @@ public class Inventory {
 
     private Date createdAt = new Date();
 
-    public Inventory() {
+    public Inventory(String s, String unitTest, int i, int i1) {
         super();
     }
 

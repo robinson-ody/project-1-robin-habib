@@ -20,7 +20,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Controller
-@RequestMapping("/files")
+@RequestMapping("/api/files")
 public class FileController {
 
     private final GridFsTemplate gridFsTemplate;
