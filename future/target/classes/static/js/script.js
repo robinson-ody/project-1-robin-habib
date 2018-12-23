@@ -1,3 +1,19 @@
+var fileList = document.querySelector("#file-list");
+(function() {
+    fetch("http://localhost:8080/api/files").then(function(response) {
+        response.json().then(function(data) {
+            if (Array.isArray(data) && data.length) {
+                for (var i=0;i<data.length;i++) {
+                    var li = document.createElement("li");
+                    var name = data[i];
+                    li.innerHTML = "<a href='/api/files/"+name+"'>"+name+"</a>";
+                    fileList.appendChild(li);
+                }
+            }
+        });
+    })
+})();
+
 $(function(){
     var $inventory=$('#inventory');
     var $inventoryId=$('#inventoryId');
@@ -31,6 +47,16 @@ $(function(){
         "            <a id=\"add-inventory\" class=\"btn btn-primary\"><span class=\"glyphicon glyphicon-plus-sign\"></span> Inventory</a>\n" +
         "        </div>";
 
+    var images="<div>\n" +
+        "                    <form action=\"/api/files\" method=\"POST\" enctype=\"multipart/form-data\">\n" +
+        "                        <input type=\"file\" name=\"file\">\n" +
+        "                        <input type=\"submit\" value=\"Submit\">\n" +
+        "                    </form>\n" +
+        "                </div>\n" +
+        "                <div>\n" +
+        "                    <ul id=\"file-list\"></ul>\n" +
+        "                </div>"
+
     $("#one").click(function()
     {
         $(".container-right").html(inventoryList);
@@ -39,6 +65,11 @@ $(function(){
     {
         $(".container-right").html(addInventory);
     });
+    $("#three").click(function()
+    {
+        $(".container-right").html(images);
+    });
+
 
 
     $.ajax({
