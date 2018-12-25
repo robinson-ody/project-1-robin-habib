@@ -1,3 +1,4 @@
+/*
 package com.future.controller;
 
 import static org.hamcrest.Matchers.allOf;
@@ -31,7 +32,7 @@ import edu.mum.domain.Category;
 import edu.mum.service.CategoryService;
 import edu.mum.service.ProductService;
 
-public class ProductControllerTest {
+public class InventoryControllerTest {
 
     @Mock
     private ProductService productServiceMock;
@@ -59,3 +60,4 @@ public class ProductControllerTest {
     public void setup2() {
         System.out.println("thanks for testign");
     }
+}*/
