@@ -1,4 +1,3 @@
-/*
 package com.future.controller;
 
 import static org.hamcrest.Matchers.allOf;
@@ -17,6 +16,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
+import com.future.services.InventoryService;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,24 +26,16 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import edu.mum.builder.CategoryBuilder;
-import edu.mum.builder.ProductListBuilder;
-import edu.mum.domain.Category;
-import edu.mum.service.CategoryService;
-import edu.mum.service.ProductService;
 
 public class InventoryControllerTest {
 
     @Mock
-    private ProductService productServiceMock;
-
-    @Mock
-    private CategoryService categoryServiceMock;
+    private InventoryService inventoryServiceMock;
 
     private MockMvc mockMvc;
 
     @InjectMocks
-    private ProductController productController;
+    private InventoryController inventoryController;
 
     @Before
     public void setup() {
@@ -52,7 +44,7 @@ public class InventoryControllerTest {
         MockitoAnnotations.initMocks(this);
 
         // Setup Spring test in standalone mode
-        this.mockMvc = MockMvcBuilders.standaloneSetup(productController).build();
+        this.mockMvc = MockMvcBuilders.standaloneSetup(inventoryController).build();
 
     }
 
@@ -60,4 +52,4 @@ public class InventoryControllerTest {
     public void setup2() {
         System.out.println("thanks for testign");
     }
-}*/
+}
