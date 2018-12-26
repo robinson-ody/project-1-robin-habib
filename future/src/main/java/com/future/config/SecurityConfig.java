@@ -1,3 +1,4 @@
+/*
 package com.future.config;
 
 import com.future.services.MongoUserDetailService;
@@ -46,4 +47,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                     .withUser("robin").password("robin456").roles("manager");
     }
 
-}
+}*/
