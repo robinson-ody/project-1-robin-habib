@@ -1,3 +1,4 @@
+/*
 package com.future.services;
 
 import com.future.model.Users;
@@ -24,4 +25,4 @@ public class MongoUserDetailService implements UserDetailsService{
         List<SimpleGrantedAuthority> authorities = Arrays.asList(new SimpleGrantedAuthority(user.getRoles()));
         return new User(user.getUsername(), user.getPassword(), authorities);
     }
-}
+}*/

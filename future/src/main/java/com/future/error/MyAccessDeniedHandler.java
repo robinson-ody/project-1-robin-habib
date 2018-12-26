@@ -1,3 +1,4 @@
+/*
 package com.future.error;
 
 
@@ -38,3 +39,4 @@ public class MyAccessDeniedHandler implements AccessDeniedHandler {
 
     }
 }
+*/
