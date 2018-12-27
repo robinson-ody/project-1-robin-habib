@@ -8,7 +8,9 @@ import org.springframework.context.ApplicationContext;
 public class FutureApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(FutureApplication.class, args);
-
+		ApplicationContext appContext = SpringApplication.run(FutureApplication.class, args);
+		for (String name : appContext.getBeanDefinitionNames()) {
+			System.out.println("name: " + name);
+		}
 	}
 }

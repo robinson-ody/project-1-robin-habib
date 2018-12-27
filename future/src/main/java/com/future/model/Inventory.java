@@ -24,13 +24,6 @@ public class Inventory {
 
     private Date createdAt = new Date();
 
-    public Inventory(String s, String unitTest, int i, int i1) {
-        super();
-    }
-
-    public Inventory(String id) {
-        this.id = id;
-    }
 
     public String getId() {
         return id;
