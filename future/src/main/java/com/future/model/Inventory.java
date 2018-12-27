@@ -1,13 +1,13 @@
 package com.future.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.future.services.NextSequenceService;
+//import com.future.services.NextSequenceService;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.index.Indexed;
-import com.future.services.NextSequenceService;
+//import com.future.services.NextSequenceService;
 
 import javax.validation.constraints.Size;
 import java.util.Date;
@@ -16,11 +16,15 @@ import java.util.Date;
 
 public class Inventory {
 
+/*
     @Autowired
     NextSequenceService nextSequenceService;
+*/
+/*
 
     @Transient
     public static final String SEQUENCE_NAME = "inventory_sequence";
+*/
 
     @Id
     private String id;
