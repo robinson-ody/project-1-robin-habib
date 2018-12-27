@@ -16,7 +16,7 @@ class Login extends Component {
     };
 
     submitController(){
-        axios.post('http://localhost:8080/auth/login', this.state)
+        axios.post('http://localhost:8080/api/auth/login', this.state)
             .then(res => {this.props.isAuth(res.data)})
     };
 
