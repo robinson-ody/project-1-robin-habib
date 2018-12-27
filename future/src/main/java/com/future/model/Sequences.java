@@ -1,28 +1,20 @@
+/*
 package com.future.model;
 
 import org.springframework.data.annotation.Id;
 
 public class Sequences {
-  @Id
-        private String id;
+    private String name;
 
-        private long seq;
+    private long sequence;
 
-        //getters and setters omitted
-
-    public String getId() {
-        return id;
+    public long getSequence() {
+        return sequence;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public long getSeq() {
-        return seq;
-    }
-
-    public void setSeq(long seq) {
-        this.seq = seq;
+    public void setSequence(long sequence) {
+        this.sequence = sequence;
     }
 }
+
+*/
