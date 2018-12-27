@@ -41,7 +41,7 @@
   margin-top: 25%;
 }
 
-form input{
+.login input{
   width: 75%;
   display: block;
   border-radius: 20px;

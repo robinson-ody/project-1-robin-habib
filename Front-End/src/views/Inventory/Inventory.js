@@ -143,7 +143,7 @@ export default class Inventory extends React.Component{
                                     <td className='detail'>{item.detail}</td>
                                     <td className='stock'>{item.stock}</td>
                                     <td className='available'>{item.available}</td>
-                                    <td className='price'>Rp <span className='moneyValue'>{item.price.toLocaleString()}</span></td>
+                                    <td className='price'>Rp <span className='moneyValue'>{item.price}</span></td>
                                     <td className='productImage'><img src={image} width='20px' alt='Product'/></td>
                                     <td className='seeUsers'>See Users</td>
                                     <td className='deleteIcon' onClick={()=> this.deleteHandler(item.id)}><img src={trashIcon} width='15px' alt='Trash icon' /></td>

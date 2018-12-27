@@ -1,8 +1,26 @@
 import React, { Component } from 'react';
 import './Login.css';
+import axios from 'axios';
 
 class Login extends Component {
-  render() {
+    constructor(props){
+        super(props);
+        this.state = {
+            username: '',
+            password: ''
+        }
+    }
+
+    valueController(e){
+        this.setState({[e.target.name] : e.target.value});
+    };
+
+    submitController(){
+        axios.post('http://localhost:8080/auth/login', this.state)
+            .then(res => {this.props.isAuth(res.data)})
+    };
+
+    render() {
     return (
         <div>
             <div className="App">
@@ -12,11 +30,13 @@ class Login extends Component {
                     <div id="container-right">
                         <p>Please enter your username and password to login</p>
 
-                        <form action="/login" method="POST">
-                            <input type="text" name="username" placeholder="Username..." />
-                            <input type="password" name="password" placeholder="Password..." />
-                            <button type="submit" className="btn-login">Log In</button>
-                        </form>
+                        <div className='login'>
+                            <input onChangeCapture={this.valueController.bind(this)} type="text" name="username" placeholder="Username..." />
+                            <input onChangeCapture={this.valueController.bind(this)} type="password" name="password" placeholder="Password..." />
+                            <button className="btn-login" onClick={this.submitController.bind(this)}>Log In</button>
+                        </div>
+
+                        <button onClick={()=> this.props.isAuth('true')}/>
                     </div>
                 </div>
             </div>

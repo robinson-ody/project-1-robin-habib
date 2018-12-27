@@ -31,7 +31,7 @@ export default class Home extends React.Component{
 
         return(
 		    <div className='home'>
-                <Sidebar pageView={(view)=> this.setState({view: view})} />
+                <Sidebar isAuth={(e)=> this.props.isAuth(e)} pageView={(view)=> this.setState({view: view})} />
                 <div className='content'>
                     <View/>
                 </div>
