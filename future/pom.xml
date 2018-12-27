@@ -55,7 +55,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-mongodb</artifactId>
-            <versionId>2.1.0.RELEASE</versionId>
 		</dependency>
 		<dependency>
 			<groupId>com.querydsl</groupId>
