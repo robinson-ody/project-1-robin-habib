@@ -1,8 +1,11 @@
 package com.future.controller;
 
+import com.future.exception.ResourceNotFoundException;
 import com.future.model.Inventory;
 import com.future.repository.InventoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.annotation.Transient;
+import org.springframework.http.HttpOutputMessage;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +17,9 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 public class InventoryController {
 
+/*    @Transient
+    public static final String SEQUENCE_NAME = "inventory_sequence";*/
+
     @Autowired
     private InventoryRepository inventoryRepository;
 
@@ -24,6 +30,12 @@ public class InventoryController {
 
     @PostMapping("/inventory/create")
     public Inventory createInventory(@RequestBody Inventory inventory) {
+        ResourceNotFoundException notFoundException=new ResourceNotFoundException();
+        Inventory inventoryData = inventoryRepository.findOne(inventory.getInventoryId());
+        if (inventoryData != null) {
+            notFoundException.setError("There is already a user registered with the username provided");
+            return notFoundException.getError();
+        }
         return inventoryRepository.save(inventory);
     }
 
