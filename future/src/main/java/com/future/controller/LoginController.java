@@ -122,15 +122,20 @@ public class LoginController {
         if (request.getUsername().equals(employeeDataUsername.getUsername()) && request.getPassword().equals(employeeDataUsername.getPassword())) {
             if(employeeDataUsername.getRole().equals("ADMIN")){
                 a.setSuccess(true);
+                a.setName(employeeDataUsername.getName());
+                a.setRole(employeeDataUsername.getRole());
                 return a;}
             else if(employeeDataUsername.getRole().equals("MANAGER")){
                 a.setSuccess(true);
+                a.setName(employeeDataUsername.getName());
+                a.setRole(employeeDataUsername.getRole());
                 return a;
             }
             else {
                 a.setSuccess(false);
             }
-        } else{
+        }
+        else{
             a.setSuccess(false);
         }
         a.setSuccess(false);
