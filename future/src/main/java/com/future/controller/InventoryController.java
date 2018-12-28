@@ -30,12 +30,6 @@ public class InventoryController {
 
     @PostMapping("/inventory/create")
     public Inventory createInventory(@RequestBody Inventory inventory) {
-        ResourceNotFoundException notFoundException=new ResourceNotFoundException();
-        Inventory inventoryData = inventoryRepository.findOne(inventory.getInventoryId());
-        if (inventoryData != null) {
-            notFoundException.setError("There is already a user registered with the username provided");
-            return notFoundException.getError();
-        }
         return inventoryRepository.save(inventory);
     }
 
