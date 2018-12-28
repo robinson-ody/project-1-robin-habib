@@ -65,7 +65,7 @@ public class Employee {
     }
 
     public void setGender(String gender) {
-        this.gender = gender;
+        this.gender = gender.toUpperCase();
     }
 
     public String getDivision() {
@@ -89,7 +89,7 @@ public class Employee {
     }
 
     public void setRole(String role) {
-        this.role = role;
+        this.role = role.toUpperCase();
     }
 
     public String getEmployeeId() {

@@ -120,8 +120,16 @@ public class LoginController {
         LoginResponse a = new LoginResponse();
         Employee employeeDataUsername = employeeRepository.findByUsername(request.getUsername());
         if (request.getUsername().equals(employeeDataUsername.getUsername()) && request.getPassword().equals(employeeDataUsername.getPassword())) {
-            a.setSuccess(true);
-            return a;
+            if(employeeDataUsername.getRole().equals("ADMIN")){
+                a.setSuccess(true);
+                return a;}
+            else if(employeeDataUsername.getRole().equals("MANAGER")){
+                a.setSuccess(true);
+                return a;
+            }
+            else {
+                a.setSuccess(false);
+            }
         } else{
             a.setSuccess(false);
         }
