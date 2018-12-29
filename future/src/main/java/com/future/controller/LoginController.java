@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/api")
 public class LoginController {
 
     @Autowired
     EmployeeRepository employeeRepository;
 
     @CrossOrigin
-    @PostMapping(value = "/login", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/auth/login", produces = MediaType.APPLICATION_JSON_VALUE)
     public LoginResponse authenticate(@RequestBody LoginRequest request) {
         LoginResponse a = new LoginResponse();
         Employee employeeData = employeeRepository.findByEmail(request.getEmail());
