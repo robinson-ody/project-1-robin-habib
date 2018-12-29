@@ -8,8 +8,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.index.Indexed;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+//import javax.persistence.GeneratedValue;
+//import javax.persistence.GenerationType;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
