@@ -1,16 +1,7 @@
 package com.future.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-//import com.future.services.NextSequenceService;
-import org.hibernate.validator.constraints.NotBlank;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.Transient;
-import org.springframework.data.mongodb.core.index.Indexed;
-
-//import javax.persistence.GeneratedValue;
-//import javax.persistence.GenerationType;
-import javax.validation.constraints.Size;
 import java.util.Date;
 
 @JsonIgnoreProperties(value = {"createdAt"}, allowGetters = true)

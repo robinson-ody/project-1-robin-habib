@@ -1,11 +1,8 @@
 package com.future.controller;
 
-import com.future.exception.ResourceNotFoundException;
 import com.future.model.Inventory;
 import com.future.repository.InventoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.annotation.Transient;
-import org.springframework.http.HttpOutputMessage;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,9 +13,6 @@ import java.util.List;
 @RequestMapping("/api")
 @CrossOrigin(origins = "*")
 public class InventoryController {
-
-/*    @Transient
-    public static final String SEQUENCE_NAME = "inventory_sequence";*/
 
     @Autowired
     private InventoryRepository inventoryRepository;
