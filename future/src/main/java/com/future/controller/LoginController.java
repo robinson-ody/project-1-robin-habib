@@ -20,21 +20,21 @@ public class LoginController {
     @PostMapping(value = "/login", produces = MediaType.APPLICATION_JSON_VALUE)
     public LoginResponse authenticate(@RequestBody LoginRequest request) {
         LoginResponse a = new LoginResponse();
-        Employee employeeDataUsername = employeeRepository.findByUsername(request.getUsername());
-        if(employeeDataUsername==null){
+        Employee employeeData = employeeRepository.findByEmail(request.getEmail());
+        if(employeeData==null){
             a.setSuccess(false);
             return a;
         }
-        if (request.getUsername().equals(employeeDataUsername.getUsername()) && request.getPassword().equals(employeeDataUsername.getPassword())) {
-            if(employeeDataUsername.getRole().equals("ADMIN")){
+        if (request.getEmail().equals(employeeData.getEmail()) && request.getPassword().equals(employeeData.getPassword())) {
+            if(employeeData.getRole().equals("ADMIN")){
                 a.setSuccess(true);
-                a.setName(employeeDataUsername.getName());
-                a.setRole(employeeDataUsername.getRole());
+                a.setName(employeeData.getName());
+                a.setRole(employeeData.getRole());
                 return a;}
-            else if(employeeDataUsername.getRole().equals("MANAGER")){
+            else if(employeeData.getRole().equals("MANAGER")){
                 a.setSuccess(true);
-                a.setName(employeeDataUsername.getName());
-                a.setRole(employeeDataUsername.getRole());
+                a.setName(employeeData.getName());
+                a.setRole(employeeData.getRole());
                 return a;
             }
             else {

@@ -32,8 +32,7 @@ public class EmployeeController {
         if (employee == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        employeeData.setEmployeeId(employee.getEmployeeId());
-        employeeData.setUsername(employee.getUsername());
+        employeeData.setEmail(employee.getEmail());
         employeeData.setPassword(employee.getPassword());
         employeeData.setName(employee.getName());
         employeeData.setBirthday(employee.getBirthday());
