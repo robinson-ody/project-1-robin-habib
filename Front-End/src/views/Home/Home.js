@@ -15,25 +15,23 @@ export default class Home extends React.Component{
         }
     }
 
-	render(){
-        document.title = "Home | Blibli Inventory System"
+    View(name){
+        if (this.state.view === 'inventory')
+            return <Inventory name={name}/>;
+        else if (this.state.view === 'employee')
+            return <Employee name={name}/>;
+        else if (this.state.view === 'transaction')
+            return <Transaction name={name}/>;
+        else if (this.state.view === 'returnItem')
+            return <ReturnItem name={name}/>
+    };
 
-        const View = ()=> {
-            if (this.state.view === 'inventory')
-                return <Inventory/>;
-            else if (this.state.view === 'employee')
-                return <Employee/>;
-            else if (this.state.view === 'transaction')
-                return <Transaction/>;
-            else if (this.state.view === 'returnItem')
-                return <ReturnItem/>
-        };
-
+    render(){
         return(
 		    <div className='home'>
                 <Sidebar isAuth={(e)=> this.props.isAuth(e)} pageView={(view)=> this.setState({view: view})} />
                 <div className='content'>
-                    <View/>
+                    {this.View(this.props.name)}
                 </div>
 			</div>
 		)

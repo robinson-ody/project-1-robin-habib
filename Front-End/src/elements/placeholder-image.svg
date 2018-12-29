@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="155.5" height="155.5">
+    <path fill="#DEDEDF" fill-rule="evenodd" d="M5 0h144a5 5 0 0 1 5 5v144a5 5 0 0 1-5 5H5a5 5 0 0 1-5-5V5a5 5 0 0 1 5-5z"/>
+    <text fill="#FFF" font-family="Roboto" font-size="24" transform="translate(36.296 124.283) scale(.71384)">
+        Add Image
+    </text>
+    <path fill="none" fill-rule="evenodd" stroke="#FFF" stroke-width="3" d="M77.5 27C96.001 27 111 41.998 111 60.5 111 79.001 96.001 94 77.5 94 58.998 94 44 79.001 44 60.5 44 41.998 58.998 27 77.5 27z"/>
+    <text fill="#FFF" font-family="Roboto" font-size="24" transform="matrix(2.07479 0 0 2.07479 64.86 76.866)">
+        +
+    </text>
+</svg>

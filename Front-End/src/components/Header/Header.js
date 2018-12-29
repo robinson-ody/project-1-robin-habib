@@ -6,7 +6,7 @@ export default class Header extends React.Component{
         return(
             <div className='header'>
                 <h1>{this.props.pageName}</h1>
-                <div className='welcome'>Welcome, User</div>
+                <div className='welcome'>Welcome, {this.props.name}</div>
             </div>
         )
     }

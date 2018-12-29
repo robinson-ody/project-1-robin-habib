@@ -17,11 +17,16 @@ class Login extends Component {
 
     submitController(){
         axios.post('http://localhost:8080/api/auth/login', this.state)
-            .then(res => {this.props.isAuth(res.data)})
+            .then(res => {
+                this.props.isAuth(res.data.success);
+                this.props.name(res.data.name);
+            })
     };
 
     render() {
-    return (
+        document.title = "Login | Blibli Inventory System";
+
+        return (
         <div>
             <div className="App">
                 <div id="container">
@@ -35,8 +40,6 @@ class Login extends Component {
                             <input onChangeCapture={this.valueController.bind(this)} type="password" name="password" placeholder="Password..." />
                             <button className="btn-login" onClick={this.submitController.bind(this)}>Log In</button>
                         </div>
-
-                        <button onClick={()=> this.props.isAuth('true')}/>
                     </div>
                 </div>
             </div>

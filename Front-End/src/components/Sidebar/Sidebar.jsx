@@ -33,7 +33,7 @@ export default class Sidebar extends React.Component {
                     <div id='returnItem' onClick={(ev)=> menuClick(ev.target.valueOf().id)} className='menu'>Return Item</div>
                 </div>
 
-                <div onClick={()=> this.props.isAuth('false')} className='menu-container logoutContainer'>
+                <div onClick={()=> this.props.isAuth(false)} className='menu-container logoutContainer'>
                     <div className='menu logoutBtn'>
                         <div className='tulisanLogout'>Log Out</div>
                     </div>

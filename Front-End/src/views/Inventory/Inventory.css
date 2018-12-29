@@ -224,3 +224,69 @@ td.productImage {
     box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.35);
     margin-right: 15px;
 }
+
+.tableAdd{
+    display: none;
+    position: fixed;
+    width: 441px;
+    margin: auto;
+    z-index: 4;
+    top: 170px;
+    left: 462px;
+}
+
+.tableAdd .tableHeader{
+    height: 58px;
+    padding: 18px 8px 0 18px;
+}
+
+.tableAdd .tableBody{
+    height: 228px;
+}
+
+.placeholder-image{
+    cursor: pointer;
+    float: left;
+    margin-bottom: 15px;
+}
+
+.tableAdd input, .tableAdd select, .tableAdd .inputText{
+    font-family: Roboto, sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: var(--primary);
+    background-color: transparent;
+    border: none;
+    border-bottom: solid 1px var(--primary);
+    outline: none;
+    padding: 4px;
+    margin: 0 0 13px 15px;
+}
+
+input[type="date"]:not(.has-value):before{
+    color: #84bdc4;
+    content: attr(placeholder);
+}
+
+.tableAdd ::placeholder{
+    color: #84bdc4;
+}
+
+.pcsWord{
+    width: 23px;
+    height: 9px;
+    font-family: Roboto, sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 0.47;
+    letter-spacing: normal;
+    text-align: left;
+    color: var(--primary);
+    margin-left: 5px;
+}

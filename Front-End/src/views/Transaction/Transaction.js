@@ -6,7 +6,7 @@ export default class Transaction extends React.Component{
     render(){
         return(
             <div>
-                <Header pageName="Transaction" />
+                <Header pageName="Transaction" name={this.props.name}/>
                 <TableDouble title='History' placeholder='Search Assignment ID...'/>
             </div>
         )

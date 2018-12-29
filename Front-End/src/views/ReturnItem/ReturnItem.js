@@ -6,7 +6,7 @@ export default class ReturnItem extends React.Component{
     render(){
         return(
             <div>
-                <Header pageName="Return Item" />
+                <Header pageName="Return Item" name={this.props.name}/>
                 <TableDouble title='Approved' placeholder='Search Assignment ID...'/>
             </div>
         )
