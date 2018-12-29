@@ -33,10 +33,10 @@ class Login extends Component {
                     <div id="container-left"/>
 
                     <div id="container-right">
-                        <p>Please enter your username and password to login</p>
+                        <p>Please enter your email and password to login</p>
 
                         <div className='login'>
-                            <input onChangeCapture={this.valueController.bind(this)} type="text" name="username" placeholder="Username..." />
+                            <input onChangeCapture={this.valueController.bind(this)} type="email" name="email" placeholder="Email..." />
                             <input onChangeCapture={this.valueController.bind(this)} type="password" name="password" placeholder="Password..." />
                             <button className="btn-login" onClick={this.submitController.bind(this)}>Log In</button>
                         </div>
