@@ -7,8 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.index.Indexed;
-//import com.future.services.NextSequenceService;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
@@ -16,24 +17,11 @@ import java.util.Date;
 
 public class Inventory {
 
-/*
-    @Autowired
-    NextSequenceService nextSequenceService;
-*/
-/*
-
-    @Transient
-    public static final String SEQUENCE_NAME = "inventory_sequence";
-*/
-
     @Id
     private String id;
     private String detail;
     private Integer stock;
     private Integer price;
-    @NotBlank
-    @Size(max=100)
-    @Indexed(unique=true)
 
     private String inventoryId;
 
@@ -41,19 +29,19 @@ public class Inventory {
 
 
     public String getId() {
-        return id;
+        return id.toString();
     }
 
     public void setId() {
-        this.id = id;
+        this.id = id.toString();
     }
 
     public String getInventoryId() {
-        return inventoryId;
+        return inventoryId.toString();
     }
 
     public void setInventoryId(String inventoryId) {
-        this.inventoryId = inventoryId;
+        this.inventoryId = inventoryId.toString();
     }
 
     public String getDetail() {
