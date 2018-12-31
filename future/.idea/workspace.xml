@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="91c9e9bc-2bd0-404e-aa65-c45754570bc9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/components/Table Request/TableRequest.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/components/Table Request/TableRequest.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Front-End/src/views/Inventory/Inventory.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/views/Inventory/Inventory.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/src/views/Login/Login.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/views/Login/Login.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/future/controller/InventoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/future/controller/InventoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/future/model/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/future/model/Inventory.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -335,7 +331,7 @@
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="321" />
     <option name="y" value="-9" />
     <option name="width" value="683" />
@@ -497,12 +493,12 @@
       <workItem from="1545921334933" duration="13014000" />
       <workItem from="1546008856030" duration="10112000" />
       <workItem from="1546061660962" duration="5843000" />
-      <workItem from="1546228421038" duration="12004000" />
+      <workItem from="1546228421038" duration="12118000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="88591000" />
+    <option name="totallyTimeSpent" value="88705000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
