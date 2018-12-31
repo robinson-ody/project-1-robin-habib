@@ -13,9 +13,7 @@ public class Inventory {
     private String detail;
     private Integer stock;
     private Integer price;
-
     private String inventoryId;
-
     private Date createdAt = new Date();
 
 
