@@ -48,7 +48,7 @@ export default class Inventory extends React.Component{
             .then(()=> this.getData())
     }
 
-    requestWindowOn(){
+    requestWindowOn(id){
         this.tableRequest.current.style.display = 'block';
         this.blackBg.current.style.display = 'block';
     }
@@ -62,10 +62,12 @@ export default class Inventory extends React.Component{
 	    console.log('OK')
     }
 
-    addRequest(inventoryId){
+    addRequest(id){
 	    let dataTemp = this.state.selected;
-	    dataTemp.push(inventoryId);
-	    this.setState({
+        axios.get('http://localhost:8080/api/inventory/' + id)
+            .then(res => dataTemp.push(res.data));
+
+        this.setState({
             selected: dataTemp
         })
     }
@@ -204,10 +206,10 @@ export default class Inventory extends React.Component{
                             <tbody>
                             {this.state.data.map((item, index)=>(
                                 <tr key={index}>
-                                    <td className='chkbox'><input type='checkbox' name='inventoryId' onChange={()=> this.addRequest(item.inventoryId)} /></td>
+                                    <td className='chkbox'><input type='checkbox' name='inventoryId' onChange={()=> {this.addRequest(item.id)}} /></td>
                                     <td className='inventory'>{item.inventoryId}</td>
                                     <td className='detail'>{item.detail}</td>
-                                    <td className='stock'>{item.stock}</td>
+                                    <td className='stock'>{this.thousandSeparator(item.stock)}</td>
                                     <td className='available'>{item.available}</td>
                                     <td className='price'>Rp <span className='moneyValue'>{this.thousandSeparator(item.price)}</span></td>
                                     <td className='productImage'><img src={image} width='20px' alt='Product'/></td>
