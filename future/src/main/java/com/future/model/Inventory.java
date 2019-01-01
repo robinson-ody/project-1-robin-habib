@@ -25,8 +25,10 @@ public class Inventory {
     }
 
     public void setId(String id) {
-        this.id = id;
-    }
+this.id = id;
+
+
+
 
     public String getInventoryId() {
         return inventoryId.toString();

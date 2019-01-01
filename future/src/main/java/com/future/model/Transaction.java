@@ -1,17 +1,40 @@
 package com.future.model;
 
-public class Transaction {
-    private String status;
-    private String id;
-    
-    public String getId(){return id;}
-    public void setId(String id) {this.id=id;}
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.data.annotation.Id;
 
-    public String getStatus() {
-        return status;
+import java.util.Date;
+import java.util.List;
+@JsonIgnoreProperties(value = {"createdAt"}, allowGetters = true)
+
+public class Transaction {
+    @Id
+    private String id;
+    private Date createdAt = new Date();
+    private List <transData> transcData;
+
+    public String getId() {
+        return id;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setId(String id) {
+        this.id = id;
+    }
+
+
+    public List<transData> getTranscData() {
+        return transcData;
+    }
+
+    public void setTranscData(List<transData> transcData) {
+        this.transcData = transcData;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 }
