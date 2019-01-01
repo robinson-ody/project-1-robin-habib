@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 @Repository
-public interface TransactionRepository extends MongoRepository<Transaction,String>, MongoTemplateRepository {
-    @Query(value = "{'transData':{$all : [?0}}")
-    List<Transaction> findInventoryId(String inventoryId);
+public interface TransactionRepository extends MongoRepository<Transaction,String> {
+//    @Query(value = "{'transData':{$all : [?0}}")
+//    List<Transaction> findInventoryId(String inventoryId);
 }

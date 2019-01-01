@@ -25,17 +25,9 @@ public class Inventory {
     }
 
     public void setId(String id) {
-this.id = id;
+        this.id = id;
 
 
-
-
-    public String getInventoryId() {
-        return inventoryId.toString();
-    }
-
-    public void setInventoryId(String inventoryId) {
-        this.inventoryId = inventoryId.toString();
     }
 
     public String getDetail() {
@@ -60,6 +52,14 @@ this.id = id;
 
     public void setPrice(Integer price) {
         this.price = price;
+    }
+
+    public String getInventoryId() {
+        return inventoryId;
+    }
+
+    public void setInventoryId(String inventoryId) {
+        this.inventoryId = inventoryId;
     }
 
     public Date getCreatedAt() {

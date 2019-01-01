@@ -19,21 +19,22 @@ import java.util.List;
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/api")
-public class TransactionController implements MongoTemplateRepository {
+//public class TransactionController implements MongoTemplateRepository {
+    public class TransactionController {
     @Autowired
     TransactionRepository transactionRepository;
 
     @Autowired
     private MongoTemplate mongoTemplate; // we will use this to query mongoDb
 
-    @Override
+    /*@Override
     public List<Transaction> findInventoryId(String inventoryId) {
-       /* Query x = new Query();
+       *//* Query x = new Query();
         x.addCriteria(Criteria.where("transcData.inventoryId").is(inventoryId));
         x.fields().include("transcData.$");
-        return mongoTemplate.find(x,Inventory.class);*/
+        return mongoTemplate.find(x,Inventory.class);*//*
        return null;
-    }
+    }*/
 
 
     @GetMapping("/transaction")
