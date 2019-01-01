@@ -2,10 +2,13 @@ package com.future.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.Date;
 
 @JsonIgnoreProperties(value = {"createdAt"}, allowGetters = true)
 
+@Document(collection = "inventory")
 public class Inventory {
 
     @Id
@@ -24,7 +27,6 @@ public class Inventory {
     public void setId(String id) {
 this.id = id;
 
-}
 
 
 
@@ -66,11 +68,5 @@ this.id = id;
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
-    }
-    @Override
-    public String toString() {
-        return String.format(
-                "Inventory[id=%s, inventoryId='%s',detail='%s']",
-                id, inventoryId, detail);
     }
 }

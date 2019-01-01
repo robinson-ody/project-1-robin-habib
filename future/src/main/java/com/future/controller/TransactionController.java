@@ -41,6 +41,7 @@ public class TransactionController implements MongoTemplateRepository {
     {
         return (List<Transaction>)transactionRepository.findAll();
     }
+
     @PostMapping("/transaction/create")
     public Transaction createTransaction(@RequestBody Transaction transaction){return transactionRepository.save(transaction);}
 

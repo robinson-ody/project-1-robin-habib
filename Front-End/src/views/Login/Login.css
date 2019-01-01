@@ -68,3 +68,7 @@
 button {
   cursor: pointer;
 }
+
+.login input::placeholder{
+  color: #89c4e6;
+}

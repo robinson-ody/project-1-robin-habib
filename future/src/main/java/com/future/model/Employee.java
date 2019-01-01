@@ -4,10 +4,12 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.IndexDirection;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.Size;
 import java.util.Date;
 
+@Document(collection = "employee")
 public class Employee {
 
     @Id

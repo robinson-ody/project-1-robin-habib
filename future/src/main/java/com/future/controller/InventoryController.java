@@ -22,6 +22,11 @@ public class InventoryController {
         return (List<Inventory>) inventoryRepository.findAll();
     }
 
+    @GetMapping("/inventory/{id}")
+    public Inventory getSingleInventory(@PathVariable("id") String id) {
+        return (Inventory) inventoryRepository.findOne(id);
+    }
+
     @PostMapping("/inventory/create")
     public Inventory createInventory(@RequestBody Inventory inventory) {
         return inventoryRepository.save(inventory);

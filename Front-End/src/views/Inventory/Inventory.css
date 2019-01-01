@@ -114,6 +114,28 @@ th.chkbox {
     text-align: center;
 }
 
+.request{
+    width: 65px;
+    text-align: center;
+    margin-left: 20px;
+}
+
+.request input {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    border-bottom: solid 1px var(--primary);
+    width: 45px;
+    font-family: Roboto, sans-serif;
+    font-size: 1em;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 0.45;
+    letter-spacing: normal;
+    text-align: center;
+}
+
 .available {
     width: 70px;
     text-align: center;
