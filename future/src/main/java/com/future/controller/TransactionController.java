@@ -31,7 +31,7 @@ public class TransactionController {
         if(transaction==null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        transactionData.setStatus(transaction.getStatus());
+        transactionData.setTranscData(transaction.getTranscData());
         Transaction updatedTransaction = transactionRepository.save(transactionData);
         return new ResponseEntity<>(updatedTransaction, HttpStatus.OK);
     }
