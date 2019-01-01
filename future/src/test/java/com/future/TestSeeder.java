@@ -1,3 +1,4 @@
+/*
 package com.future;
 
 import com.future.model.Inventory;
@@ -32,4 +33,4 @@ public class TestSeeder {
         inventory.setPrice(999999);
         inventoryRepository.save(inventory2);
     }
-}
+}*/

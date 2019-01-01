@@ -2,10 +2,13 @@ package com.future.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.Date;
 
 @JsonIgnoreProperties(value = {"createdAt"}, allowGetters = true)
 
+@Document(collection = "inventory")
 public class Inventory {
 
     @Id
@@ -18,19 +21,12 @@ public class Inventory {
 
 
     public String getId() {
+        return id;
+    }
 
-        return id;
-
-    }
-
-
-    public void setId(String id) {
-
-        this.id = id;
-
-    }
-
-
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getInventoryId() {
         return inventoryId.toString();

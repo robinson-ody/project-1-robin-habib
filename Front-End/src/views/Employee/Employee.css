@@ -88,21 +88,13 @@ tbody td, thead th {
     float: left;
 }
 
-.chkbox {
-    margin-right: 20px;
-}
-
-th.chkbox {
-    position: relative;
-    top: -4.5px
-}
-
-.gender, .birthday, .name, .division, .superior {
+.gender, .birthday, .name, .division {
     margin-right: 30px;
 }
 
 .deleteIcon {
     width: 50px;
+
     text-align: center;
     cursor: pointer;
 }
@@ -120,7 +112,7 @@ th.chkbox {
 }
 
 .name{
-    width: 180px;
+    width: 130px;
 }
 
 .gender{
@@ -138,4 +130,10 @@ th.gender{
 
 .superior{
     width: 90px;
+}
+
+.employee {
+    width: 220px;
+    margin-left: 18px;
+    margin-right: 40px;
 }

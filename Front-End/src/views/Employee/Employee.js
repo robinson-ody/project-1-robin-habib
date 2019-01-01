@@ -2,12 +2,12 @@ import React from 'react';
 import Header from "../../components/Header/Header";
 import axios from 'axios';
 import addNewBtn from "../../elements/add-new-btn.png";
-import SearchBar from "../../components/SearchBar/SearchBar";
 import trashIcon from "../../elements/trash-copy-8.png";
 import './Employee.css';
 import okBtn from "../../elements/ok-btn.jpg";
 import cancelBtn from "../../elements/cancel-btn.jpg";
 import addNewPlaceholder from "../../elements/placeholder-image.svg";
+import SearchIcon from "../../elements/icon-search.png";
 
 export default class Employee extends React.Component{
     constructor(props) {
@@ -21,8 +21,8 @@ export default class Employee extends React.Component{
             gender: '',
             role: '',
             superior: '',
-            username: '',
-            password: ''
+            password: '',
+            shownData: []
         };
 
         this.tableAdd = React.createRef();
@@ -38,23 +38,11 @@ export default class Employee extends React.Component{
             .then(res => {
                 this.setState({data : res.data});
             })
+            .then(()=> {this.setState({shownData: this.state.data})})
             .catch(function(error) {
                 console.log(error);
             });
     }
-
-    // changeFormat(e){
-    //     let hasil = '';
-    //
-    //     for(let i = 0 ; i <= e.length ; i++){
-    //         if (e.substr(i, 1) === '-') {
-    //             hasil += '/'
-    //         } else {
-    //             hasil += e.substr(i, 1)
-    //         }
-    //   }
-    //   return hasil
-    // };
 
     deleteHandler(id){
         axios.delete('http://localhost:8080/api/employee/' + id)
@@ -85,7 +73,6 @@ export default class Employee extends React.Component{
             gender: this.state.gender,
             role: this.state.role,
             superior: this.state.superior,
-            username: this.state.username,
             password: this.state.password
         })
             .then(res => {this.addWindowOff()})
@@ -97,10 +84,36 @@ export default class Employee extends React.Component{
             .then(this.setState({gender: ''}))
             .then(this.setState({role: ''}))
             .then(this.setState({superior: ''}))
-            .then(this.setState({username: ''}))
             .then(this.setState({password: ''}))
             .catch(error => {console.log(error)})
     };
+
+    filterData(ev){
+        let dataTemp = [];
+
+        for(let i = 0 ; i < this.state.data.length ; i++){
+            if(this.state.data[i].email.toLowerCase().includes(ev.target.value.toLowerCase())){
+                dataTemp.push(this.state.data[i])
+            } else if(this.state.data[i].name.toLowerCase().includes(ev.target.value.toLowerCase())) {
+                dataTemp.push(this.state.data[i])
+            } else if(this.state.data[i].birthday.toString().includes(ev.target.value.toLowerCase())) {
+                dataTemp.push(this.state.data[i])
+            } else if(this.state.data[i].gender.toLowerCase().includes(ev.target.value.toLowerCase())) {
+                dataTemp.push(this.state.data[i])
+            } else if(this.state.data[i].division.toLowerCase().includes(ev.target.value.toLowerCase())) {
+                dataTemp.push(this.state.data[i])
+            } else if(this.state.data[i].superior.toLowerCase().includes(ev.target.value.toLowerCase())) {
+                dataTemp.push(this.state.data[i])
+            }
+        }
+
+        this.setState({shownData: dataTemp});
+    };
+
+    // dateFormatChanger(ev){
+    //     const d = new Date("2015-03-15T14:01:16.447Z");
+    //     alert(d.toLocaleString('id'))
+    // };
 
     render(){
         document.title = "Employee | Blibli Inventory System";
@@ -123,7 +136,7 @@ export default class Employee extends React.Component{
                         <img src={addNewPlaceholder} className="placeholder-image" alt="Add New"/>
                         <input style={{width: '200px'}} value={this.state.email} onChangeCapture={this.valueSetter.bind(this)} name='email' type='text' placeholder='Email'/>
                         <input style={{width: '200px'}} value={this.state.name} onChangeCapture={this.valueSetter.bind(this)} name='name' type='text' placeholder='Name'/>
-                        <input onChangeCapture={this.valueSetter.bind(this)} name='birthday' type='date' placeholder='Birth:&nbsp;' />
+                        <input onChangeCapture={this.valueSetter.bind(this)} value={this.state.birthday} name='birthday' type='date' placeholder='Birth:&nbsp;' />
                         <input style={{width: '200px'}} value={this.state.division} onChangeCapture={this.valueSetter.bind(this)} name='division' type='text' placeholder='Division' /><br clear='both'/>
                         <span className='inputText' style={{borderBottom:'none'}}>Gender</span>
                         <input type='radio' value='male' onChangeCapture={this.valueSetter.bind(this)} name='gender'/> <span className='inputText' style={{borderBottom:'none', marginLeft:'0'}}>Male</span>
@@ -134,9 +147,8 @@ export default class Employee extends React.Component{
                             <option>Manager</option>
                             <option>User</option>
                         </select>
-                        <input value={this.state.superior} onChangeCapture={this.valueSetter.bind(this)} name='superior' type='text' placeholder='Superior' />
-                        <input value={this.state.username} onChangeCapture={this.valueSetter.bind(this)} name='username' type='text' placeholder='Username' />
-                        <input value={this.state.password} onChangeCapture={this.valueSetter.bind(this)} name='password' type='password' placeholder='Password' />
+                        <input style={{width: '250px'}} value={this.state.superior} onChangeCapture={this.valueSetter.bind(this)} name='superior' type='text' placeholder='Superior' />
+                        <input style={{width: '360px'}} value={this.state.password} onChangeCapture={this.valueSetter.bind(this)} name='password' type='password' placeholder='Password' />
                     </div>
                 </div>
                 {/*END OF TABLE UNTUK ADD EMPLOYEE*/}
@@ -147,15 +159,17 @@ export default class Employee extends React.Component{
 
                         <img src={addNewBtn} alt='Add New Button' className='addNewBtn' title='Add New Employee' onClick={()=> this.addWindowOn()}/>
 
-                        <SearchBar placeholder='Search Employee...' />
+                        <div className='searchBar'>
+                            <input onChange={this.filterData.bind(this)} type='text' placeholder='Search Employee...' className='inputSearch' />
+                            <img src={SearchIcon} alt='Search Icon' className='searchIcon'/>
+                        </div>
                     </div>
 
                     <div className='tableBody'>
                         <table>
                             <thead>
                                 <tr>
-                                    <th className='chkbox'><input type='checkbox' /></th>
-                                    <th className='inventory'>Email</th>
+                                    <th className='employee'>Email</th>
                                     <th className='name'>Name</th>
                                     <th className='birthday'>Birthday</th>
                                     <th className='gender'>Gender</th>
@@ -166,10 +180,9 @@ export default class Employee extends React.Component{
                             </thead>
 
                             <tbody>
-                                {this.state.data.map((item, index)=>(
+                                {this.state.shownData.map((item, index)=>(
                                     <tr key={index}>
-                                        <td className='chkbox'><input type='checkbox' /></td>
-                                        <td className='inventory'>{item.email}</td>
+                                        <td className='employee'>{item.email}</td>
                                         <td className='name'>{item.name}</td>
                                         <td className='birthday'>{item.birthday}</td>
                                         <td className='gender'>{item.gender}</td>

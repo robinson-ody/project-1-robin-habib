@@ -5,11 +5,11 @@ import axios from 'axios';
 import image from "../../elements/black.png";
 import trashIcon from "../../elements/trash-copy-8.png";
 import addNewBtn from "../../elements/add-new-btn.png";
-import SearchBar from "../../components/SearchBar/SearchBar";
 import PrintIcon from "../../elements/print-icon.png";
 import cancelBtn from '../../elements/cancel-btn.jpg';
 import okBtn from '../../elements/ok-btn.jpg';
 import addNewPlaceholder from '../../elements/placeholder-image.svg';
+import SearchIcon from "../../elements/icon-search.png";
 
 export default class Inventory extends React.Component{
 	constructor(props){
@@ -21,7 +21,8 @@ export default class Inventory extends React.Component{
             inventoryId: '',
             detail: '',
             price: null,
-            stock: null
+            stock: null,
+            shownData: []
 		};
 
 		this.tableRequest = React.createRef();
@@ -38,6 +39,7 @@ export default class Inventory extends React.Component{
             .then(res => {
                 this.setState({data : res.data});
             })
+            .then(()=> {this.setState({shownData: this.state.data})})
             .catch(function(error) {
                 console.log(error);
             });
@@ -62,12 +64,22 @@ export default class Inventory extends React.Component{
 	    console.log('OK')
     }
 
-    addRequest(id){
+    addRequest(ev){
 	    let dataTemp = this.state.selected;
 
-	    axios.get('http://localhost:8080/api/inventory/' + id)
-            .then(res => {dataTemp.push(res.data)})
-            .then(()=> {this.setState({selected: dataTemp})})
+	    if(ev.target.checked === true){
+            axios.get('http://localhost:8080/api/inventory/' + ev.target.id)
+                .then(res => {dataTemp.push(res.data)})
+                .then(()=> {this.setState({selected: dataTemp})})
+        } else {
+	        let dataTemp = [];
+	        for(let i = 0 ; i < this.state.selected.length ; i++){
+	            if(this.state.selected[i].id !== ev.target.id){
+	                dataTemp.push(this.state.selected[i])
+                };
+            }
+            this.setState({selected: dataTemp});
+        }
     }
 
     addWindowOn(){
@@ -109,8 +121,23 @@ export default class Inventory extends React.Component{
         return result
     };
 
-    // Selected(){
-    // };
+    filterData(ev){
+        let dataTemp = [];
+
+        for(let i = 0 ; i < this.state.data.length ; i++){
+            if(this.state.data[i].detail.toLowerCase().includes(ev.target.value.toLowerCase())){
+                dataTemp.push(this.state.data[i])
+            } else if(this.state.data[i].inventoryId.toLowerCase().includes(ev.target.value.toLowerCase())) {
+                dataTemp.push(this.state.data[i])
+            } else if(this.state.data[i].stock.toString().includes(ev.target.value.toLowerCase())) {
+                dataTemp.push(this.state.data[i])
+            } else if(this.state.data[i].price.toString().includes(ev.target.value.toLowerCase())) {
+                dataTemp.push(this.state.data[i])
+            }
+        }
+
+        this.setState({shownData: dataTemp});
+    };
 
     render(){
         document.title = "Inventory | Blibli Inventory System";
@@ -133,6 +160,7 @@ export default class Inventory extends React.Component{
                         <tr>
                             <th className='detail'>Detail</th>
                             <th className='stock'>Stock</th>
+                            <th className='request'>Request</th>
                         </tr>
                         </thead>
 
@@ -140,7 +168,8 @@ export default class Inventory extends React.Component{
                             {this.state.selected.map((item, index) => (
                                 <tr key={index}>
                                     <td className='detail'>{item.detail}</td>
-                                    <td className='stock'>{item.stock}</td>
+                                    <td className='stock'>{Inventory.thousandSeparator(item.stock)}</td>
+                                    <td className='request'><input type='number'/></td>
                                 </tr>
                             ))}
                         </tbody>
@@ -182,7 +211,10 @@ export default class Inventory extends React.Component{
                     <img src={addNewBtn} alt='Add New Button' className='addNewBtn' title='Add New Product'
                          onClick={() => this.addWindowOn()}/>
 
-                    <SearchBar placeholder='Search Item...'/>
+                    <div className='searchBar'>
+                        <input onChange={this.filterData.bind(this)} type='text' placeholder='Search Items...' className='inputSearch' />
+                        <img src={SearchIcon} alt='Search Icon' className='searchIcon'/>
+                    </div>
 
                     <div id='assignInventory' className='assignInventory' onClick={() => this.requestWindowOn()}>
                         <span className='tulisanAssignInventory'>
@@ -210,11 +242,10 @@ export default class Inventory extends React.Component{
                         </thead>
 
                         <tbody>
-                        {this.state.data.map((item, index) => (
+                        {this.state.shownData.map((item, index) => (
                             <tr key={index}>
-                                <td className='chkbox'><input type='checkbox' name='inventoryId' onChange={() => {
-                                    this.addRequest(item.id)
-                                }}/></td>
+                                <td className='chkbox'><input type='checkbox' name='inventoryId' onChange={this.addRequest.bind(this)}
+                                                              id={item.id}/></td>
                                 <td className='inventory'>{item.inventoryId}</td>
                                 <td className='detail'>{item.detail}</td>
                                 <td className='stock'>{Inventory.thousandSeparator(item.stock)}</td>

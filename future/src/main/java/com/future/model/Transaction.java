@@ -1,10 +1,10 @@
 package com.future.model;
 
 public class Transaction {
-    String status;
-    String id;
+    private String status;
+    private String id;
     
-    public String getId(){return id};
+    public String getId(){return id;}
     public void setId(String id) {this.id=id;}
 
     public String getStatus() {
