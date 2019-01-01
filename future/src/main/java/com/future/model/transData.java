@@ -5,16 +5,16 @@ import org.springframework.data.annotation.Id;
 public class transData {
 
     @Id
-    private String id;
+    private String inventoryId;
     private Integer qty;
     private String status;
 
-    public String getId() {
-        return id;
+    public String getInventoryId() {
+        return inventoryId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setInventoryId(String inventoryId) {
+        this.inventoryId = inventoryId;
     }
 
     public Integer getQty() {

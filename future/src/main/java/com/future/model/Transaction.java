@@ -9,17 +9,18 @@ import java.util.List;
 
 public class Transaction {
     @Id
-    private String inventoryId;
+    private String id;
     private Date createdAt = new Date();
     private List <transData> transcData;
 
-    public String getInventoryId() {
-        return inventoryId;
+    public String getId() {
+        return id;
     }
 
-    public void setInventoryId(String inventoryId) {
-        this.inventoryId = inventoryId;
+    public void setId(String id) {
+        this.id = id;
     }
+
 
     public List<transData> getTranscData() {
         return transcData;
