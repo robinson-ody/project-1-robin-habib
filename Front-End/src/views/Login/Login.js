@@ -27,25 +27,25 @@ class Login extends Component {
         document.title = "Login | Blibli Inventory System";
 
         return (
-        <div>
-            <div className="App">
-                <div id="container">
-                    <div id="container-left"/>
+            <div>
+                <div className="App">
+                    <div id="container">
+                        <div id="container-left"/>
 
-                    <div id="container-right">
-                        <p>Please enter your email and password to login</p>
+                        <div id="container-right">
+                            <p>Please enter your email and password to login</p>
 
-                        <div className='login'>
-                            <input onChangeCapture={this.valueController.bind(this)} type="email" name="email" placeholder="Email..." />
-                            <input onChangeCapture={this.valueController.bind(this)} type="password" name="password" placeholder="Password..." />
-                            <button className="btn-login" onClick={this.submitController.bind(this)}>Log In</button>
+                            <div className='login'>
+                                <input onChangeCapture={this.valueController.bind(this)} type="email" name="email" placeholder="Email..." />
+                                <input onChangeCapture={this.valueController.bind(this)} type="password" name="password" placeholder="Password..." />
+                                <button className="btn-login" onClick={this.submitController.bind(this)}>Log In</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    );
-  }
+        );
+    }
 }
 
 export default Login;
