@@ -1,64 +1,96 @@
 package com.future.controller;
 
-import com.future.model.Assignment;
-import com.future.model.Inventory;
-import com.future.model.Transaction;
-import com.future.repository.MongoTemplateRepository;
+import com.future.model.*;
+import com.future.repository.EmployeeRepository;
+import com.future.repository.InventoryRepository;
 import com.future.repository.TransactionRepository;
+import com.mongodb.WriteResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.management.Query;
-import java.security.PublicKey;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import static jdk.nashorn.internal.objects.Global.print;
 
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/api")
 //public class TransactionController implements MongoTemplateRepository {
     public class TransactionController {
+
     @Autowired
     TransactionRepository transactionRepository;
+    @Autowired
+    InventoryRepository inventoryRepository;
+    @Autowired
+    EmployeeRepository employeeRepository;
 
     @Autowired
     private MongoTemplate mongoTemplate; // we will use this to query mongoDb
 
-    /*@Override
-    public List<Transaction> findInventoryId(String inventoryId) {
-       *//* Query x = new Query();
+/*    @Override
+    public List<Inventory> findInventoryId(String inventoryId) {
+        Query x = new Query();
         x.addCriteria(Criteria.where("transcData.inventoryId").is(inventoryId));
         x.fields().include("transcData.$");
-        return mongoTemplate.find(x,Inventory.class);*//*
-       return null;
+        return mongoTemplate.find(x,Inventory.class);
     }*/
 
-
     @GetMapping("/transaction")
-    public List<Transaction>getAllTransaction()
-    {
-        return (List<Transaction>)transactionRepository.findAll();
+    public List<Transaction> getAllTransaction() {
+        return (List<Transaction>) transactionRepository.findAll();
     }
 
-    @PostMapping("/transaction/create")
-    public Transaction createTransaction(@RequestBody Transaction transaction){return transactionRepository.save(transaction);}
-
-    @PutMapping("/transaction/{id}")
-    public ResponseEntity<Transaction> updateTransaction(@PathVariable("id")String id, @RequestBody Transaction transaction){
-        Transaction transactionData = transactionRepository.findOne(id);
-        if(transaction==null){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    @PostMapping("/transaction/List")
+    public Transaction createTransaction(@RequestBody Transaction transaction) {
+        transactionRepository.save(transaction);
+        Transaction transactionData = transactionRepository.findById(transaction.getId());
+        List<TransData> reduce = transactionData.getTranscData();
+        transactionData.setStatus("Pending");
+        for (int i = 0; i < reduce.size(); i++) {
+            Inventory inventoryData = inventoryRepository.findByInventoryId(reduce.get(i).getInventoryId());
+            if (reduce.get(i).getInventoryId().equals(inventoryData.getInventoryId())){
+                inventoryData.setStock(reduce.get(i).getQty());
+                System.out.println(inventoryData.getStock());
+                System.out.println(reduce.get(i).getQty());
+                System.out.println("MASUKKKKKK");
+            }
+            else {
+                return null;
+            }
         }
-        else{
-            transactionData.setTranscData(transaction.getTranscData());
-            Transaction updatedTransaction = transactionRepository.save(transactionData);
-            return new ResponseEntity<>(updatedTransaction, HttpStatus.OK);
+        return transactionRepository.save(transaction);
+    }
 
-
+    @PostMapping(value = "/transaction/assignment", produces = MediaType.APPLICATION_JSON_VALUE)
+    public TransactionResponse authenticate(@RequestBody TransactionRequest request) {
+        TransactionResponse t = new TransactionResponse();
+        Employee employeeData = employeeRepository.findByEmail(request.getEmail());
+        Inventory inventoryData = inventoryRepository.findByInventoryId(request.getInventoryId());
+        Transaction transactionData = transactionRepository.findById(request.getId());
+        List<TransData> transaction = transactionData.getTranscData();
+        System.out.println(transaction);
+        if (transaction==null){
+            t.setSuccess("Transaction NULL");
+            return t;
         }
+        for (int i = 0; i < transaction.size(); i++) {
+            if (transaction.get(i).getInventoryId().equals(inventoryData.getInventoryId())) {
+                t.setSuccess("Data Ketemu");
+                return t;
+            }
+        }
+        t.setSuccess(transactionData.toString());
+        return t;
     }
 
 }
