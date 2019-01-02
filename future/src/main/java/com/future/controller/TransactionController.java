@@ -19,6 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import static jdk.nashorn.internal.objects.Global.print;
+
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/api")
@@ -50,7 +52,22 @@ import java.util.Map;
 
     @PostMapping("/transaction/List")
     public Transaction createTransaction(@RequestBody Transaction transaction) {
-
+        transactionRepository.save(transaction);
+        Transaction transactionData = transactionRepository.findById(transaction.getId());
+        List<TransData> reduce = transactionData.getTranscData();
+        transactionData.setStatus("Pending");
+        for (int i = 0; i < reduce.size(); i++) {
+            Inventory inventoryData = inventoryRepository.findByInventoryId(reduce.get(i).getInventoryId());
+            if (reduce.get(i).getInventoryId().equals(inventoryData.getInventoryId())){
+                inventoryData.setStock(reduce.get(i).getQty());
+                System.out.println(inventoryData.getStock());
+                System.out.println(reduce.get(i).getQty());
+                System.out.println("MASUKKKKKK");
+            }
+            else {
+                return null;
+            }
+        }
         return transactionRepository.save(transaction);
     }
 
@@ -60,28 +77,19 @@ import java.util.Map;
         Employee employeeData = employeeRepository.findByEmail(request.getEmail());
         Inventory inventoryData = inventoryRepository.findByInventoryId(request.getInventoryId());
         Transaction transactionData = transactionRepository.findById(request.getId());
-
-        List<transData> transaction = transactionData.getTranscData();
-        if(transactionData==null){
-            t.setSuccess("Transaction Data Null");
-
+        List<TransData> transaction = transactionData.getTranscData();
+        System.out.println(transaction);
+        if (transaction==null){
+            t.setSuccess("Transaction NULL");
             return t;
         }
-        if(transaction==null){
-            t.setSuccess("Transaction Null");
-
-            return t;
-        }
-
         for (int i = 0; i < transaction.size(); i++) {
             if (transaction.get(i).getInventoryId().equals(inventoryData.getInventoryId())) {
-                t.setSuccess("asddsa");
+                t.setSuccess("Data Ketemu");
                 return t;
             }
-
         }
-
-        t.setSuccess("asdsaasd");
+        t.setSuccess(transactionData.toString());
         return t;
     }
 

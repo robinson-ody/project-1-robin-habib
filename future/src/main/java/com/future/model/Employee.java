@@ -22,14 +22,14 @@ public class Employee {
     private String division;
     private String superior;
     private String role;
-    private List<transData> transcData;
+    private List<TransData> TranscData;
 
-    public List<transData> getTranscData() {
-        return transcData;
+    public List<TransData> getTranscData() {
+        return TranscData;
     }
 
-    public void setTranscData(List<transData> transcData) {
-        this.transcData = transcData;
+    public void setTranscData(List<TransData> transcData) {
+        TranscData = transcData;
     }
 
     @Indexed(unique = true, direction = IndexDirection.DESCENDING, dropDups = true)

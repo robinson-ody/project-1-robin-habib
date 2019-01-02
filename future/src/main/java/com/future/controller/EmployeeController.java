@@ -21,6 +21,10 @@ public class EmployeeController {
         return (List<Employee>) employeeRepository.findAll();
     }
 
+    @GetMapping("/employee/{id}")
+    public Employee getSingleEmployee(@PathVariable("id") String id) {
+        return (Employee) employeeRepository.findOne(id);
+    }
 
     @PostMapping("/employee/create")
     public Employee createEmployee(@RequestBody Employee employee) {
