@@ -3,13 +3,14 @@ package com.future.model;
 import java.util.Date;
 
 public class TransactionResponse {
-    private boolean success;
+    private String success;
 
-    public boolean isSuccess() {
+    public String getSuccess() {
         return success;
     }
 
-    public void setSuccess(boolean success) {
+    public void setSuccess(String success) {
         this.success = success;
     }
 }
+

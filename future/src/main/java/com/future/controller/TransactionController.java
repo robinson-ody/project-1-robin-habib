@@ -62,16 +62,26 @@ import java.util.Map;
         Transaction transactionData = transactionRepository.findById(request.getId());
 
         List<transData> transaction = transactionData.getTranscData();
+        if(transactionData==null){
+            t.setSuccess("Transaction Data Null");
+
+            return t;
+        }
+        if(transaction==null){
+            t.setSuccess("Transaction Null");
+
+            return t;
+        }
 
         for (int i = 0; i < transaction.size(); i++) {
             if (transaction.get(i).getInventoryId().equals(inventoryData.getInventoryId())) {
-                t.setSuccess(true);
+                t.setSuccess("asddsa");
                 return t;
             }
 
         }
 
-        t.setSuccess(false);
+        t.setSuccess("asdsaasd");
         return t;
     }
 
