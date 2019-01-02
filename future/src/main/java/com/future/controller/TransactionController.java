@@ -52,22 +52,6 @@ import static jdk.nashorn.internal.objects.Global.print;
 
     @PostMapping("/transaction/List")
     public Transaction createTransaction(@RequestBody Transaction transaction) {
-        transactionRepository.save(transaction);
-        Transaction transactionData = transactionRepository.findById(transaction.getId());
-        List<TransData> reduce = transactionData.getTranscData();
-        transactionData.setStatus("Pending");
-        for (int i = 0; i < reduce.size(); i++) {
-            Inventory inventoryData = inventoryRepository.findByInventoryId(reduce.get(i).getInventoryId());
-            if (reduce.get(i).getInventoryId().equals(inventoryData.getInventoryId())){
-                inventoryData.setStock(reduce.get(i).getQty());
-                System.out.println(inventoryData.getStock());
-                System.out.println(reduce.get(i).getQty());
-                System.out.println("MASUKKKKKK");
-            }
-            else {
-                return null;
-            }
-        }
         return transactionRepository.save(transaction);
     }
 
@@ -94,3 +78,21 @@ import static jdk.nashorn.internal.objects.Global.print;
     }
 
 }
+
+
+/* transactionRepository.save(transaction);
+        Transaction transactionData = transactionRepository.findById(transaction.getId());
+        List<TransData> reduce = transactionData.getTranscData();
+        transactionData.setStatus("Pending");
+        for (int i = 0; i < reduce.size(); i++) {
+            Inventory inventoryData = inventoryRepository.findByInventoryId(reduce.get(i).getInventoryId());
+            if (reduce.get(i).getInventoryId().equals(inventoryData.getInventoryId())){
+                inventoryData.setStock(reduce.get(i).getQty());
+                System.out.println(inventoryData.getStock());
+                System.out.println(reduce.get(i).getQty());
+                System.out.println("MASUKKKKKK");
+            }
+            else {
+                return null;
+            }
+        }*/
