@@ -40,7 +40,7 @@
 
 .tableLeft {
     height: 528px;
-    width: 45%;
+    width: 70%;
     float: left;
 }
 
@@ -50,7 +50,7 @@
 
 .tableRight {
     height: 528px;
-    width: 55%;
+    width: 30%;
     float: left;
 }
 
@@ -111,7 +111,7 @@ tbody td, thead th {
 }
 
 .assignment {
-    width: 120px;
+    width: 220px;
     margin-right: 15px;
     margin-left: 9px;
 }
@@ -122,7 +122,8 @@ tbody td, thead th {
 }
 
 .staff {
-    width: 110px;
+    width: 130px;
+    margin-right: 15px;
 }
 
 tbody tr {
@@ -131,18 +132,23 @@ tbody tr {
 
 .checkActive {
     width: 20px;
-    margin-right: 10px;
-    cursor: pointer;
+    margin-right: 3px;
+    margin-left: 15px;
+    position: relative;
+    top: 3px;
 }
 
 .deleteActive {
-    width: 20px;
-    margin: 0 23px;
-    cursor: pointer;
+    width: 17px;
+    margin-right: 7px;
+    margin-left: 23px;
+    height: 17px;
+    position: relative;
+    top: 3px;
 }
 
 .itemName{
-    width: 220px;
+    width: 180px;
     margin-left: 10px;
 }
 
@@ -154,11 +160,11 @@ th.itemQty, td.itemQty{
 th.itemStatus, td.itemStatus {
     width: 60px;
     text-align: center;
-    margin: 0 60px 0 25px;
+    margin: 0 25px;
 }
 
 .tableRight tbody tr {
-    height: 54px;
+    height: 55px;
 }
 
 .stylingSearch {
