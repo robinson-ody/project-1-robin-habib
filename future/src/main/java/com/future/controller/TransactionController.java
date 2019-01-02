@@ -37,14 +37,6 @@ import static jdk.nashorn.internal.objects.Global.print;
     @Autowired
     private MongoTemplate mongoTemplate; // we will use this to query mongoDb
 
-/*    @Override
-    public List<Inventory> findInventoryId(String inventoryId) {
-        Query x = new Query();
-        x.addCriteria(Criteria.where("transcData.inventoryId").is(inventoryId));
-        x.fields().include("transcData.$");
-        return mongoTemplate.find(x,Inventory.class);
-    }*/
-
     @GetMapping("/transaction")
     public List<Transaction> getAllTransaction() {
         return (List<Transaction>) transactionRepository.findAll();
@@ -69,11 +61,13 @@ import static jdk.nashorn.internal.objects.Global.print;
         }
         for (int i = 0; i < transaction.size(); i++) {
             if (transaction.get(i).getInventoryId().equals(inventoryData.getInventoryId())) {
-                t.setSuccess("Data Ketemu");
+                inventoryData.setStock(inventoryData.getStock()-transaction.get(i).getQty());
+                inventoryRepository.save(inventoryData);
+                t.setSuccess("Transaction SUCCESS");
                 return t;
             }
         }
-        t.setSuccess(transactionData.toString());
+        t.setSuccess("Transaction FAILED");
         return t;
     }
 
