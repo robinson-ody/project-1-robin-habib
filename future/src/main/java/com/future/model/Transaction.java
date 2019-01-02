@@ -13,6 +13,8 @@ public class Transaction {
     private Date createdAt = new Date();
     private List <transData> transcData;
 
+
+
     public String getId() {
         return id;
     }
@@ -20,7 +22,6 @@ public class Transaction {
     public void setId(String id) {
         this.id = id;
     }
-
 
     public List<transData> getTranscData() {
         return transcData;

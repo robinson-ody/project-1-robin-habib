@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.List;
 
 @Document(collection = "employee")
 public class Employee {
@@ -21,6 +22,15 @@ public class Employee {
     private String division;
     private String superior;
     private String role;
+    private List<transData> transcData;
+
+    public List<transData> getTranscData() {
+        return transcData;
+    }
+
+    public void setTranscData(List<transData> transcData) {
+        this.transcData = transcData;
+    }
 
     @Indexed(unique = true, direction = IndexDirection.DESCENDING, dropDups = true)
     private String email;
