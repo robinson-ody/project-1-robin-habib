@@ -6,19 +6,10 @@ public class TransData {
 
     @Id
     private String inventoryId;
-    private String email;
     private Integer qty;
 
     public String getInventoryId() {
         return inventoryId;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public void setInventoryId(String inventoryId) {
