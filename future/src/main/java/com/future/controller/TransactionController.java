@@ -61,10 +61,20 @@ import static jdk.nashorn.internal.objects.Global.print;
         }
         for (int i = 0; i < transaction.size(); i++) {
             if (transaction.get(i).getInventoryId().equals(inventoryData.getInventoryId())) {
-                inventoryData.setStock(inventoryData.getStock()-transaction.get(i).getQty());
+                if (inventoryData.getStock()<transaction.get(i).getQty()){
+                    t.setSuccess("Stock Tidak Mencukupi");
+                    return t;
+                }
+                if (inventoryData.getAvailable()<transaction.get(i).getQty()){
+                    t.setSuccess("Item Tidak Available");
+                    return t;
+                }
+                else{
+                inventoryData.setAvailable(inventoryData.getAvailable()-transaction.get(i).getQty());
                 inventoryRepository.save(inventoryData);
                 t.setSuccess("Transaction SUCCESS");
-                return t;
+                return t;}
+
             }
         }
         t.setSuccess("Transaction FAILED");
