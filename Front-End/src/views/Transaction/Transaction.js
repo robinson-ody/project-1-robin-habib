@@ -21,6 +21,7 @@ export default class Transaction extends React.Component{
     componentDidMount(){
       axios.get('http://localhost:8080/api/transaction')
           .then(res => {this.setState({transactionData: res.data})})
+          .then(()=> {this.setState({shownData: this.state.transactionData})})
     };
 
     filterData(ev){
@@ -29,11 +30,9 @@ export default class Transaction extends React.Component{
         for(let i = 0 ; i < this.state.transactionData.length ; i++){
             if(this.state.transactionData[i].id.toLowerCase().includes(ev.target.value.toLowerCase())){
                 dataTemp.push(this.state.transactionData[i])
-            } else if(this.state.transactionData[i].createdAt.toLowerCase().includes(ev.target.value.toLowerCase())) {
+            } else if(this.state.transactionData[i].email.toString().includes(ev.target.value.toLowerCase())) {
                 dataTemp.push(this.state.transactionData[i])
-            } else if(this.state.transactionData[i].requestedBy.toString().includes(ev.target.value.toLowerCase())) {
-                dataTemp.push(this.state.transactionData[i])
-            } else if(this.state.transactionData[i].status.toString().includes(ev.target.value.toLowerCase())) {
+            } else if(this.state.transactionData[i].status.toLowerCase().includes(ev.target.value.toLowerCase())) {
                 dataTemp.push(this.state.transactionData[i])
             }
         }
@@ -52,9 +51,7 @@ export default class Transaction extends React.Component{
     };
 
     getDate(date){
-        const curr_date = new Date(date).getDate();
-        if(curr_date.toString().length < 2) return '0' + curr_date;
-        else return curr_date
+        return new Date(date).getDate();
     };
 
     getMonth(date){
@@ -108,11 +105,11 @@ export default class Transaction extends React.Component{
                                 </thead>
 
                                 <tbody>
-                                {this.state.transactionData.map((item, index)=>(
+                                {this.state.shownData.map((item, index)=>(
                                     <tr key={index} id={item.id} onClick={this.detailHandler.bind(this)}>
                                         <td id={item.id} className='assignment'>{item.id}</td>
                                         <td id={item.id} className='requestDate'>{this.getDate(item.createdAt)} {this.getMonth(item.createdAt)} {this.getYear(item.createdAt)}</td>
-                                        <td id={item.id} className='staff'>{item.requestedBy}</td>
+                                        <td id={item.id} className='staff'>{item.email}</td>
                                         <td id={item.id} className='itemStatus'>{item.status}</td>
                                     </tr>
                                 ))

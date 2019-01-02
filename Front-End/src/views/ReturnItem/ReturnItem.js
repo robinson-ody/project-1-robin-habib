@@ -5,6 +5,32 @@ import DeleteActive from "../../elements/delete-active.png";
 import SearchIcon from "../../elements/icon-search.png";
 
 export default class ReturnItem extends React.Component{
+    constructor(){
+        super();
+        this.state = {
+            transactionData: [],
+            transactionDetail: [],
+            activeTransaction: '',
+            shownData: []
+        };
+    }
+
+    filterData(ev){
+        let dataTemp = [];
+
+        for(let i = 0 ; i < this.state.transactionData.length ; i++){
+            if(this.state.transactionData[i].id.toLowerCase().includes(ev.target.value.toLowerCase())){
+                dataTemp.push(this.state.transactionData[i])
+            } else if(this.state.transactionData[i].email.toString().includes(ev.target.value.toLowerCase())) {
+                dataTemp.push(this.state.transactionData[i])
+            } else if(this.state.transactionData[i].status.toLowerCase().includes(ev.target.value.toLowerCase())) {
+                dataTemp.push(this.state.transactionData[i])
+            }
+        }
+
+        this.setState({shownData: dataTemp});
+    };
+
     render(){
         document.title = "Return Item | Blibli Inventory System";
 

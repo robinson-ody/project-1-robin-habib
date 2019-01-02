@@ -110,10 +110,29 @@ export default class Employee extends React.Component{
         this.setState({shownData: dataTemp});
     };
 
-    // dateFormatChanger(ev){
-    //     const d = new Date("2015-03-15T14:01:16.447Z");
-    //     alert(d.toLocaleString('id'))
-    // };
+    getDate(date){
+        return new Date(date).getDate();
+    };
+
+    getMonth(date){
+        const curr_month = new Date(date).getMonth();
+        if(curr_month === 0) return 'January';
+        else if(curr_month === 1) return 'February';
+        else if(curr_month === 2) return 'March';
+        else if(curr_month === 3) return 'April';
+        else if(curr_month === 4) return 'May';
+        else if(curr_month === 5) return 'June';
+        else if(curr_month === 6) return 'July';
+        else if(curr_month === 7) return 'August';
+        else if(curr_month === 8) return 'September';
+        else if(curr_month === 9) return 'October';
+        else if(curr_month === 10) return 'November';
+        else if(curr_month === 11) return 'December'
+    };
+
+    getYear(date){
+        return new Date(date).getFullYear();
+    };
 
     render(){
         document.title = "Employee | Blibli Inventory System";
@@ -184,7 +203,7 @@ export default class Employee extends React.Component{
                                     <tr key={index}>
                                         <td className='employee'>{item.email}</td>
                                         <td className='name'>{item.name}</td>
-                                        <td className='birthday'>{item.birthday}</td>
+                                        <td className='birthday'>{this.getDate(item.birthday)} {this.getMonth(item.birthday)} {this.getYear(item.birthday)}</td>
                                         <td className='gender'>{item.gender}</td>
                                         <td className='division'>{item.division}</td>
                                         <td className='superior'>{item.superior}</td>
