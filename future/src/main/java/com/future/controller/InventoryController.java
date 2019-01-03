@@ -1,6 +1,7 @@
 package com.future.controller;
 
 import com.future.model.Inventory;
+import com.future.repository.EmployeeRepository;
 import com.future.repository.InventoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,7 +24,8 @@ public class InventoryController {
     }
 
     @GetMapping("/inventory/{id}")
-    public Inventory getSingleInventory(@PathVariable("id") String id) {
+    public Inventory getUserInventory(@PathVariable("id") String id) {
+
         return (Inventory) inventoryRepository.findOne(id);
     }
 

@@ -2,6 +2,7 @@ package com.future.controller;
 
 import com.future.model.*;
 import com.future.model.list.EmployeeItems;
+import com.future.model.list.InventoryUsers;
 import com.future.model.list.TransData;
 import com.future.model.requestResponse.TransactionRequest;
 import com.future.model.requestResponse.TransactionResponse;
@@ -10,9 +11,12 @@ import com.future.repository.InventoryRepository;
 import com.future.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.Null;
 import java.util.List;
 
 @RestController
@@ -36,13 +40,27 @@ import java.util.List;
         return (List<Transaction>) transactionRepository.findAll();
     }
 
+    @PutMapping("/transaction/{id}")
+    public ResponseEntity<Transaction> updateTransaction(@PathVariable("id") String id, @RequestBody Transaction transaction) {
+        Transaction transactionData = transactionRepository.findOne(id);
+        if (transaction == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        transactionData.setStatus(transaction.getStatus());
+        Transaction updatedtransaction = transactionRepository.save(transactionData);
+        return new ResponseEntity<>(updatedtransaction, HttpStatus.OK);
+    }
+
     @PostMapping("/transaction/List")
     public Transaction createTransaction(@RequestBody Transaction transaction) {
         transactionRepository.save(transaction);
         Employee employeeData = employeeRepository.findByEmail(transaction.getEmail());
         Transaction transactionData = transactionRepository.findById(transaction.getId());
+        Inventory inventoryData2= inventoryRepository.findByInventoryId(transaction.getTranscData().get(0).getInventoryId());
         List<TransData> transactions=transactionData.getTranscData();
         List<EmployeeItems> empItems = employeeData.getEmplItems();
+        List<InventoryUsers> invenUsers=inventoryData2.getInvenUsers();
+
         for (int i=0;i<transactions.size();i++) {
             Inventory inventoryData = inventoryRepository.findByInventoryId(transactions.get(i).getInventoryId());
             if(inventoryData.getAvailable()<transactions.get(i).getQty()){
@@ -60,12 +78,33 @@ import java.util.List;
             transactionRepository.save(transaction);
 
             for (int i=0;i<transactions.size();i++){
-                empItems.get(i).setQty(transactions.get(i).getQty());
-                empItems.get(i).setInventoryId(transactions.get(i).getInventoryId());
-                System.out.println(transactions.get(i).getInventoryId());
-                System.out.println(empItems.get(i).getInventoryId());
+                if (transactions.get(i).getInventoryId().equals(employeeData.getEmplItems().get(i).getInventoryId())){
+                    empItems.get(i).setQty(empItems.get(i).getQty()+transactions.get(i).getQty());
+                    employeeRepository.save(employeeData);
+                    inventoryRepository.save(inventoryData2);
+                    transactionRepository.save(transaction);
+                }
+                else if (transactions.get(i).getInventoryId().equals(null)){
+                    empItems.get(i).setInventoryId(empItems.get(i).getInventoryId()+transactions.get(i).getInventoryId());
+                    empItems.get(i).setQty(empItems.get(i).getQty()+transactions.get(i).getQty());
+                    employeeRepository.save(employeeData);
+                    inventoryRepository.save(inventoryData2);
+                    transactionRepository.save(transaction);
+                }
+                else{
+                EmployeeItems a = new EmployeeItems();
+                InventoryUsers b = new InventoryUsers();
+                a.setQty(transactions.get(i).getQty());
+                a.setInventoryId(transactions.get(i).getInventoryId());
+                b.setEmail(transaction.getEmail());
+                b.setQty(transactions.get(i).getQty());
+                invenUsers.add(b);
+//                empItems.get(i).setInventoryId(transactions.get(i).getInventoryId());
+                empItems.add(a);
                 employeeRepository.save(employeeData);
-
+                inventoryRepository.save(inventoryData2);
+                transactionRepository.save(transaction);
+                }
             }
         }
         else if (employeeData.getRole().equals("ADMIN")){
@@ -92,7 +131,7 @@ import java.util.List;
             t.setSuccess("Transaction NULL");
             return t;
         }
-        if(transactionData.getStatus().equals("REJECTED")){
+        if(request.getStatus().equals("REJECTED")){
             if (employeeData.getEmail().equals(request.getEmail())){
                 for (int i = 0; i < transaction.size(); i++) {
                     if (transaction.get(i).getInventoryId().equals(inventoryData.getInventoryId())) {
