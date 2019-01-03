@@ -15,9 +15,9 @@ export default class Home extends React.Component{
         }
     }
 
-    View(name){
+    View(name, email){
         if (this.state.view === 'inventory')
-            return <Inventory name={name}/>;
+            return <Inventory name={name} email={email}/>;
         else if (this.state.view === 'employee')
             return <Employee name={name}/>;
         else if (this.state.view === 'transaction')
@@ -31,7 +31,7 @@ export default class Home extends React.Component{
 		    <div className='home'>
                 <Sidebar isAuth={(e)=> this.props.isAuth(e)} pageView={(view)=> this.setState({view: view})} />
                 <div className='content'>
-                    {this.View(this.props.name)}
+                    {this.View(this.props.name, this.props.email)}
                 </div>
 			</div>
 		)

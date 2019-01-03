@@ -7,16 +7,17 @@ export default class App extends React.Component {
         super(props);
         this.state = {
             isAuth: false,
-            name: ''
+            name: '',
+            email: ''
         }
     }
 
     render() {
         const IsAuth = ()=> {
             if(this.state.isAuth === false) {
-                return <Login isAuth={(e)=> this.setState({isAuth : e})} name={(e)=> this.setState({name : e})}/>
+                return <Login isAuth={(e)=> this.setState({isAuth : e})} name={(e)=> this.setState({name : e})} email={(e)=> this.setState({email: e})}/>
             } else {
-                return <Home isAuth={(e)=> this.setState({isAuth : e})} name={this.state.name}/>
+                return <Home isAuth={(e)=> this.setState({isAuth : e})} name={this.state.name} email={this.state.email}/>
             }
         };
 

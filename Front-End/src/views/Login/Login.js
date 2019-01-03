@@ -6,7 +6,7 @@ class Login extends Component {
     constructor(props){
         super(props);
         this.state = {
-            username: '',
+            email: '',
             password: ''
         }
     }
@@ -20,6 +20,7 @@ class Login extends Component {
             .then(res => {
                 this.props.isAuth(res.data.success);
                 this.props.name(res.data.name);
+                this.props.email(this.state.email);
             })
     };
 

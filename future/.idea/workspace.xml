@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="91c9e9bc-2bd0-404e-aa65-c45754570bc9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/future/model/ReturnRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/future/model/ReturnResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/views/Home/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/views/Home/Home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/views/Inventory/Inventory.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/views/Inventory/Inventory.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/views/Login/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/views/Login/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front-End/src/views/Transaction/Transaction.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/src/views/Transaction/Transaction.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/future/controller/TransactionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/future/controller/TransactionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/future/controller/TransactionImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/future/error/MyAccessDeniedHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/future/model/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/future/model/Transaction.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -35,7 +34,7 @@
     <session id="1988036429">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="12" />
+          <entry key="project.closed" value="13" />
           <entry key="project.open.time.105" value="1" />
           <entry key="project.open.time.113" value="1" />
           <entry key="project.open.time.116" value="1" />
@@ -47,7 +46,7 @@
           <entry key="project.open.time.146" value="1" />
           <entry key="project.open.time.16" value="1" />
           <entry key="project.open.time.180" value="1" />
-          <entry key="project.open.time.2" value="1" />
+          <entry key="project.open.time.2" value="2" />
           <entry key="project.open.time.21" value="1" />
           <entry key="project.open.time.29" value="1" />
           <entry key="project.open.time.3" value="1" />
@@ -56,7 +55,7 @@
           <entry key="project.open.time.64" value="1" />
           <entry key="project.open.time.67" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="20" />
+          <entry key="project.opened" value="21" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -66,7 +65,7 @@
           <entry key="files" value="5" />
           <entry key="gitignore" value="1" />
           <entry key="html" value="12" />
-          <entry key="java" value="250" />
+          <entry key="java" value="252" />
           <entry key="js" value="3" />
           <entry key="mvnw" value="1" />
           <entry key="null/login/inventory" value="7" />
@@ -81,7 +80,7 @@
         <counts>
           <entry key="CLASS" value="2" />
           <entry key="HTML" value="12" />
-          <entry key="JAVA" value="250" />
+          <entry key="JAVA" value="252" />
           <entry key="JavaScript" value="3" />
           <entry key="MONGO" value="19" />
           <entry key="PLAIN_TEXT" value="2" />
@@ -93,7 +92,7 @@
         <counts>
           <entry key="dummy" value="5" />
           <entry key="html" value="73" />
-          <entry key="java" value="3674" />
+          <entry key="java" value="3676" />
           <entry key="js" value="126" />
           <entry key="properties" value="18" />
           <entry key="xml" value="15" />
@@ -102,7 +101,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="73" />
-          <entry key="JAVA" value="3674" />
+          <entry key="JAVA" value="3676" />
           <entry key="JavaScript" value="126" />
           <entry key="PLAIN_TEXT" value="5" />
           <entry key="Properties" value="18" />
@@ -156,84 +155,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/future/repository/TransactionRepository.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="60" column="9" lean-forward="true" selection-start-line="60" selection-start-column="9" selection-end-line="60" selection-end-column="9" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/future/model/TransactionRequest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="29" column="8" lean-forward="true" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
-              <folding>
-                <element signature="e#212#213#0" expanded="true" />
-                <element signature="e#237#238#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/future/controller/EmployeeController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="139">
-              <caret line="23" column="33" lean-forward="true" selection-start-line="23" selection-start-column="33" selection-end-line="23" selection-end-column="33" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/future/model/TransData.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" selection-start-line="8" selection-end-line="8" selection-end-column="12" />
-              <folding>
-                <element signature="e#202#203#0" expanded="true" />
-                <element signature="e#236#237#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/future/controller/AssignmentController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="22" column="23" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="23" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#604#605#0" expanded="true" />
-                <element signature="e#676#677#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/future/model/Transaction.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="99">
-              <caret line="39" column="76" selection-start-line="39" selection-start-column="76" selection-end-line="39" selection-end-column="76" />
-              <folding>
-                <element signature="e#1313#1314#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/future/controller/InventoryController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="31" column="52" selection-start-line="31" selection-start-column="52" selection-end-line="31" selection-end-column="52" />
+            <state relative-caret-position="285">
+              <caret line="47" column="5" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#595#596#0" expanded="true" />
@@ -243,16 +169,36 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/future/model/TransactionResponse.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/future/controller/LoginController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" selection-start-line="5" selection-end-line="13" selection-end-column="5" />
+            <state relative-caret-position="64">
+              <caret line="24" column="18" lean-forward="true" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/future/model/Inventory.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="816">
+              <caret line="74" selection-start-line="74" selection-end-line="74" />
               <folding>
-                <element signature="e#146#147#0" expanded="true" />
-                <element signature="e#176#177#0" expanded="true" />
-                <element signature="e#222#223#0" expanded="true" />
-                <element signature="e#260#261#0" expanded="true" />
+                <element signature="e#1506#1507#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/future/controller/AssignmentController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
+              <caret line="22" column="23" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="23" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#604#605#0" expanded="true" />
+                <element signature="e#676#677#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -289,7 +235,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/future/services/MongoUserDetailService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/future/error/MyAccessDeniedHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/future/services/EmployeeService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/future/controller/DefaultController.java" />
@@ -315,7 +260,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/future/repository/EmployeeRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/future/model/LoginRequest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/future/repository/Transaction.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/future/controller/LoginController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/future/error/ErrorResponse.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/future/model/request/IncreaseQuantityRequest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/future/TestSeeder.java" />
@@ -341,6 +285,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/future/model/ReturnRequest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/future/model/Transaction.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/future/controller/TransactionController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/future/controller/LoginController.java" />
       </list>
     </option>
   </component>
@@ -371,8 +316,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -457,7 +400,9 @@
           <select />
         </subPane>
       </pane>
+      <pane id="AndroidView" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -532,12 +477,13 @@
       <workItem from="1546436656957" duration="15220000" />
       <workItem from="1546453055489" duration="2011000" />
       <workItem from="1546455250090" duration="678000" />
-      <workItem from="1546488988246" duration="628000" />
+      <workItem from="1546488988246" duration="1123000" />
+      <workItem from="1546490187808" duration="2571000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="139628000" />
+    <option name="totallyTimeSpent" value="142312000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -550,8 +496,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2549168" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2549168" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -562,7 +509,7 @@
       <window_info id="Learn" order="8" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3295082" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.396072" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.39443535" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49848023" weight="0.6967213" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -637,13 +584,7 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/future/error/MyAccessDeniedHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="581">
-          <caret line="42" lean-forward="true" selection-start-line="42" selection-end-line="42" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/future/error/MyAccessDeniedHandler.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/future/controller/DefaultController.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/future/repository/UsersRepository.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/future/model/Users.java" />
@@ -706,9 +647,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="12" column="26" lean-forward="true" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -768,13 +706,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/future/repository/TransactionRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="10" column="36" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/future/model/LoginRequest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -803,41 +734,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/future/model/Inventory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="57" column="35" selection-start-line="57" selection-start-column="35" selection-end-line="57" selection-end-column="35" />
-          <folding>
-            <element signature="e#1175#1176#0" expanded="true" />
-            <element signature="e#1226#1227#0" expanded="true" />
-            <element signature="e#1268#1269#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/future/controller/TransactionController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="36" column="50" lean-forward="true" selection-start-line="36" selection-start-column="50" selection-end-line="36" selection-end-column="50" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/future/controller/FileController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1006#1007#0" expanded="true" />
-            <element signature="e#1058#1059#0" expanded="true" />
-            <element signature="e#2933#2934#0" expanded="true" />
-            <element signature="e#2981#2982#0" expanded="true" />
-            <element signature="e#3228#3229#0" expanded="true" />
-            <element signature="e#3303#3304#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -848,9 +748,35 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/future/model/TransactionResponse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" selection-start-line="5" selection-end-line="13" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/future/model/ReturnResponse.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/future/model/TransactionRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="29" column="8" lean-forward="true" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/future/model/ReturnRequest.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/future/model/Inventory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="816">
+          <caret line="74" selection-start-line="74" selection-end-line="74" />
+          <folding>
+            <element signature="e#1506#1507#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/future/controller/AssignmentController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
+        <state relative-caret-position="374">
           <caret line="22" column="23" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -860,111 +786,49 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/future/controller/InventoryController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/future/controller/TransactionController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="31" column="52" selection-start-line="31" selection-start-column="52" selection-end-line="31" selection-end-column="52" />
+        <state relative-caret-position="1343">
+          <caret line="81" column="5" lean-forward="true" selection-start-line="81" selection-start-column="5" selection-end-line="81" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#595#596#0" expanded="true" />
-            <element signature="e#665#666#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/future/controller/InventoryController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/future/repository/TransactionRepository.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="46" column="5" selection-start-line="46" selection-start-column="5" selection-end-line="46" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#595#596#0" expanded="true" />
-            <element signature="e#665#666#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/future/model/TransactionResponse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" selection-start-line="5" selection-end-line="13" selection-end-column="5" />
-          <folding>
-            <element signature="e#146#147#0" expanded="true" />
-            <element signature="e#176#177#0" expanded="true" />
-            <element signature="e#222#223#0" expanded="true" />
-            <element signature="e#260#261#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/future/model/ReturnResponse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="5" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
-          <folding>
-            <element signature="e#121#122#0" expanded="true" />
-            <element signature="e#151#152#0" expanded="true" />
-            <element signature="e#197#198#0" expanded="true" />
-            <element signature="e#235#236#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/future/model/TransactionRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="29" column="8" lean-forward="true" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
-          <folding>
-            <element signature="e#212#213#0" expanded="true" />
-            <element signature="e#237#238#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/future/model/ReturnRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="38" column="5" selection-start-line="38" selection-start-column="5" selection-end-line="38" selection-end-column="5" />
-          <folding>
-            <element signature="e#207#208#0" expanded="true" />
-            <element signature="e#232#233#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="119">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/future/model/Transaction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="99">
-          <caret line="39" column="76" selection-start-line="39" selection-start-column="76" selection-end-line="39" selection-end-column="76" />
+        <state relative-caret-position="187">
+          <caret line="15" column="21" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#473#474#0" expanded="true" />
-            <element signature="e#501#502#0" expanded="true" />
-            <element signature="e#542#543#0" expanded="true" />
-            <element signature="e#576#577#0" expanded="true" />
-            <element signature="e#605#606#0" expanded="true" />
-            <element signature="e#630#631#0" expanded="true" />
-            <element signature="e#665#666#0" expanded="true" />
-            <element signature="e#693#694#0" expanded="true" />
-            <element signature="e#739#740#0" expanded="true" />
-            <element signature="e#772#773#0" expanded="true" />
-            <element signature="e#832#833#0" expanded="true" />
-            <element signature="e#876#877#0" expanded="true" />
-            <element signature="e#1023#1024#0" expanded="true" />
-            <element signature="e#1055#1056#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/future/controller/AssignmentController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/future/controller/InventoryController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="60" column="9" lean-forward="true" selection-start-line="60" selection-start-column="9" selection-end-line="60" selection-end-column="9" />
+        <state relative-caret-position="285">
+          <caret line="47" column="5" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#604#605#0" expanded="true" />
-            <element signature="e#676#677#0" expanded="true" />
+            <element signature="e#595#596#0" expanded="true" />
+            <element signature="e#665#666#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/future/controller/LoginController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="24" column="18" lean-forward="true" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
         </state>
       </provider>
     </entry>

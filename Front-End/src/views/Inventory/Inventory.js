@@ -61,7 +61,14 @@ export default class Inventory extends React.Component{
     }
 
     submitRequest(){
-	    console.log('OK')
+	    let submitData = [];
+	    for(let i = 0 ; i < this.state.selected.length ; i ++){
+	        submitData.push({inventoryId: this.state.selected[i].inventoryId, qty: this.state.selected[i].qty});
+        }
+        axios.post('http://localhost:8080/api/transaction/List', {email: this.props.email, status: "Pending", transcData: submitData})
+            .then(()=> {this.requestWindowOff()})
+            .then(()=> {this.setState({selected: []})})
+            .then(()=> {this.getData()})
     }
 
     addRequest(ev){
@@ -76,7 +83,7 @@ export default class Inventory extends React.Component{
 	        for(let i = 0 ; i < this.state.selected.length ; i++){
 	            if(this.state.selected[i].id !== ev.target.id){
 	                dataTemp.push(this.state.selected[i])
-                };
+                }
             }
             this.setState({selected: dataTemp});
         }
@@ -139,6 +146,14 @@ export default class Inventory extends React.Component{
         this.setState({shownData: dataTemp});
     };
 
+    qtyHandler(e){
+        for(let i = 0 ; i < this.state.selected.length ; i++){
+            if(e.target.id === this.state.selected[i].id){
+                Object.assign(this.state.selected[i], {qty: e.target.value});
+            }
+        }
+    }
+
     render(){
         document.title = "Inventory | Blibli Inventory System";
 
@@ -169,7 +184,7 @@ export default class Inventory extends React.Component{
                                 <tr key={index}>
                                     <td className='detail'>{item.detail}</td>
                                     <td className='stock'>{Inventory.thousandSeparator(item.stock)}</td>
-                                    <td className='request'><input type='number'/></td>
+                                    <td className='request'><input id={item.id} onChange={this.qtyHandler.bind(this)} type='number'/></td>
                                 </tr>
                             ))}
                         </tbody>
@@ -229,7 +244,7 @@ export default class Inventory extends React.Component{
                     <table>
                         <thead>
                         <tr>
-                            <th className='chkbox'><input type='checkbox'/></th>
+                            <th className='chkbox' style={{width:'19px'}} />
                             <th className='inventory'>Inventory ID</th>
                             <th className='detail'>Detail</th>
                             <th className='stock'>Stock</th>
@@ -260,8 +275,7 @@ export default class Inventory extends React.Component{
                                     alt='Trash icon'/>
                                 </td>
                             </tr>
-                        ))
-                        }
+                        ))}
                         </tbody>
                     </table>
                 </div>
