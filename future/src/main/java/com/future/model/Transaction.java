@@ -1,6 +1,7 @@
 package com.future.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.future.model.list.TransData;
 import org.springframework.data.annotation.Id;
 
 import java.util.Date;

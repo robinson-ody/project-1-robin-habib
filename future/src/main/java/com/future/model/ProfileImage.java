@@ -1,3 +1,4 @@
+/*
 package com.future.model;
 
 public class ProfileImage {
@@ -25,4 +26,4 @@ public class ProfileImage {
     }
 
 
-}
+}*/

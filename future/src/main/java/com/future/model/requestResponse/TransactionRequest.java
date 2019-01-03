@@ -1,4 +1,4 @@
-package com.future.model;
+package com.future.model.requestResponse;
 
 public class TransactionRequest {
     private String email;

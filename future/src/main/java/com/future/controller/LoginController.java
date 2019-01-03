@@ -1,8 +1,8 @@
 package com.future.controller;
 
 import com.future.model.Employee;
-import com.future.model.LoginRequest;
-import com.future.model.LoginResponse;
+import com.future.model.requestResponse.LoginRequest;
+import com.future.model.requestResponse.LoginResponse;
 import com.future.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
