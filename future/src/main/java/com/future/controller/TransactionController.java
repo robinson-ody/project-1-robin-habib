@@ -1,25 +1,19 @@
 package com.future.controller;
 
 import com.future.model.*;
+import com.future.model.list.EmployeeItems;
+import com.future.model.list.TransData;
+import com.future.model.requestResponse.TransactionRequest;
+import com.future.model.requestResponse.TransactionResponse;
 import com.future.repository.EmployeeRepository;
 import com.future.repository.InventoryRepository;
 import com.future.repository.TransactionRepository;
-import com.mongodb.WriteResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.data.mongodb.core.query.Update;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-
-import static jdk.nashorn.internal.objects.Global.print;
 
 @RestController
 @CrossOrigin("*")
@@ -44,6 +38,44 @@ import static jdk.nashorn.internal.objects.Global.print;
 
     @PostMapping("/transaction/List")
     public Transaction createTransaction(@RequestBody Transaction transaction) {
+        transactionRepository.save(transaction);
+        Employee employeeData = employeeRepository.findByEmail(transaction.getEmail());
+        Transaction transactionData = transactionRepository.findById(transaction.getId());
+        List<TransData> transactions=transactionData.getTranscData();
+        List<EmployeeItems> empItems = employeeData.getEmplItems();
+        for (int i=0;i<transactions.size();i++) {
+            Inventory inventoryData = inventoryRepository.findByInventoryId(transactions.get(i).getInventoryId());
+            if(inventoryData.getAvailable()<transactions.get(i).getQty()){
+                transaction.setStatus("FAILED. ITEM/s NOT AVAILABLE");
+                transactionRepository.save(transaction);
+            }
+            else
+                {
+            inventoryData.setAvailable(inventoryData.getAvailable()-transactions.get(i).getQty());
+            System.out.println(inventoryData.getAvailable());
+            inventoryRepository.save(inventoryData);}
+        }
+        if(employeeData.getRole().equals("MANAGER")){
+            transaction.setStatus("APPROVED");
+            transactionRepository.save(transaction);
+
+            for (int i=0;i<transactions.size();i++){
+                empItems.get(i).setQty(transactions.get(i).getQty());
+                empItems.get(i).setInventoryId(transactions.get(i).getInventoryId());
+                System.out.println(transactions.get(i).getInventoryId());
+                System.out.println(empItems.get(i).getInventoryId());
+                employeeRepository.save(employeeData);
+
+            }
+        }
+        else if (employeeData.getRole().equals("ADMIN")){
+            transaction.setStatus("PENDING");
+            transactionRepository.save(transaction);
+        }
+        else{
+            transaction.setStatus("ROLE ???");
+            transactionRepository.save(transaction);
+        }
         return transactionRepository.save(transaction);
     }
 
@@ -54,27 +86,28 @@ import static jdk.nashorn.internal.objects.Global.print;
         Inventory inventoryData = inventoryRepository.findByInventoryId(request.getInventoryId());
         Transaction transactionData = transactionRepository.findById(request.getId());
         List<TransData> transaction = transactionData.getTranscData();
-        System.out.println(transaction);
+        List<EmployeeItems> empItems = employeeData.getEmplItems();
+
         if (transaction == null) {
             t.setSuccess("Transaction NULL");
             return t;
         }
-        for (int i = 0; i < transaction.size(); i++) {
-            if (transaction.get(i).getInventoryId().equals(inventoryData.getInventoryId())) {
-                if (inventoryData.getStock() < transaction.get(i).getQty()) {
-                    t.setSuccess("Stock Tidak Mencukupi");
-                    return t;
+        if(transactionData.getStatus().equals("REJECTED")){
+            if (employeeData.getEmail().equals(request.getEmail())){
+                for (int i = 0; i < transaction.size(); i++) {
+                    if (transaction.get(i).getInventoryId().equals(inventoryData.getInventoryId())) {
+                            inventoryData.setAvailable(inventoryData.getAvailable() + transaction.get(i).getQty());
+                            inventoryRepository.save(inventoryData);
+                            t.setSuccess("Transaction REJECTED");
+                            return t; }
+                    else {
+                        t.setSuccess("ITEM/s NOT FOUND");
+                        return t; }
                 }
-                if (inventoryData.getAvailable() < transaction.get(i).getQty()) {
-                    t.setSuccess("Item Tidak Available");
-                    return t;
-                } else {
-                    inventoryData.setAvailable(inventoryData.getAvailable() - transaction.get(i).getQty());
-                    inventoryRepository.save(inventoryData);
-                    t.setSuccess("Transaction SUCCESS");
-                    return t;
-                }
-
+            }
+            else {
+                t.setSuccess("Employee Not Found");
+                return t;
             }
         }
         t.setSuccess("Transaction FAILED");

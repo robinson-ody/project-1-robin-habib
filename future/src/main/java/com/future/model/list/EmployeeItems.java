@@ -1,10 +1,6 @@
-package com.future.model;
+package com.future.model.list;
 
-import org.springframework.data.annotation.Id;
-
-public class TransData {
-
-    @Id
+public class EmployeeItems {
     private String inventoryId;
     private Integer qty;
 
@@ -23,5 +19,4 @@ public class TransData {
     public void setQty(Integer qty) {
         this.qty = qty;
     }
-
 }

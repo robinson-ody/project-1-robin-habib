@@ -1,12 +1,11 @@
 package com.future.model;
 
-import org.hibernate.validator.constraints.NotBlank;
+import com.future.model.list.EmployeeItems;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.IndexDirection;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.List;
 
@@ -16,24 +15,25 @@ public class Employee {
     @Id
     private String id;
     private String password;
+    @Indexed(unique = true, direction = IndexDirection.DESCENDING, dropDups = true)
+    private String email;
     private String name;
     private Date birthday;
     private String gender;
     private String division;
     private String superior;
     private String role;
-    private List<TransData> TranscData;
+    private List<EmployeeItems> emplItems;
 
-    public List<TransData> getTranscData() {
-        return TranscData;
+
+
+    public List<EmployeeItems> getEmplItems() {
+        return emplItems;
     }
 
-    public void setTranscData(List<TransData> transcData) {
-        TranscData = transcData;
+    public void setEmplItems(List<EmployeeItems> emplItems) {
+        this.emplItems = emplItems;
     }
-
-    @Indexed(unique = true, direction = IndexDirection.DESCENDING, dropDups = true)
-    private String email;
 
     public String getEmail() {
         return email;
