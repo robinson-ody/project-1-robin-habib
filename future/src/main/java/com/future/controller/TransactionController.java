@@ -2,6 +2,7 @@ package com.future.controller;
 
 import com.future.model.*;
 import com.future.model.list.EmployeeItems;
+import com.future.model.list.InventoryUsers;
 import com.future.model.list.TransData;
 import com.future.model.requestResponse.TransactionRequest;
 import com.future.model.requestResponse.TransactionResponse;
@@ -15,6 +16,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.Null;
 import java.util.List;
 
 @RestController
@@ -54,8 +56,10 @@ import java.util.List;
         transactionRepository.save(transaction);
         Employee employeeData = employeeRepository.findByEmail(transaction.getEmail());
         Transaction transactionData = transactionRepository.findById(transaction.getId());
+        Inventory inventoryData2= inventoryRepository.findByInventoryId(transaction.getTranscData().get(0).getInventoryId());
         List<TransData> transactions=transactionData.getTranscData();
         List<EmployeeItems> empItems = employeeData.getEmplItems();
+        List<InventoryUsers> invenUsers=inventoryData2.getInvenUsers();
 
         for (int i=0;i<transactions.size();i++) {
             Inventory inventoryData = inventoryRepository.findByInventoryId(transactions.get(i).getInventoryId());
@@ -74,15 +78,33 @@ import java.util.List;
             transactionRepository.save(transaction);
 
             for (int i=0;i<transactions.size();i++){
+                if (transactions.get(i).getInventoryId().equals(employeeData.getEmplItems().get(i).getInventoryId())){
+                    empItems.get(i).setQty(empItems.get(i).getQty()+transactions.get(i).getQty());
+                    employeeRepository.save(employeeData);
+                    inventoryRepository.save(inventoryData2);
+                    transactionRepository.save(transaction);
+                }
+                else if (transactions.get(i).getInventoryId().equals(null)){
+                    empItems.get(i).setInventoryId(empItems.get(i).getInventoryId()+transactions.get(i).getInventoryId());
+                    empItems.get(i).setQty(empItems.get(i).getQty()+transactions.get(i).getQty());
+                    employeeRepository.save(employeeData);
+                    inventoryRepository.save(inventoryData2);
+                    transactionRepository.save(transaction);
+                }
+                else{
                 EmployeeItems a = new EmployeeItems();
-
+                InventoryUsers b = new InventoryUsers();
                 a.setQty(transactions.get(i).getQty());
                 a.setInventoryId(transactions.get(i).getInventoryId());
-                empItems.add(a);
+                b.setEmail(transaction.getEmail());
+                b.setQty(transactions.get(i).getQty());
+                invenUsers.add(b);
 //                empItems.get(i).setInventoryId(transactions.get(i).getInventoryId());
                 empItems.add(a);
-
                 employeeRepository.save(employeeData);
+                inventoryRepository.save(inventoryData2);
+                transactionRepository.save(transaction);
+                }
             }
         }
         else if (employeeData.getRole().equals("ADMIN")){

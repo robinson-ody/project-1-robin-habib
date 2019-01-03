@@ -1,10 +1,12 @@
 package com.future.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.future.model.list.InventoryUsers;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
+import java.util.List;
 
 @JsonIgnoreProperties(value = {"createdAt"}, allowGetters = true)
 
@@ -19,6 +21,7 @@ public class Inventory {
     private Integer price;
     private String inventoryId;
     private Date createdAt = new Date();
+    private List<InventoryUsers> invenUsers;
 
 
     public String getId() {
@@ -61,6 +64,14 @@ public class Inventory {
 
     public void setAvailable(Integer available) {
         this.available = available;
+    }
+
+    public List<InventoryUsers> getInvenUsers() {
+        return invenUsers;
+    }
+
+    public void setInvenUsers(List<InventoryUsers> invenUsers) {
+        this.invenUsers = invenUsers;
     }
 
     public String getInventoryId() {
