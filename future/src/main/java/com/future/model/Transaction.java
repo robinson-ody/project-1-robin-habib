@@ -37,7 +37,7 @@ public class Transaction {
     }
 
     public String getStatus() {return status;}
-    public void setStatus(String status) {this.status = status;}
+    public void setStatus(String status) {this.status = status.toUpperCase();}
 
     public Date getCreatedAt() {
         return createdAt;

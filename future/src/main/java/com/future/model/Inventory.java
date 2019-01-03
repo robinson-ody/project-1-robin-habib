@@ -15,6 +15,7 @@ public class Inventory {
     private String id;
     private String detail;
     private Integer stock;
+    private Integer available;
     private Integer price;
     private String inventoryId;
     private Date createdAt = new Date();
@@ -52,6 +53,14 @@ public class Inventory {
 
     public void setPrice(Integer price) {
         this.price = price;
+    }
+
+    public Integer getAvailable() {
+        return available;
+    }
+
+    public void setAvailable(Integer available) {
+        this.available = available;
     }
 
     public String getInventoryId() {

@@ -29,6 +29,7 @@ public class InventoryController {
 
     @PostMapping("/inventory/create")
     public Inventory createInventory(@RequestBody Inventory inventory) {
+        inventory.setAvailable(inventory.getStock());
         return inventoryRepository.save(inventory);
     }
 
