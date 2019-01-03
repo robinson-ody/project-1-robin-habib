@@ -1,6 +1,7 @@
 import React from 'react';
 import Login from "./views/Login/Login";
 import Home from "./views/Home/Home";
+import Cookies from 'universal-cookie';
 
 export default class App extends React.Component {
     constructor(props){
@@ -9,7 +10,7 @@ export default class App extends React.Component {
             isAuth: false,
             name: '',
             email: ''
-        }
+        };
     }
 
     render() {

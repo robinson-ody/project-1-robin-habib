@@ -14,7 +14,8 @@
     "react-dom": "^16.5.2",
     "react-modal": "^3.6.1",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "^2.1.2"
+    "react-scripts": "^2.1.2",
+    "universal-cookie": "^3.0.7"
   },
   "scripts": {
     "start": "react-scripts start",

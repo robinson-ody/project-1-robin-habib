@@ -21,7 +21,15 @@ export default class Transaction extends React.Component{
     componentDidMount(){
       axios.get('http://localhost:8080/api/transaction')
           .then(res => {this.setState({transactionData: res.data})})
-          .then(()=> {this.setState({shownData: this.state.transactionData})})
+          .then(()=> {
+              let dataTmp = [];
+              for(let i = 0 ; i < this.state.transactionData.length ; i++){
+                  if(this.state.transactionData[i].status.toLowerCase() === 'pending'){
+                      dataTmp.push(this.state.transactionData[i]);
+                  }
+              }
+              this.setState({shownData: dataTmp})
+          })
     };
 
     filterData(ev){
@@ -84,7 +92,7 @@ export default class Transaction extends React.Component{
                 <div className='tableContainer'>
                     <div className='tableLeft'>
                         <div className='tableHeaderDouble'>
-                            <div className='tableTitleDouble'>Transaction</div>
+                            <div className='tableTitleDouble'>Pending Request</div>
                             <div className='stylingSearch'>
                                 <div className='searchBar'>
                                     <input onChange={this.filterData.bind(this)} type='text' placeholder='Search Transactions...' className='inputSearch' />
@@ -100,7 +108,6 @@ export default class Transaction extends React.Component{
                                     <th className='assignment'>Transaction ID</th>
                                     <th className='requestDate'>Request Date</th>
                                     <th className='staff'>Requested By</th>
-                                    <th className='itemStatus'>Status</th>
                                 </tr>
                                 </thead>
 
@@ -110,7 +117,6 @@ export default class Transaction extends React.Component{
                                         <td id={item.id} className='assignment'>{item.id}</td>
                                         <td id={item.id} className='requestDate'>{this.getDate(item.createdAt)} {this.getMonth(item.createdAt)} {this.getYear(item.createdAt)}</td>
                                         <td id={item.id} className='staff'>{item.email}</td>
-                                        <td id={item.id} className='itemStatus'>{item.status}</td>
                                     </tr>
                                 ))
                                 }
