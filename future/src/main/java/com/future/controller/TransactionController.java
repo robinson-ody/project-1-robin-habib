@@ -10,7 +10,9 @@ import com.future.repository.InventoryRepository;
 import com.future.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -36,6 +38,17 @@ import java.util.List;
         return (List<Transaction>) transactionRepository.findAll();
     }
 
+    @PutMapping("/transaction/{id}")
+    public ResponseEntity<Transaction> updateTransaction(@PathVariable("id") String id, @RequestBody Transaction transaction) {
+        Transaction transactionData = transactionRepository.findOne(id);
+        if (transaction == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        transactionData.setStatus(transaction.getStatus());
+        Transaction updatedtransaction = transactionRepository.save(transactionData);
+        return new ResponseEntity<>(updatedtransaction, HttpStatus.OK);
+    }
+
     @PostMapping("/transaction/List")
     public Transaction createTransaction(@RequestBody Transaction transaction) {
         transactionRepository.save(transaction);
@@ -43,6 +56,7 @@ import java.util.List;
         Transaction transactionData = transactionRepository.findById(transaction.getId());
         List<TransData> transactions=transactionData.getTranscData();
         List<EmployeeItems> empItems = employeeData.getEmplItems();
+
         for (int i=0;i<transactions.size();i++) {
             Inventory inventoryData = inventoryRepository.findByInventoryId(transactions.get(i).getInventoryId());
             if(inventoryData.getAvailable()<transactions.get(i).getQty()){
@@ -60,12 +74,15 @@ import java.util.List;
             transactionRepository.save(transaction);
 
             for (int i=0;i<transactions.size();i++){
-                empItems.get(i).setQty(transactions.get(i).getQty());
-                empItems.get(i).setInventoryId(transactions.get(i).getInventoryId());
-                System.out.println(transactions.get(i).getInventoryId());
-                System.out.println(empItems.get(i).getInventoryId());
-                employeeRepository.save(employeeData);
+                EmployeeItems a = new EmployeeItems();
 
+                a.setQty(transactions.get(i).getQty());
+                a.setInventoryId(transactions.get(i).getInventoryId());
+                empItems.add(a);
+//                empItems.get(i).setInventoryId(transactions.get(i).getInventoryId());
+                empItems.add(a);
+
+                employeeRepository.save(employeeData);
             }
         }
         else if (employeeData.getRole().equals("ADMIN")){
@@ -92,7 +109,7 @@ import java.util.List;
             t.setSuccess("Transaction NULL");
             return t;
         }
-        if(transactionData.getStatus().equals("REJECTED")){
+        if(request.getStatus().equals("REJECTED")){
             if (employeeData.getEmail().equals(request.getEmail())){
                 for (int i = 0; i < transaction.size(); i++) {
                     if (transaction.get(i).getInventoryId().equals(inventoryData.getInventoryId())) {
