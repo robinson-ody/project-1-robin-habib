@@ -20,17 +20,17 @@ export default class Transaction extends React.Component{
     }
 
     componentDidMount(){
-      axios.get('http://localhost:8080/api/transaction')
-          .then(res => {this.setState({transactionData: res.data})})
-          .then(()=> {
-              let dataTmp = [];
-              for(let i = 0 ; i < this.state.transactionData.length ; i++){
-                  if(this.state.transactionData[i].status.toLowerCase() === 'pending'){
-                      dataTmp.push(this.state.transactionData[i]);
-                  }
-              }
+        axios.get('http://localhost:8080/api/transaction')
+            .then(res => {this.setState({transactionData: res.data})})
+            .then(()=> {
+                let dataTmp = [];
+                for(let i = 0 ; i < this.state.transactionData.length ; i++){
+                    if(this.state.transactionData[i].status.toLowerCase() === 'pending'){
+                        dataTmp.push(this.state.transactionData[i]);
+                    }
+                }
               this.setState({shownData: dataTmp})
-          })
+            })
     };
 
     filterData(ev){
@@ -53,8 +53,10 @@ export default class Transaction extends React.Component{
                 this.setState({transactionDetail: this.state.transactionData[i].transcData});
                 this.setState({activeTransaction: id});
                 this.setState({activeEmail: email});
-                this.actionButton.current.style.display = 'block';
             }
+        }
+        if(this.props.role === 'MANAGER'){
+            this.actionButton.current.style.display = 'block';
         }
     };
 
@@ -83,28 +85,21 @@ export default class Transaction extends React.Component{
     };
 
     acceptHandler(){
-        console.log('HELLO')
-        axios.put(
-            'http://localhost:8080/api/transaction/' + this.state.activeTransaction,
-            {email: this.props.email, status: 'APPROVED', transcData: this.state.transactionDetail}
+        {this.state.transactionDetail.map((item, index)=>{
+            axios.put(
+                'http://localhost:8080/api/transaction/assignment',
+                {email: this.state.activeEmail, id: this.state.activeTransaction, inventoryId: item.inventoryId, status: 'APPROVED'}
             )
-        // {this.state.transactionDetail.map((item, index)=>{
-        //     console.log({email: this.state.activeEmail, id: this.state.activeTransaction, inventoryId: item.inventoryId, status: 'approved'});
-        //     axios.post(
-        //         'http://localhost:8080/api/transaction/assignment',
-        //         {email: this.state.activeEmail, id: this.state.activeTransaction, inventoryId: item.inventoryId, status: 'approved'}
-        //     )
                 .then(()=> {this.componentDidMount()})
                 .then(()=> {this.setState({activeTransaction: ''})})
                 .then(()=> {this.setState({transactionDetail: []})})
                 .then(()=> {this.actionButton.current.style.display = 'none';})
-        // })}
+        })}
     }
 
     rejectHandler(){
         {this.state.transactionDetail.map((item, index)=>{
-            // console.log({email: this.state.activeEmail, id: this.state.activeTransaction, inventoryId: item.inventoryId, status: 'REJECTED'});
-            axios.post(
+            axios.put(
                 'http://localhost:8080/api/transaction/assignment',
                 {email: this.state.activeEmail, id: this.state.activeTransaction, inventoryId: item.inventoryId, status: 'REJECTED'}
             )

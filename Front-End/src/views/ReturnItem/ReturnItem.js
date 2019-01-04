@@ -6,8 +6,8 @@ import SearchIcon from "../../elements/icon-search.png";
 import axios from "axios";
 
 export default class ReturnItem extends React.Component{
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state = {
             transactionData: [],
             transactionDetail: [],
@@ -31,15 +31,29 @@ export default class ReturnItem extends React.Component{
             })
     }
 
+    returnHandler(){
+        {this.state.transactionDetail.map((item, index)=>{
+            // console.log({email: this.props.email, id: this.state.activeTransaction, inventoryId: item.inventoryId, status: 'REJECTED'})
+            axios.put(
+                'http://localhost:8080/api/transaction/assignment',
+                {email: this.props.email, id: this.state.activeTransaction, inventoryId: item.inventoryId, status: 'REJECTED'}
+            )
+                .then(()=> {this.componentDidMount()})
+                .then(()=> {this.setState({activeTransaction: ''})})
+                .then(()=> {this.setState({transactionDetail: []})})
+                .then(()=> {this.actionButton.current.style.display = 'none';})
+        })}
+    }
+
     filterData(ev){
         let dataTemp = [];
 
         for(let i = 0 ; i < this.state.transactionData.length ; i++){
-            if(this.state.transactionData[i].status.toLowerCase() === 'accepted' && this.state.transactionData[i].id.toLowerCase().includes(ev.target.value.toLowerCase())){
+            if(this.state.transactionData[i].status.toLowerCase() === 'approved' && this.state.transactionData[i].id.toLowerCase().includes(ev.target.value.toLowerCase())){
                 dataTemp.push(this.state.transactionData[i])
-            } else if(this.state.transactionData[i].status.toLowerCase() === 'accepted' && this.state.transactionData[i].email.toString().includes(ev.target.value.toLowerCase())) {
+            } else if(this.state.transactionData[i].status.toLowerCase() === 'approved' && this.state.transactionData[i].email.toString().includes(ev.target.value.toLowerCase())) {
                 dataTemp.push(this.state.transactionData[i])
-            } else if(this.state.transactionData[i].status.toLowerCase() === 'accepted' && this.state.transactionData[i].status.toLowerCase().includes(ev.target.value.toLowerCase())) {
+            } else if(this.state.transactionData[i].status.toLowerCase() === 'approved' && this.state.transactionData[i].status.toLowerCase().includes(ev.target.value.toLowerCase())) {
                 dataTemp.push(this.state.transactionData[i])
             }
         }
@@ -54,6 +68,9 @@ export default class ReturnItem extends React.Component{
                 this.setState({activeTransaction: e.target.id});
                 this.actionButton.current.style.display = 'block';
             }
+        }
+        if(this.props.role === 'ADMIN'){
+            this.actionButton.current.style.display = 'block';
         }
     };
 
@@ -80,14 +97,6 @@ export default class ReturnItem extends React.Component{
     getYear(date){
         return new Date(date).getFullYear();
     };
-
-    returnHandler(){
-        axios.put('http://localhost:8080/api/transaction/' + this.state.activeTransaction, {email: this.props.email, status: 'returned', transcData: this.state.transactionDetail})
-            .then(()=> {this.componentDidMount()})
-            .then(()=> {this.setState({activeTransaction: ''})})
-            .then(()=> {this.setState({transactionDetail: []})})
-            .then(()=> {this.actionButton.current.style.display = 'none';})
-    }
 
     render(){
         document.title = "Return Item | Blibli Inventory System";

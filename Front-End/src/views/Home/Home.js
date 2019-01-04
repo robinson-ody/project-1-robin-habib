@@ -17,19 +17,19 @@ export default class Home extends React.Component{
 
     View(name, email){
         if (this.state.view === 'inventory')
-            return <Inventory name={name} email={email} />;
+            return <Inventory name={name} email={email} role={this.props.role}/>;
         else if (this.state.view === 'employee')
             return <Employee name={name}/>;
         else if (this.state.view === 'transaction')
-            return <Transaction name={name} email={email}/>;
+            return <Transaction name={name} email={email} role={this.props.role}/>;
         else if (this.state.view === 'returnItem')
-            return <ReturnItem name={name} email={email}/>
+            return <ReturnItem name={name} email={email} role={this.props.role}/>
     };
 
     render(){
         return(
 		    <div className='home'>
-                <Sidebar isAuth={(e)=> this.props.isAuth(e)} pageView={(view)=> this.setState({view: view})} />
+                <Sidebar isAuth={(e)=> this.props.isAuth(e)} role={this.props.role} pageView={(view)=> this.setState({view: view})} />
                 <div className='content'>
                     {this.View(this.props.name, this.props.email)}
                 </div>

@@ -10,6 +10,7 @@ import cancelBtn from '../../elements/cancel-btn.jpg';
 import okBtn from '../../elements/ok-btn.jpg';
 import addNewPlaceholder from '../../elements/placeholder-image.svg';
 import SearchIcon from "../../elements/icon-search.png";
+import multer from 'multer';
 
 export default class Inventory extends React.Component{
 	constructor(props){
@@ -32,11 +33,15 @@ export default class Inventory extends React.Component{
         this.tableAdd = React.createRef();
         this.seeUsers = React.createRef();
         this.warningWindow = React.createRef();
+        this.addButton = React.createRef();
 	}
 
 	componentDidMount() {
-	  this.getData()
-    };
+        this.getData();
+        if(this.props.role !== 'ADMIN'){
+            this.addButton.current.style.display = 'none';
+        }
+    }
 
 	getData(){
         axios.get('http://localhost:8080/api/inventory')
@@ -69,6 +74,7 @@ export default class Inventory extends React.Component{
 	    for(let i = 0 ; i < this.state.selected.length ; i ++){
 	        submitData.push({inventoryId: this.state.selected[i].inventoryId, qty: this.state.selected[i].qty});
         }
+        console.log({email: this.props.email, transcData: submitData});
         axios.post('http://localhost:8080/api/transaction/List', {email: this.props.email, transcData: submitData})
             .then(()=> {this.requestWindowOff()})
             .then(()=> {this.setState({selected: []})})
@@ -190,6 +196,61 @@ export default class Inventory extends React.Component{
         this.blackBg.current.style.display = 'none';
     }
 
+    deleteIconChecker(){
+        if(this.props.role === 'ADMIN'){
+            return (
+                this.state.shownData.map((item, index)=> (
+                    <tr key={index}>
+                        <td className='chkbox'>
+                            <input type='checkbox' name='inventoryId' onChange={this.addRequest.bind(this)}
+                                   id={item.id} className='checkboxes'/>
+                        </td>
+                        <td className='inventory'>{item.inventoryId}</td>
+                        <td className='detail'>{item.detail}</td>
+                        <td className='stock'>{Inventory.thousandSeparator(item.stock)}</td>
+                        <td className='available'>{item.available}</td>
+                        <td className='price'>Rp
+                            <span className='moneyValue'>
+                                        {Inventory.thousandSeparator(item.price)}
+                                    </span>
+                        </td>
+                        <td className='productImage'><img src={image} width='20px' alt='Product'/></td>
+                        <td className='seeUsers' onClick={()=> {this.seeUsersOn(item.id, item.inventoryId)}}>
+                            See Users
+                        </td>
+                        <td className='deleteIcon' onClick={this.deleteHandler.bind(this)} id={item.id}>
+                            <img id={item.id} src={trashIcon} width='15px' alt='Trash icon' />
+                        </td>
+                    </tr>
+                ))
+            )
+        } else {
+            return (
+                this.state.shownData.map((item, index)=> (
+                    <tr key={index}>
+                        <td className='chkbox'>
+                            <input type='checkbox' name='inventoryId' onChange={this.addRequest.bind(this)}
+                                   id={item.id} className='checkboxes'/>
+                        </td>
+                        <td className='inventory'>{item.inventoryId}</td>
+                        <td className='detail'>{item.detail}</td>
+                        <td className='stock'>{Inventory.thousandSeparator(item.stock)}</td>
+                        <td className='available'>{item.available}</td>
+                        <td className='price'>Rp
+                            <span className='moneyValue'>
+                                {Inventory.thousandSeparator(item.price)}
+                            </span>
+                        </td>
+                        <td className='productImage'><img src={image} width='20px' alt='Product'/></td>
+                        <td className='seeUsers' onClick={()=> {this.seeUsersOn(item.id, item.inventoryId)}}>
+                            See Users
+                        </td>
+                    </tr>
+                ))
+            )
+        }
+    }
+
     render(){
         document.title = "Inventory | Blibli Inventory System";
 
@@ -210,7 +271,7 @@ export default class Inventory extends React.Component{
                         <thead>
                         <tr>
                             <th className='detail'>Detail</th>
-                            <th className='stock'>Stock</th>
+                            <th className='stock'>Available</th>
                             <th className='request'>Request</th>
                         </tr>
                         </thead>
@@ -219,7 +280,7 @@ export default class Inventory extends React.Component{
                             {this.state.selected.map((item, index) => (
                                 <tr key={index}>
                                     <td className='detail'>{item.detail}</td>
-                                    <td className='stock'>{Inventory.thousandSeparator(item.stock)}</td>
+                                    <td className='stock'>{Inventory.thousandSeparator(item.available)}</td>
                                     <td className='request'><input id={item.id} onChange={this.qtyHandler.bind(this)} type='number'/></td>
                                 </tr>
                             ))}
@@ -301,7 +362,7 @@ export default class Inventory extends React.Component{
                 <div className='tableHeader'>
                     <div className='tableTitle'>Inventory List</div>
 
-                    <img src={addNewBtn} alt='Add New Button' className='addNewBtn' title='Add New Product'
+                    <img ref={this.addButton} src={addNewBtn} alt='Add New Button' className='addNewBtn' title='Add New Product'
                          onClick={() => this.addWindowOn()}/>
 
                     <div className='searchBar'>
@@ -335,38 +396,16 @@ export default class Inventory extends React.Component{
                             <th className='price'>Price</th>
                             <th className='productImage'>Image</th>
                             <th className='seeUsers'/>
-                            <th className='deleteIcon'/>
+                            <th ref={this.deleteButton} className='deleteIcon'/>
                         </tr>
                         </thead>
 
                         <tbody>
-                        {this.state.shownData.map((item, index) => (
-                            <tr key={index}>
-                                <td className='chkbox'>
-                                    <input type='checkbox' name='inventoryId' onChange={this.addRequest.bind(this)}
-                                           id={item.id} className='checkboxes'/>
-                                </td>
-                                <td className='inventory'>{item.inventoryId}</td>
-                                <td className='detail'>{item.detail}</td>
-                                <td className='stock'>{Inventory.thousandSeparator(item.stock)}</td>
-                                <td className='available'>{item.available}</td>
-                                <td className='price'>Rp
-                                    <span className='moneyValue'>
-                                        {Inventory.thousandSeparator(item.price)}
-                                    </span>
-                                </td>
-                                <td className='productImage'><img src={image} width='20px' alt='Product'/></td>
-                                <td className='seeUsers' onClick={()=> {this.seeUsersOn(item.id, item.inventoryId)}}>
-                                    See Users
-                                </td>
-                                <td className='deleteIcon' onClick={this.deleteHandler.bind(this)} id={item.id}>
-                                    <img id={item.id} src={trashIcon} width='15px' alt='Trash icon' />
-                                </td>
-                            </tr>
-                        ))}
+                            {this.deleteIconChecker()}
                         </tbody>
                     </table>
                 </div>
+
             </div>
         </div>
     }
