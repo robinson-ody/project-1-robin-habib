@@ -119,10 +119,15 @@ tbody td, thead th {
 .requestDate {
     width: 150px;
     margin-right: 15px;
+    text-align: center;
+}
+
+.tableLeft thead .requestDate{
+    text-align: center;
 }
 
 .staff {
-    width: 130px;
+    width: 250px;
     margin-right: 15px;
 }
 

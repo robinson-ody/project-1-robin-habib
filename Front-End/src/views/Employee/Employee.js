@@ -6,7 +6,6 @@ import trashIcon from "../../elements/trash-copy-8.png";
 import './Employee.css';
 import okBtn from "../../elements/ok-btn.jpg";
 import cancelBtn from "../../elements/cancel-btn.jpg";
-import addNewPlaceholder from "../../elements/placeholder-image.svg";
 import SearchIcon from "../../elements/icon-search.png";
 
 export default class Employee extends React.Component{
@@ -31,7 +30,7 @@ export default class Employee extends React.Component{
 
     componentDidMount(){
       this.getData();
-    };
+    }
 
     getData(){
         axios.get('http://localhost:8080/api/employee')
@@ -52,7 +51,7 @@ export default class Employee extends React.Component{
     valueSetter(e){
         console.log('OK');
         this.setState({[e.target.name]: e.target.value});
-    };
+    }
 
     addWindowOn(){
         this.tableAdd.current.style.display = 'block';
@@ -73,20 +72,21 @@ export default class Employee extends React.Component{
             gender: this.state.gender,
             role: this.state.role,
             superior: this.state.superior,
-            password: this.state.password
+            password: this.state.password,
+            emplItems: []
         })
-            .then(res => {this.addWindowOff()})
-            .then(res => {this.getData()})
-            .then(this.setState({email: ''}))
-            .then(this.setState({name: ''}))
-            .then(this.setState({birthday: ''}))
-            .then(this.setState({division: ''}))
-            .then(this.setState({gender: ''}))
-            .then(this.setState({role: ''}))
-            .then(this.setState({superior: ''}))
-            .then(this.setState({password: ''}))
+            .then(()=> {this.addWindowOff()})
+            .then(()=> {this.getData()})
+            .then(()=> {this.setState({email: ''})})
+            .then(()=> {this.setState({name: ''})})
+            .then(()=> {this.setState({birthday: ''})})
+            .then(()=> {this.setState({division: ''})})
+            .then(()=> {this.setState({gender: ''})})
+            .then(()=> {this.setState({role: ''})})
+            .then(()=> {this.setState({superior: ''})})
+            .then(()=> {this.setState({password: ''})})
             .catch(error => {console.log(error)})
-    };
+    }
 
     filterData(ev){
         let dataTemp = [];
@@ -110,10 +110,29 @@ for(let i = 0 ; i < this.state.data.length ; i++){
         this.setState({shownData: dataTemp});
     };
 
-    // dateFormatChanger(ev){
-    //     const d = new Date("2015-03-15T14:01:16.447Z");
-    //     alert(d.toLocaleString('id'))
-    // };
+    getDate(date){
+        return new Date(date).getDate();
+    }
+
+    getMonth(date){
+        const curr_month = new Date(date).getMonth();
+        if(curr_month === 0) return 'January';
+        else if(curr_month === 1) return 'February';
+        else if(curr_month === 2) return 'March';
+        else if(curr_month === 3) return 'April';
+        else if(curr_month === 4) return 'May';
+        else if(curr_month === 5) return 'June';
+        else if(curr_month === 6) return 'July';
+        else if(curr_month === 7) return 'August';
+        else if(curr_month === 8) return 'September';
+        else if(curr_month === 9) return 'October';
+        else if(curr_month === 10) return 'November';
+        else if(curr_month === 11) return 'December'
+    }
+
+    getYear(date){
+        return new Date(date).getFullYear();
+    }
 
     render(){
         document.title = "Employee | Blibli Inventory System";
@@ -127,20 +146,21 @@ for(let i = 0 ; i < this.state.data.length ; i++){
                 {/*TABLE UNTUK ADD EMPLOYEE*/}
                 <div ref={this.tableAdd} className='tableAdd' style={{top:'130px'}}>
                     <div className='tableHeader'>
-                        <div className='tableTitle'>Add New Item</div>
+                        <div className='tableTitle'>Add New Employee</div>
                         <img src={okBtn} alt='Ok Button' className='confirmationBtn' onClick={()=> this.addNewEmployee()} />
                         <img src={cancelBtn} alt='Cancel Button' className='confirmationBtn' onClick={()=> this.addWindowOff()} />
                     </div>
 
-                    <div className='tableBody' style={{height:'350px'}}>
-                        <img src={addNewPlaceholder} className="placeholder-image" alt="Add New"/>
-                        <input style={{width: '200px'}} value={this.state.email} onChangeCapture={this.valueSetter.bind(this)} name='email' type='text' placeholder='Email'/>
-                        <input style={{width: '200px'}} value={this.state.name} onChangeCapture={this.valueSetter.bind(this)} name='name' type='text' placeholder='Name'/>
-                        <input onChangeCapture={this.valueSetter.bind(this)} value={this.state.birthday} name='birthday' type='date' placeholder='Birth:&nbsp;' />
-                        <input style={{width: '200px'}} value={this.state.division} onChangeCapture={this.valueSetter.bind(this)} name='division' type='text' placeholder='Division' /><br clear='both'/>
-                        <span className='inputText' style={{borderBottom:'none'}}>Gender</span>
-                        <input type='radio' value='male' onChangeCapture={this.valueSetter.bind(this)} name='gender'/> <span className='inputText' style={{borderBottom:'none', marginLeft:'0'}}>Male</span>
-                        <input type='radio' value='female' onChangeCapture={this.valueSetter.bind(this)} name='gender'/> <span className='inputText' style={{borderBottom:'none', marginLeft:'0'}}>Female</span><br/>
+                    <div className='tableBody' style={{height:'360px'}}>
+                        <input style={{width: '350px'}} value={this.state.email} onChangeCapture={this.valueSetter.bind(this)} name='email' type='text' placeholder='Email'/>
+                        <input style={{width: '350px'}} value={this.state.name} onChangeCapture={this.valueSetter.bind(this)} name='name' type='text' placeholder='Name'/>
+                        <input style={{width: '350px'}} onChangeCapture={this.valueSetter.bind(this)} value={this.state.birthday} name='birthday' type='date' placeholder='Birth:&nbsp;' />
+                        <input style={{width: '350px'}} value={this.state.division} onChangeCapture={this.valueSetter.bind(this)} name='division' type='text' placeholder='Division' /><br clear='both'/>
+                        <div style={{margin:'8px 0'}}>
+                            <span className='inputText' style={{borderBottom:'none'}}>Gender</span>
+                            <input type='radio' value='male' onChangeCapture={this.valueSetter.bind(this)} name='gender'/> <span className='inputText' style={{borderBottom:'none', marginLeft:'0'}}>Male</span>
+                            <input type='radio' value='female' onChangeCapture={this.valueSetter.bind(this)} name='gender'/> <span className='inputText' style={{borderBottom:'none', marginLeft:'0'}}>Female</span><br/>
+                        </div>
                         <select onChangeCapture={this.valueSetter.bind(this)} name='role'>
                             <option style={{display:'none'}}>Role</option>
                             <option>Admin</option>
@@ -184,7 +204,7 @@ for(let i = 0 ; i < this.state.data.length ; i++){
                                     <tr key={index}>
                                         <td className='employee'>{item.email}</td>
                                         <td className='name'>{item.name}</td>
-                                        <td className='birthday'>{item.birthday}</td>
+                                        <td className='birthday'>{this.getDate(item.birthday)} {this.getMonth(item.birthday)} {this.getYear(item.birthday)}</td>
                                         <td className='gender'>{item.gender}</td>
                                         <td className='division'>{item.division}</td>
                                         <td className='superior'>{item.superior}</td>

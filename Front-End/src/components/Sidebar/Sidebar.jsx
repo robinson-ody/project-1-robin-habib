@@ -3,10 +3,18 @@ import logo from "../../elements/blibli-logo.png";
 import './Sidebar.css';
 
 export default class Sidebar extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             activeView : 'inventory'
+        };
+        this.employeeMenu = React.createRef();
+    }
+
+    componentDidMount(){
+        console.log(this.props.role);
+        if(this.props.role === 'ADMIN'){
+            this.employeeMenu.current.style.display = 'block';
         }
     }
 
@@ -28,7 +36,7 @@ export default class Sidebar extends React.Component {
 
                 <div className='menu-container'>
                     <div id='inventory' onClick={(ev)=> menuClick(ev.target.valueOf().id)} className='menu active'>Inventory</div>
-                    <div id='employee' onClick={(ev)=> menuClick(ev.target.valueOf().id)} className='menu'>Employee</div>
+                    <div style={{display:'none'}} ref={this.employeeMenu} id='employee' onClick={(ev)=> menuClick(ev.target.valueOf().id)} className='menu'>Employee</div>
                     <div id='transaction' onClick={(ev)=> menuClick(ev.target.valueOf().id)} className='menu'>Transaction</div>
                     <div id='returnItem' onClick={(ev)=> menuClick(ev.target.valueOf().id)} className='menu'>Return Item</div>
                 </div>

@@ -6,7 +6,7 @@ class Login extends Component {
     constructor(props){
         super(props);
         this.state = {
-            username: '',
+            email: '',
             password: ''
         }
     }
@@ -18,8 +18,11 @@ class Login extends Component {
     submitController(){
         axios.post('http://localhost:8080/api/auth/login', this.state)
             .then(res => {
+                console.log(res.data.role);
                 this.props.isAuth(res.data.success);
                 this.props.name(res.data.name);
+                this.props.email(this.state.email);
+                this.props.role(res.data.role);
             })
     };
 

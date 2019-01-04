@@ -100,12 +100,16 @@ import java.util.List;
             transactionRepository.save(transaction);
 
             for (int i=0;i<transactions.size();i++){
-                if (transactions.get(i).getInventoryId().equals(employeeData.getEmplItems().get(i).getInventoryId())){
+                System.out.println(transaction);
+                if (transaction==null){
+                    return null;
+                }
+               /* if (transactions.get(i).getInventoryId().equals(employeeData.getEmplItems().get(i).getInventoryId())){
                     empItems.get(i).setQty(empItems.get(i).getQty()+transactions.get(i).getQty());
                     employeeRepository.save(employeeData);
                     inventoryRepository.save(inventoryData2);
                     transactionRepository.save(transaction);
-                }
+                }*/
                 else{
                 EmployeeItems a = new EmployeeItems();
                 InventoryUsers b = new InventoryUsers();
