@@ -111,9 +111,15 @@ import java.util.List;
                 InventoryUsers b = new InventoryUsers();
                 a.setQty(transactions.get(i).getQty());
                 a.setInventoryId(transactions.get(i).getInventoryId());
-                b.setEmail(transaction.getEmail());
-                b.setQty(transactions.get(i).getQty());
-                invenUsers.add(b);
+                if (invenUsers==null){
+                    b.setEmail(transaction.getEmail());
+                    b.setQty(transactions.get(i).getQty());
+                    invenUsers.add(b);
+                }
+                if (invenUsers.get(0).getEmail().equals(transaction.getEmail())){
+                    b.setQty(b.getQty()+transactions.get(i).getQty());
+                    invenUsers.add(b);
+                }
 //                empItems.get(i).setInventoryId(transactions.get(i).getInventoryId());
                 empItems.add(a);
                 employeeRepository.save(employeeData);
@@ -162,10 +168,10 @@ import java.util.List;
                             inventoryRepository.save(inventoryData);
                             transactionRepository.save(transactionData);
                             t.setSuccess("Transaction REJECTED");
-                            return t; }
+                            }
                     else {
                         t.setSuccess("ITEM/s NOT FOUND");
-                        return t; }
+                        }
                 }
             }
             else {
@@ -179,12 +185,20 @@ import java.util.List;
                     InventoryUsers b = new InventoryUsers();
                     a.setQty(transaction.get(i).getQty());
                     a.setInventoryId(transaction.get(i).getInventoryId());
+                if (request.getEmail().equals(b.getEmail())){
+                    b.setQty(b.getQty()+transaction.get(i).getQty());
+                    invenUser2.add(b);
+                }
+                else{
                     b.setEmail(request.getEmail());
+                    b.setId(request.getId());
                     b.setQty(transaction.get(i).getQty());
                     invenUser2.add(b);
+                }
 //                empItems.get(i).setInventoryId(transactions.get(i).getInventoryId());
                     empItem3.add(a);
                     transactionData.setStatus("APPROVED");
+                t.setSuccess("Transaction FAILED");
                     employeeRepository.save(employeeData);
                     inventoryRepository.save(inventoryData);
                     transactionRepository.save(transactionData);
@@ -202,6 +216,7 @@ import java.util.List;
         Employee employeeData = employeeRepository.findByEmail(request.getEmail());
         Inventory inventoryData = inventoryRepository.findByInventoryId(request.getInventoryId());
         Transaction transactionData = transactionRepository.findById(request.getId());
+        List<InventoryUsers> inven3 = inventoryData.getInvenUsers();
         List<TransData> transaction = transactionData.getTranscData();
 
 
