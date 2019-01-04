@@ -2,6 +2,7 @@ package com.future.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.future.model.list.InventoryUsers;
+import org.bson.types.Binary;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -20,10 +21,28 @@ public class Inventory {
     private Integer available;
     private Integer price;
     private String inventoryId;
+    private String docType;
+    private Binary file;
     private Date createdAt = new Date();
     private List<InventoryUsers> invenUsers;
     private String imagePath;
 
+
+    public String getDocType() {
+        return docType;
+    }
+
+    public void setDocType(String docType) {
+        this.docType = docType;
+    }
+
+    public Binary getFile() {
+        return file;
+    }
+
+    public void setFile(Binary file) {
+        this.file = file;
+    }
 
     public String getImagePath() {
         return imagePath;

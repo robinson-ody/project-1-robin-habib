@@ -9,19 +9,30 @@ import java.util.List;
 
 public class Image {
     private String detail;
-    private Integer stock;
-    private Integer available;
-    private Integer price;
+    private int stock;
+    private int available;
+    private int price;
     private String inventoryId;
-    private Date createdAt = new Date();
-    private MultipartFile images;
+    private MultipartFile file;
 
-    public MultipartFile getImages() {
-        return images;
+    public void setStock(int stock) {
+        this.stock = stock;
     }
 
-    public void setImages(MultipartFile images) {
-        this.images = images;
+    public void setAvailable(int available) {
+        this.available = available;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public MultipartFile getFile() {
+        return file;
+    }
+
+    public void setFile(MultipartFile file) {
+        this.file = file;
     }
 
     public String getDetail() {
@@ -64,11 +75,4 @@ public class Image {
         this.inventoryId = inventoryId;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
 }
