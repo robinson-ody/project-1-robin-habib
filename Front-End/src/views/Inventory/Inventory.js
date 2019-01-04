@@ -22,12 +22,16 @@ export default class Inventory extends React.Component{
             detail: '',
             price: null,
             stock: null,
-            shownData: []
+            shownData: [],
+            activeInventory: '',
+            userList: []
 		};
 
 		this.tableRequest = React.createRef();
         this.blackBg = React.createRef();
         this.tableAdd = React.createRef();
+        this.seeUsers = React.createRef();
+        this.warningWindow = React.createRef();
 	}
 
 	componentDidMount() {
@@ -45,8 +49,8 @@ export default class Inventory extends React.Component{
             });
     }
 
-    deleteHandler(id){
-        axios.delete('http://localhost:8080/api/inventory/' + id)
+    deleteHandler(ev){
+        axios.delete('http://localhost:8080/api/inventory/' + ev.target.id)
             .then(()=> this.getData())
     }
 
@@ -65,10 +69,20 @@ export default class Inventory extends React.Component{
 	    for(let i = 0 ; i < this.state.selected.length ; i ++){
 	        submitData.push({inventoryId: this.state.selected[i].inventoryId, qty: this.state.selected[i].qty});
         }
-        axios.post('http://localhost:8080/api/transaction/List', {email: this.props.email, status: "Pending", transcData: submitData})
+        axios.post('http://localhost:8080/api/transaction/List', {email: this.props.email, transcData: submitData})
             .then(()=> {this.requestWindowOff()})
             .then(()=> {this.setState({selected: []})})
             .then(()=> {this.getData()})
+            .then(()=> {
+                const els = document.getElementsByClassName('checkboxes');
+
+                Array.prototype.forEach.call(els, function(el) {
+                    console.log(el.tagName);
+                    if(el.checked === true){
+                        el.checked = false
+                    }
+                });
+            })
     }
 
     addRequest(ev){
@@ -104,14 +118,13 @@ export default class Inventory extends React.Component{
     };
 
     addNewInventory(){
-        axios.post('http://localhost:8080/api/inventory/create', {inventoryId: this.state.inventoryId, detail: this.state.detail, price: this.state.price, stock: this.state.stock})
-            .then(res => {this.addWindowOff()})
-            .then(res => {this.getData()})
-            .then(this.setState({inventoryId: ''}))
-            .then(this.setState({detail: ''}))
-            .then(this.setState({price: ''}))
-            .then(this.setState({stock: ''}))
-            .catch(error => {console.log(error)})
+        axios.post('http://localhost:8080/api/inventory/create', {detail: this.state.detail, invenUsers: [], inventoryId: this.state.inventoryId, price: this.state.price, stock: this.state.stock})
+            .then(()=> {this.addWindowOff()})
+            .then(()=> {this.getData()})
+            .then(()=> {this.setState({inventoryId: ''})})
+            .then(()=> {this.setState({detail: ''})})
+            .then(()=> {this.setState({price: ''})})
+            .then(()=> {this.setState({stock: ''})})
     };
 
     static thousandSeparator(e){
@@ -152,6 +165,29 @@ export default class Inventory extends React.Component{
                 Object.assign(this.state.selected[i], {qty: e.target.value});
             }
         }
+    }
+
+    seeUsersOn(id, inventoryId){
+        this.seeUsers.current.style.display = 'block';
+        this.blackBg.current.style.display = 'block';
+        this.setState({activeInventory: inventoryId});
+        axios.get('http://localhost:8080/api/inventory/' + id)
+        .then(res => {this.setState({userList: res.data.invenUsers})})
+    }
+
+    seeUsersOff(){
+        this.seeUsers.current.style.display = 'none';
+        this.blackBg.current.style.display = 'none';
+    }
+
+    warningWindowOn(){
+        this.seeUsers.current.style.display = 'block';
+        this.blackBg.current.style.display = 'block';
+    }
+
+    warningWindowOff(){
+        this.seeUsers.current.style.display = 'none';
+        this.blackBg.current.style.display = 'none';
     }
 
     render(){
@@ -217,6 +253,48 @@ export default class Inventory extends React.Component{
             </div>
             {/*END OF WINDOW UNTUK ADD ITEM*/}
 
+            {/*WINDOW UNTUK SEE USERS*/}
+            <div ref={this.seeUsers} className='tableSeeUsers'>
+                <div className='tableHeader'>
+                    <div className='tableTitle'>{this.state.activeInventory}</div>
+                    <img src={okBtn} alt='Ok Button' className='confirmationBtn' onClick={() => this.seeUsersOff()}/>
+                </div>
+
+                <div className='tableBody'>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th className='emailUsers'>Users</th>
+                            <th style={{textAlign:'center'}} className='qty'>Qty</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        {this.state.userList.map((item, index) => (
+                            <tr key={index}>
+                                <td className='emailUsers'>{item.email}</td>
+                                <td className='qty'>{item.qty}</td>
+                            </tr>
+                        ))}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {/*END OF WINDOW UNTUK SEE USERS*/}
+
+            {/*WARNING WINDOW*/}
+            <div ref={this.warningWindow} className='tableSeeUsers'>
+                <div className='tableHeader'>
+                    <div className='tableTitle'>Warning!</div>
+                    <img src={okBtn} alt='Ok Button' className='confirmationBtn' onClick={() => this.warningWindowOff()}/>
+                </div>
+
+                <div className='tableBody'>
+                    Please return all the items before deleting inventory data.
+                </div>
+            </div>
+            {/*END OF WARNING WINDOW*/}
+
             <Header pageName="Inventory" name={this.props.name}/>
 
             <div className='tableSingle'>
@@ -227,7 +305,12 @@ export default class Inventory extends React.Component{
                          onClick={() => this.addWindowOn()}/>
 
                     <div className='searchBar'>
-                        <input onChange={this.filterData.bind(this)} type='text' placeholder='Search Items...' className='inputSearch' />
+                        <input
+                            onChange={this.filterData.bind(this)}
+                            type='text'
+                            placeholder='Search Items...'
+                            className='inputSearch'
+                        />
                         <img src={SearchIcon} alt='Search Icon' className='searchIcon'/>
                     </div>
 
@@ -259,20 +342,25 @@ export default class Inventory extends React.Component{
                         <tbody>
                         {this.state.shownData.map((item, index) => (
                             <tr key={index}>
-                                <td className='chkbox'><input type='checkbox' name='inventoryId' onChange={this.addRequest.bind(this)}
-                                                              id={item.id}/></td>
+                                <td className='chkbox'>
+                                    <input type='checkbox' name='inventoryId' onChange={this.addRequest.bind(this)}
+                                           id={item.id} className='checkboxes'/>
+                                </td>
                                 <td className='inventory'>{item.inventoryId}</td>
                                 <td className='detail'>{item.detail}</td>
                                 <td className='stock'>{Inventory.thousandSeparator(item.stock)}</td>
                                 <td className='available'>{item.available}</td>
-                                <td className='price'>Rp <span
-                                    className='moneyValue'>{Inventory.thousandSeparator(item.price)}</span></td>
+                                <td className='price'>Rp
+                                    <span className='moneyValue'>
+                                        {Inventory.thousandSeparator(item.price)}
+                                    </span>
+                                </td>
                                 <td className='productImage'><img src={image} width='20px' alt='Product'/></td>
-                                <td className='seeUsers'>See Users</td>
-                                <td className='deleteIcon' onClick={() => this.deleteHandler(item.id)}><img
-                                    src={trashIcon}
-                                    width='15px'
-                                    alt='Trash icon'/>
+                                <td className='seeUsers' onClick={()=> {this.seeUsersOn(item.id, item.inventoryId)}}>
+                                    See Users
+                                </td>
+                                <td className='deleteIcon' onClick={this.deleteHandler.bind(this)} id={item.id}>
+                                    <img id={item.id} src={trashIcon} width='15px' alt='Trash icon' />
                                 </td>
                             </tr>
                         ))}

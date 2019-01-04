@@ -73,18 +73,19 @@ export default class Employee extends React.Component{
             gender: this.state.gender,
             role: this.state.role,
             superior: this.state.superior,
-            password: this.state.password
+            password: this.state.password,
+            emplItems: []
         })
-            .then(res => {this.addWindowOff()})
-            .then(res => {this.getData()})
-            .then(this.setState({email: ''}))
-            .then(this.setState({name: ''}))
-            .then(this.setState({birthday: ''}))
-            .then(this.setState({division: ''}))
-            .then(this.setState({gender: ''}))
-            .then(this.setState({role: ''}))
-            .then(this.setState({superior: ''}))
-            .then(this.setState({password: ''}))
+            .then(()=> {this.addWindowOff()})
+            .then(()=> {this.getData()})
+            .then(()=> {this.setState({email: ''})})
+            .then(()=> {this.setState({name: ''})})
+            .then(()=> {this.setState({birthday: ''})})
+            .then(()=> {this.setState({division: ''})})
+            .then(()=> {this.setState({gender: ''})})
+            .then(()=> {this.setState({role: ''})})
+            .then(()=> {this.setState({superior: ''})})
+            .then(()=> {this.setState({password: ''})})
             .catch(error => {console.log(error)})
     };
 

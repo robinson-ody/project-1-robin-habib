@@ -14,19 +14,20 @@ export default class ReturnItem extends React.Component{
             activeTransaction: '',
             shownData: []
         };
+        this.actionButton = React.createRef();
     }
 
     componentDidMount(){
         axios.get('http://localhost:8080/api/transaction')
             .then(res => {this.setState({transactionData: res.data})})
             .then(()=> {
+                let dataTmp = [];
                 for(let i = 0 ; i < this.state.transactionData.length ; i++){
-                    if(this.state.transactionData[i].status.toLowerCase() === 'accepted'){
-                        let dataTmp = [];
+                    if(this.state.transactionData[i].status.toLowerCase() === 'approved'){
                         dataTmp.push(this.state.transactionData[i]);
-                        this.setState({shownData: dataTmp})
                     }
                 }
+                this.setState({shownData: dataTmp})
             })
     }
 
@@ -34,11 +35,11 @@ export default class ReturnItem extends React.Component{
         let dataTemp = [];
 
         for(let i = 0 ; i < this.state.transactionData.length ; i++){
-            if(this.state.transactionData[i].id.toLowerCase().includes(ev.target.value.toLowerCase())){
+            if(this.state.transactionData[i].status.toLowerCase() === 'accepted' && this.state.transactionData[i].id.toLowerCase().includes(ev.target.value.toLowerCase())){
                 dataTemp.push(this.state.transactionData[i])
-            } else if(this.state.transactionData[i].email.toString().includes(ev.target.value.toLowerCase())) {
+            } else if(this.state.transactionData[i].status.toLowerCase() === 'accepted' && this.state.transactionData[i].email.toString().includes(ev.target.value.toLowerCase())) {
                 dataTemp.push(this.state.transactionData[i])
-            } else if(this.state.transactionData[i].status.toLowerCase().includes(ev.target.value.toLowerCase())) {
+            } else if(this.state.transactionData[i].status.toLowerCase() === 'accepted' && this.state.transactionData[i].status.toLowerCase().includes(ev.target.value.toLowerCase())) {
                 dataTemp.push(this.state.transactionData[i])
             }
         }
@@ -79,6 +80,14 @@ export default class ReturnItem extends React.Component{
     getYear(date){
         return new Date(date).getFullYear();
     };
+
+    returnHandler(){
+        axios.put('http://localhost:8080/api/transaction/' + this.state.activeTransaction, {email: this.props.email, status: 'returned', transcData: this.state.transactionDetail})
+            .then(()=> {this.componentDidMount()})
+            .then(()=> {this.setState({activeTransaction: ''})})
+            .then(()=> {this.setState({transactionDetail: []})})
+            .then(()=> {this.actionButton.current.style.display = 'none';})
+    }
 
     render(){
         document.title = "Return Item | Blibli Inventory System";
@@ -123,8 +132,8 @@ export default class ReturnItem extends React.Component{
                     </div>
 
                     <div className='tableRight'>
-                        <div className='tableHeaderDouble'>
-                            <div className='tableTitleDouble'>{this.state.activeTransaction}</div>
+                        <div className='tableHeaderDouble' style={{padding:'33px 16px'}}>
+                            <div style={{fontSize:'1.2em'}} className='tableTitleDouble'>{this.state.activeTransaction}</div>
                         </div>
 
                         <div className='tableBodyDouble'>
@@ -144,8 +153,7 @@ export default class ReturnItem extends React.Component{
                                     </tr>
                                 ))}
                                 <tr ref={this.actionButton} style={{display:'none'}}>
-                                    <td style={{width:'50%', cursor:'pointer'}}><img className='checkActive' alt='Check Icon' src={CheckActive} /> Accept</td>
-                                    <td style={{width:'50%', cursor:'pointer'}}><img className='deleteActive' alt='Delete Icon' src={DeleteActive} /> Reject</td>
+                                    <td onClick={this.returnHandler.bind(this)} style={{width:'100%', cursor:'pointer'}}><img className='checkActive' alt='Check Icon' src={CheckActive} /> Return All Item</td>
                                 </tr>
                                 </tbody>
                             </table>

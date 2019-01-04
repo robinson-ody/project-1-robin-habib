@@ -13,7 +13,8 @@ export default class Transaction extends React.Component{
             transactionData: [],
             transactionDetail: [],
             activeTransaction: '',
-            shownData: []
+            shownData: [],
+            activeEmail: ''
         };
         this.actionButton = React.createRef();
     }
@@ -34,25 +35,24 @@ export default class Transaction extends React.Component{
 
     filterData(ev){
         let dataTemp = [];
-
         for(let i = 0 ; i < this.state.transactionData.length ; i++){
-            if(this.state.transactionData[i].id.toLowerCase().includes(ev.target.value.toLowerCase())){
+            if(this.state.transactionData[i].status.toLowerCase() === 'pending' && this.state.transactionData[i].id.toLowerCase().includes(ev.target.value.toLowerCase())){
                 dataTemp.push(this.state.transactionData[i])
-            } else if(this.state.transactionData[i].email.toString().includes(ev.target.value.toLowerCase())) {
+            } else if(this.state.transactionData[i].status.toLowerCase() === 'pending' && this.state.transactionData[i].email.toString().includes(ev.target.value.toLowerCase())) {
                 dataTemp.push(this.state.transactionData[i])
-            } else if(this.state.transactionData[i].status.toLowerCase().includes(ev.target.value.toLowerCase())) {
+            } else if(this.state.transactionData[i].status.toLowerCase() === 'pending' && this.state.transactionData[i].status.toLowerCase().includes(ev.target.value.toLowerCase())) {
                 dataTemp.push(this.state.transactionData[i])
             }
         }
-
         this.setState({shownData: dataTemp});
     };
 
-    detailHandler(e){
+    detailHandler(id, email){
         for(let i = 0 ; i < this.state.transactionData.length ; i++){
-            if(this.state.transactionData[i].id === e.target.id){
+            if(this.state.transactionData[i].id === id){
                 this.setState({transactionDetail: this.state.transactionData[i].transcData});
-                this.setState({activeTransaction: e.target.id});
+                this.setState({activeTransaction: id});
+                this.setState({activeEmail: email});
                 this.actionButton.current.style.display = 'block';
             }
         }
@@ -81,6 +81,39 @@ export default class Transaction extends React.Component{
     getYear(date){
         return new Date(date).getFullYear();
     };
+
+    acceptHandler(){
+        console.log('HELLO')
+        axios.put(
+            'http://localhost:8080/api/transaction/' + this.state.activeTransaction,
+            {email: this.props.email, status: 'APPROVED', transcData: this.state.transactionDetail}
+            )
+        // {this.state.transactionDetail.map((item, index)=>{
+        //     console.log({email: this.state.activeEmail, id: this.state.activeTransaction, inventoryId: item.inventoryId, status: 'approved'});
+        //     axios.post(
+        //         'http://localhost:8080/api/transaction/assignment',
+        //         {email: this.state.activeEmail, id: this.state.activeTransaction, inventoryId: item.inventoryId, status: 'approved'}
+        //     )
+                .then(()=> {this.componentDidMount()})
+                .then(()=> {this.setState({activeTransaction: ''})})
+                .then(()=> {this.setState({transactionDetail: []})})
+                .then(()=> {this.actionButton.current.style.display = 'none';})
+        // })}
+    }
+
+    rejectHandler(){
+        {this.state.transactionDetail.map((item, index)=>{
+            // console.log({email: this.state.activeEmail, id: this.state.activeTransaction, inventoryId: item.inventoryId, status: 'REJECTED'});
+            axios.post(
+                'http://localhost:8080/api/transaction/assignment',
+                {email: this.state.activeEmail, id: this.state.activeTransaction, inventoryId: item.inventoryId, status: 'REJECTED'}
+            )
+                .then(()=> {this.componentDidMount()})
+                .then(()=> {this.setState({activeTransaction: ''})})
+                .then(()=> {this.setState({transactionDetail: []})})
+                .then(()=> {this.actionButton.current.style.display = 'none';})
+        })}
+    }
 
     render(){
         document.title = "Transaction | Blibli Inventory System";
@@ -113,10 +146,10 @@ export default class Transaction extends React.Component{
 
                                 <tbody>
                                 {this.state.shownData.map((item, index)=>(
-                                    <tr key={index} id={item.id} onClick={this.detailHandler.bind(this)}>
-                                        <td id={item.id} className='assignment'>{item.id}</td>
-                                        <td id={item.id} className='requestDate'>{this.getDate(item.createdAt)} {this.getMonth(item.createdAt)} {this.getYear(item.createdAt)}</td>
-                                        <td id={item.id} className='staff'>{item.email}</td>
+                                    <tr key={index} onClick={()=> {this.detailHandler(item.id, item.email)}}>
+                                        <td className='assignment'>{item.id}</td>
+                                        <td className='requestDate'>{this.getDate(item.createdAt)} {this.getMonth(item.createdAt)} {this.getYear(item.createdAt)}</td>
+                                        <td className='staff'>{item.email}</td>
                                     </tr>
                                 ))
                                 }
@@ -147,8 +180,14 @@ export default class Transaction extends React.Component{
                                     </tr>
                                 ))}
                                 <tr ref={this.actionButton} style={{display:'none'}}>
-                                    <td style={{width:'50%', cursor:'pointer'}}><img className='checkActive' alt='Check Icon' src={CheckActive} /> Accept</td>
-                                    <td style={{width:'50%', cursor:'pointer'}}><img className='deleteActive' alt='Delete Icon' src={DeleteActive} /> Reject</td>
+                                    <td onClick={this.acceptHandler.bind(this)} style={{width:'50%', cursor:'pointer'}}>
+                                        <img className='checkActive' alt='Check Icon' src={CheckActive} />
+                                        Accept
+                                    </td>
+                                    <td onClick={this.rejectHandler.bind(this)} style={{width:'50%', cursor:'pointer'}}>
+                                        <img className='deleteActive' alt='Delete Icon' src={DeleteActive} />
+                                        Reject
+                                    </td>
                                 </tr>
                                 </tbody>
                             </table>

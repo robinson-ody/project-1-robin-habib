@@ -17,13 +17,13 @@ export default class Home extends React.Component{
 
     View(name, email){
         if (this.state.view === 'inventory')
-            return <Inventory name={name} email={email}/>;
+            return <Inventory name={name} email={email} />;
         else if (this.state.view === 'employee')
             return <Employee name={name}/>;
         else if (this.state.view === 'transaction')
-            return <Transaction name={name}/>;
+            return <Transaction name={name} email={email}/>;
         else if (this.state.view === 'returnItem')
-            return <ReturnItem name={name}/>
+            return <ReturnItem name={name} email={email}/>
     };
 
     render(){
