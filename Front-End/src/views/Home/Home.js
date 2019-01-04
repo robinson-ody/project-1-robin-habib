@@ -17,7 +17,7 @@ export default class Home extends React.Component{
 
     View(name, email){
         if (this.state.view === 'inventory')
-            return <Inventory name={name} email={email} role={this.props.role} printItem={(e)=> console.log(e)}/>;
+            return <Inventory name={name} email={email} role={this.props.role} printItem={(e)=> this.props.printItem(e)}/>;
         else if (this.state.view === 'employee')
             return <Employee name={name}/>;
         else if (this.state.view === 'transaction')

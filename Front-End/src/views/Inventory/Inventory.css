@@ -106,7 +106,7 @@ th.chkbox {
 }
 
 .detail{
-    width: 180px;
+    width: 150px;
     margin-left: 10px;
 }
 
@@ -154,7 +154,7 @@ th.chkbox {
 }
 
 .price {
-    width: 130px;
+    width: 110px;
     text-align: left;
 }
 
@@ -212,12 +212,16 @@ td.productImage {
 }
 
 .printIcon {
-    width: 31px;
-    height: 31px;
+    width: 20px;
+    height: 20px;
     object-fit: contain;
     float: right;
-    margin-right: 50px;
+    margin-right: 12px;
     cursor: pointer;
+    margin-top: 0;
+    margin-bottom: 0;
+    position: relative;
+    top: 0;
 }
 
 .blackBg{
@@ -369,4 +373,13 @@ input[type="date"]:not(.has-value):before{
 .searchIcon {
     position: relative;
     z-index: 2;
+}
+
+.inputFile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
 }

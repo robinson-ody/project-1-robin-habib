@@ -178,12 +178,12 @@ public class TransactionController {
                 return t;
             }
         }
-        else if (request.getStatus().equals("APPROVED")){
-            for (int i=0;i<transaction.size();i++){
-                    EmployeeItems a = new EmployeeItems();
-                    InventoryUsers b = new InventoryUsers();
-                    a.setQty(transaction.get(i).getQty());
-                    a.setInventoryId(transaction.get(i).getInventoryId());
+        else if (request.getStatus().equals("APPROVED")) {
+            for (int i = 0; i < transaction.size(); i++) {
+                EmployeeItems a = new EmployeeItems();
+                InventoryUsers b = new InventoryUsers();
+                a.setQty(transaction.get(i).getQty());
+                a.setInventoryId(transaction.get(i).getInventoryId());
 //                empItems.get(i).setInventoryId(transactions.get(i).getInventoryId());
                 empItem3.add(a);
                 transactionData.setStatus("APPROVED");
@@ -191,7 +191,7 @@ public class TransactionController {
                 inventoryRepository.save(inventoryData);
                 transactionRepository.save(transactionData);
             }
-            for(int i=0;i<1;i++){
+            for (int i = 0; i < 1; i++) {
                 InventoryUsers b = new InventoryUsers();
                 b.setEmail(request.getEmail());
                 b.setQty(transaction.get(i).getQty());
@@ -201,10 +201,10 @@ public class TransactionController {
                 transactionRepository.save(transactionData);
             }
 
-        t.setSuccess("Transaction FAILED");
+            t.setSuccess("Transaction FAILED");
+        }
         return t;
     }
-
 
     @PutMapping(value = "/transaction/return", produces = MediaType.APPLICATION_JSON_VALUE)
     public TransactionResponse returned(@RequestBody TransactionRequest request) {

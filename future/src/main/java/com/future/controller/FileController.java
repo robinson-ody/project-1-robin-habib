@@ -22,6 +22,7 @@ import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/api/files")
+@CrossOrigin(origins = "*")
 public class FileController {
 
     private final GridFsTemplate gridFsTemplate;

@@ -38,19 +38,19 @@ public class InventoryController {
     public Inventory getUserInventory(@PathVariable("id") String id) {
         return (Inventory) inventoryRepository.findOne(id);
     }
-/*    @PostMapping("/inventory/create")
+    @PostMapping("/inventory/create")
     public Inventory createInventory(@RequestBody Inventory inventory) {
         inventory.setAvailable(inventory.getStock());
         return inventoryRepository.save(inventory);
-    }*/
+    }
 
-    @PostMapping(value = "/create", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+/*    @PostMapping(value = "/create", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ProductResponse create(
             @RequestPart(name = "data", required = true) CreateProductRequest createProductRequest,
             @RequestPart(name = "images", required = true) List<MultipartFile> images) throws Exception {
         ProductResponse data = productService.create(createProductRequest, images);
         return data;
-    }
+    }*/
 
     @PostMapping(value="/items", consumes = MediaType.MULTIPART_FORM_DATA_VALUE )
     public ResponseEntity<?> image(
@@ -111,7 +111,7 @@ public class InventoryController {
 
     @DeleteMapping("/inventory/{id}")
     public ResponseEntity<String> deleteInventory(@PathVariable("id") String id) {
-        inventoryRepository.cr(id);
+        inventoryRepository.findOne(id);
         return new ResponseEntity<>(id,HttpStatus.OK);
     }
 

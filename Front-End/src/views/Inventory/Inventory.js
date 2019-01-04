@@ -11,7 +11,7 @@ import okBtn from '../../elements/ok-btn.jpg';
 import addNewPlaceholder from '../../elements/placeholder-image.svg';
 import SearchIcon from "../../elements/icon-search.png";
 import multer from 'multer';
-import Print from '../Print/Print';
+import PrintTemplate from 'react-print';
 
 export default class Inventory extends React.Component{
 	constructor(props){
@@ -26,7 +26,8 @@ export default class Inventory extends React.Component{
             stock: null,
             shownData: [],
             activeInventory: '',
-            userList: []
+            userList: [],
+            image: null
 		};
 
 		this.tableRequest = React.createRef();
@@ -219,6 +220,7 @@ export default class Inventory extends React.Component{
                         <td className='seeUsers' onClick={()=> {this.seeUsersOn(item.id, item.inventoryId)}}>
                             See Users
                         </td>
+                        <td><img onClick={()=> {this.printHandler(item.id)}} src={PrintIcon} id='printIcon' className='printIcon' alt='Print Icon'/></td>
                         <td className='deleteIcon' onClick={this.deleteHandler.bind(this)} id={item.id}>
                             <img id={item.id} src={trashIcon} width='15px' alt='Trash icon' />
                         </td>
@@ -246,6 +248,7 @@ export default class Inventory extends React.Component{
                         <td className='seeUsers' onClick={()=> {this.seeUsersOn(item.id, item.inventoryId)}}>
                             See Users
                         </td>
+                        <td><img onClick={()=> {this.printHandler()}} src={PrintIcon} id='printIcon' className='printIcon' alt='Print Icon'/></td>
                     </tr>
                 ))
             )
@@ -254,7 +257,36 @@ export default class Inventory extends React.Component{
 
     printHandler(){
         this.props.printItem('TEST');
-        window.open('/print', '_blank');
+        window.open('/print');
+    }
+
+    uploadFile(ev){
+        this.setState({image: ev.target.files[0]});
+        // console.log(this.state.image)
+        let data = new FormData();
+        // data.append('fileImage', ev.target.files[0]);
+        for (var i = 0; i < ev.target.files.length; i++)
+        {
+            let file = ev.target.files.item(i);
+            data.append('images[' + i + ']', file, file.name);
+        }
+
+        const config = {
+            headers: {
+                'content-type': 'multipart/form-data'
+                // 'Accept': 'application/octet-stream'
+            }
+        };
+        axios.post('http://localhost:8080/api/files', data, config)
+            .then(response => response.json())
+            .then(res => {
+                console.log(res);
+                alert('File berhasil diupload')
+            })
+            .catch(error => {
+                console.log(error);
+                alert('File gagal diupload')
+            })
     }
 
     render(){
@@ -307,7 +339,8 @@ export default class Inventory extends React.Component{
                 </div>
 
                 <div className='tableBody'>
-                    <img src={addNewPlaceholder} className="placeholder-image" alt="Add New"/>
+                    <input type='file' name='file' id='file' className='inputFile' onChangeCapture={this.uploadFile.bind(this)} accept='image/*'/>
+                    <label htmlFor="file" id='previewImage'><img src={addNewPlaceholder} className="placeholder-image" alt="Add New"/></label>
                     <input value={this.state.inventoryId} onChangeCapture={this.valueSetter.bind(this)} name='inventoryId'
                            type='text' placeholder='Inventory ID'/>
                     <input value={this.state.detail} onChangeCapture={this.valueSetter.bind(this)} name='detail' type='text'
@@ -387,7 +420,7 @@ export default class Inventory extends React.Component{
                         </span>
                     </div>
 
-                    <img onClick={()=> {this.printHandler()}} src={PrintIcon} id='printIcon' className='printIcon' alt='Print Icon'/>
+                    {/*<img onClick={()=> {this.printHandler()}} src={PrintIcon} id='printIcon' className='printIcon' alt='Print Icon'/>*/}
                 </div>
 
                 <div className='tableBody'>
@@ -403,6 +436,7 @@ export default class Inventory extends React.Component{
                             <th className='productImage'>Image</th>
                             <th className='seeUsers'/>
                             <th ref={this.deleteButton} className='deleteIcon'/>
+                            <th className='printIcon'/>
                         </tr>
                         </thead>
 
