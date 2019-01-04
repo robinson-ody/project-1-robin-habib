@@ -11,6 +11,7 @@ import okBtn from '../../elements/ok-btn.jpg';
 import addNewPlaceholder from '../../elements/placeholder-image.svg';
 import SearchIcon from "../../elements/icon-search.png";
 import multer from 'multer';
+import Print from '../Print/Print';
 
 export default class Inventory extends React.Component{
 	constructor(props){
@@ -251,6 +252,11 @@ export default class Inventory extends React.Component{
         }
     }
 
+    printHandler(){
+        this.props.printItem('TEST');
+        window.open('/print', '_blank');
+    }
+
     render(){
         document.title = "Inventory | Blibli Inventory System";
 
@@ -381,7 +387,7 @@ export default class Inventory extends React.Component{
                         </span>
                     </div>
 
-                    <img src={PrintIcon} id='printIcon' className='printIcon' alt='Print Icon'/>
+                    <img onClick={()=> {this.printHandler()}} src={PrintIcon} id='printIcon' className='printIcon' alt='Print Icon'/>
                 </div>
 
                 <div className='tableBody'>

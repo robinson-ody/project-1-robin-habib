@@ -22,8 +22,9 @@ import javax.validation.constraints.Null;
 import java.util.List;
 
 @RestController
-@CrossOrigin("*")
+//@CrossOrigin("*")
 @RequestMapping("/api")
+@CrossOrigin(origins = "*")
 //public class TransactionController implements MongoTemplateRepository {
     public class TransactionController {
 
@@ -166,10 +167,10 @@ import java.util.List;
                             inventoryRepository.save(inventoryData);
                             transactionRepository.save(transactionData);
                             t.setSuccess("Transaction REJECTED");
-                            return t; }
+                            }
                     else {
                         t.setSuccess("ITEM/s NOT FOUND");
-                        return t; }
+                    }
                 }
             }
             else {
@@ -183,9 +184,6 @@ import java.util.List;
                     InventoryUsers b = new InventoryUsers();
                     a.setQty(transaction.get(i).getQty());
                     a.setInventoryId(transaction.get(i).getInventoryId());
-                    b.setEmail(request.getEmail());
-                    b.setQty(transaction.get(i).getQty());
-                    invenUser2.add(b);
 //                empItems.get(i).setInventoryId(transactions.get(i).getInventoryId());
                     empItem3.add(a);
                     transactionData.setStatus("APPROVED");
@@ -194,13 +192,22 @@ import java.util.List;
                     transactionRepository.save(transactionData);
                 }
             }
+            for(int i=0;i<1;i++){
+                InventoryUsers b = new InventoryUsers();
+                b.setEmail(request.getEmail());
+                b.setQty(transaction.get(i).getQty());
+                invenUser2.add(b);
+                employeeRepository.save(employeeData);
+                inventoryRepository.save(inventoryData);
+                transactionRepository.save(transactionData);
+            }
 
         t.setSuccess("Transaction FAILED");
         return t;
     }
 
 
-    @PostMapping(value = "/transaction/return", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/transaction/return", produces = MediaType.APPLICATION_JSON_VALUE)
     public TransactionResponse returned(@RequestBody TransactionRequest request) {
         TransactionResponse t = new TransactionResponse();
         Employee employeeData = employeeRepository.findByEmail(request.getEmail());

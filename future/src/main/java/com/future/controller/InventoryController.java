@@ -36,21 +36,23 @@ public class InventoryController {
         return (Inventory) inventoryRepository.findOne(id);
     }
 
-    @PostMapping("/inventory/create")
+/*    @PostMapping("/inventory/create")
     public Inventory createInventory(@RequestBody Inventory inventory) {
         inventory.setAvailable(inventory.getStock());
         return inventoryRepository.save(inventory);
-    }
+    }*/
 
-    /*@PostMapping("/inventory/create")
+    @PostMapping("/inventory/create")
     public ResponseEntity<?> createInventory(@ModelAttribute Image inventory) {
         Inventory inventoryData = inventoryRepository.findByInventoryId(inventory.getInventoryId());
         String imageName = inventory.getImages().getOriginalFilename();
+        System.out.println(inventory.getImages().getBytes());
         if(inventoryData!=null){
-            return new ResponseEntity("ID SUDAH ADA",HttpStatus.BAD_REQUEST);
+            return new ResponseEntity("ID SUDAH ADA", HttpStatus.BAD_REQUEST);
         }
         try{
             Inventory i = new Inventory();
+            System.out.println(inventory.getImages().getBytes());
             i.setInventoryId(inventory.getInventoryId());
             i.setDetail(inventory.getDetail());
             i.setStock(inventory.getStock());
@@ -74,7 +76,6 @@ public class InventoryController {
     public Inventory saveInventory(Inventory inventory){
         return inventoryRepository.save(inventory);
     }
-*/
     @PutMapping("/inventory/{id}")
     public ResponseEntity<Inventory> updateInventory(@PathVariable("id") String id, @RequestBody Inventory inventory) {
         Inventory inventoryData = inventoryRepository.findOne(id);
