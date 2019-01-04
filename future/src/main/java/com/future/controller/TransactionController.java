@@ -209,13 +209,13 @@ import java.util.List;
                 for (int i = 0; i < transaction.size(); i++) {
                     if (transaction.get(i).getInventoryId().equals(inventoryData.getInventoryId())) {
                         inventoryData.setAvailable(inventoryData.getAvailable() + transaction.get(i).getQty());
-                        inventoryRepository.save(inventoryData);
-                        t.setSuccess("Transaction RETURNED");
-
                         Update updateObj = new Update()
                                 .pull("emplItems", new BasicDBObject("emplItems.inventoryId",request.getInventoryId()));
-
                         System.out.println("UPDATE OBJ: " + updateObj.toString());
+                        transactionData.setStatus("RETURNED");
+                        transactionRepository.save(transactionData);
+                        inventoryRepository.save(inventoryData);
+                        t.setSuccess("Transaction RETURNED");
                         return t; }
                     else {
                         t.setSuccess("ITEM/s NOT FOUND");
