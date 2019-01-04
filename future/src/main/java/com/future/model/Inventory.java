@@ -22,7 +22,16 @@ public class Inventory {
     private String inventoryId;
     private Date createdAt = new Date();
     private List<InventoryUsers> invenUsers;
+    private String imagePath;
 
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
 
     public String getId() {
         return id;

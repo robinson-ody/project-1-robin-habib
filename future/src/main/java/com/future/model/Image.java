@@ -2,6 +2,7 @@ package com.future.model;
 
 import com.future.model.list.InventoryUsers;
 import org.springframework.data.annotation.Id;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Date;
 import java.util.List;
@@ -13,6 +14,15 @@ public class Image {
     private Integer price;
     private String inventoryId;
     private Date createdAt = new Date();
+    private MultipartFile images;
+
+    public MultipartFile getImages() {
+        return images;
+    }
+
+    public void setImages(MultipartFile images) {
+        this.images = images;
+    }
 
     public String getDetail() {
         return detail;
