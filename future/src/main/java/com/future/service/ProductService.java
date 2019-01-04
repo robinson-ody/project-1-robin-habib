@@ -17,7 +17,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 @Service
-public class ImageService {
+public class ProductService {
 
     @Value("${static.path}")
     private static String UPLOADED_FOLDER = "D:/FUTURE PROGRAM/project-1-robin-habib/project-1-robin-habib/Image/";
@@ -30,7 +30,7 @@ public class ImageService {
     public ResponseEntity<?> storeItem(Image newInventory) {
         Inventory itemExist = inventoryRepository.findByInventoryId(newInventory.getInventoryId());
         if(itemExist!=null)  return new ResponseEntity("Item already Exists with the name provided", HttpStatus.BAD_REQUEST);
-        String fileName = newInventory.getImages().getOriginalFilename();
+        String fileName = newInventory.getFile().getOriginalFilename();
         if (StringUtils.isEmpty(fileName)) {
             return new ResponseEntity("Please select a file!", HttpStatus.OK);
         }
@@ -42,7 +42,7 @@ public class ImageService {
             inventoryData.setDetail(newInventory.getDetail());
             inventoryData.setPrice(newInventory.getPrice());
             inventoryData.setImagePath(fileName);
-            saveUploadedFile(newInventory.getImages());
+            saveUploadedFile(newInventory.getFile());
             saveItem(inventoryData);
         } catch (IOException e) {
             return new ResponseEntity<>("Some error occured. Failed to add item", HttpStatus.BAD_REQUEST);

@@ -2,10 +2,10 @@ package com.future.controller;
 
 import com.future.model.Image;
 import com.future.model.Inventory;
-import com.future.repository.EmployeeRepository;
 import com.future.repository.InventoryRepository;
-import com.future.service.ImageService;
-import io.swagger.models.auth.In;
+import com.future.service.ProductService;
+import org.bson.BsonBinarySubType;
+import org.bson.types.Binary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -13,10 +13,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.FileDescriptor;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 
 @RestController
@@ -24,7 +23,7 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 public class InventoryController {
     @Autowired
-    ImageService imageService;
+    ProductService imageService;
 //    private static String UPLOADED_FOLDER = "D:/FUTURE PROGRAM/project-1-robin-habib/project-1-robin-habib/Image/";
     @Autowired
     private InventoryRepository inventoryRepository;
@@ -38,25 +37,66 @@ public class InventoryController {
     public Inventory getUserInventory(@PathVariable("id") String id) {
         return (Inventory) inventoryRepository.findOne(id);
     }
-/*    @PostMapping("/inventory/create")
+
+    @PostMapping("/inventory/create")
+    public String singleFileUpload(@RequestParam("file") MultipartFile multipart, @RequestParam("inventoryId") String inventoryId) {
+        try {
+            Inventory inventory = new Inventory();
+            inventory.setInventoryId(inventoryId);
+            inventory.setDocType("pictures");
+            inventory.setFile(new Binary(BsonBinarySubType.BINARY, multipart.getBytes()));
+            Inventory updatedinventory = inventoryRepository.save(inventory);
+            System.out.println(inventory);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "failure";
+        }
+        return "success";
+    }
+    @PostMapping("/retrieve")
+    public String retrieveFile(@RequestParam("inventoryId") String inventoryId){
+        Inventory inventory = inventoryRepository.findByInventoryId(inventoryId);
+        System.out.println(inventory);
+        Binary file = inventory.getFile();
+        if(file != null) {
+            FileOutputStream fileOuputStream = null;
+            try {
+                fileOuputStream = new FileOutputStream("/" + "prof_pic.jpg");
+                fileOuputStream.write(file.getData());
+            } catch (Exception e) {
+                e.printStackTrace();
+                return "failure";
+            } finally {
+                if (fileOuputStream != null) {
+                    try {
+                        fileOuputStream.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        return "failure";
+                    }
+                }
+            }
+        }
+        return "success";
+    }
+
+    /*@PostMapping("/inventory/create")
     public Inventory createInventory(@RequestBody Inventory inventory) {
         inventory.setAvailable(inventory.getStock());
         return inventoryRepository.save(inventory);
     }*/
 
-    @PostMapping(value = "/create", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ProductResponse create(
-            @RequestPart(name = "data", required = true) CreateProductRequest createProductRequest,
-            @RequestPart(name = "images", required = true) List<MultipartFile> images) throws Exception {
-        ProductResponse data = productService.create(createProductRequest, images);
-        return data;
-    }
 
-    @PostMapping(value="/items", consumes = MediaType.MULTIPART_FORM_DATA_VALUE )
+
+
+/*
+
+    @PostMapping(value="/items", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<?> image(
-            @ModelAttribute("createNewItem") Image image){
+            @ModelAttribute("image") Image image){
         return imageService.storeItem(image);
     }
+*/
 
 
 
@@ -109,7 +149,7 @@ public class InventoryController {
 
     @DeleteMapping("/inventory/{id}")
     public ResponseEntity<String> deleteInventory(@PathVariable("id") String id) {
-        inventoryRepository.cr(id);
+        inventoryRepository.findOne(id);
         return new ResponseEntity<>(id,HttpStatus.OK);
     }
 
