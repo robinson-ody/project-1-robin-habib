@@ -33,4 +33,5 @@ public class TestSeeder {
         inventory.setPrice(999999);
         inventoryRepository.save(inventory2);
     }
-}*/
+}
+*/

@@ -4,9 +4,11 @@ import com.future.model.Image;
 import com.future.model.Inventory;
 import com.future.repository.EmployeeRepository;
 import com.future.repository.InventoryRepository;
+import com.future.service.ImageService;
 import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,8 +23,9 @@ import java.util.List;
 @RequestMapping("/api")
 @CrossOrigin(origins = "*")
 public class InventoryController {
-
-    private static String UPLOADED_FOLDER = "D:/FUTURE PROGRAM/project-1-robin-habib/project-1-robin-habib/Image/";
+    @Autowired
+    ImageService imageService;
+//    private static String UPLOADED_FOLDER = "D:/FUTURE PROGRAM/project-1-robin-habib/project-1-robin-habib/Image/";
     @Autowired
     private InventoryRepository inventoryRepository;
 
@@ -35,14 +38,29 @@ public class InventoryController {
     public Inventory getUserInventory(@PathVariable("id") String id) {
         return (Inventory) inventoryRepository.findOne(id);
     }
-
 /*    @PostMapping("/inventory/create")
     public Inventory createInventory(@RequestBody Inventory inventory) {
         inventory.setAvailable(inventory.getStock());
         return inventoryRepository.save(inventory);
     }*/
 
-    @PostMapping("/inventory/create")
+    @PostMapping(value = "/create", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ProductResponse create(
+            @RequestPart(name = "data", required = true) CreateProductRequest createProductRequest,
+            @RequestPart(name = "images", required = true) List<MultipartFile> images) throws Exception {
+        ProductResponse data = productService.create(createProductRequest, images);
+        return data;
+    }
+
+    @PostMapping(value="/items", consumes = MediaType.MULTIPART_FORM_DATA_VALUE )
+    public ResponseEntity<?> image(
+            @ModelAttribute("createNewItem") Image image){
+        return imageService.storeItem(image);
+    }
+
+
+
+   /* @PostMapping("/inventory/create")
     public ResponseEntity<?> createInventory(@ModelAttribute Image inventory) {
         Inventory inventoryData = inventoryRepository.findByInventoryId(inventory.getInventoryId());
         String imageName = inventory.getImages().getOriginalFilename();
@@ -51,6 +69,7 @@ public class InventoryController {
             return new ResponseEntity("ID SUDAH ADA", HttpStatus.BAD_REQUEST);
         }
         try{
+            System.out.println(inventory.getImages().getBytes());
             Inventory i = new Inventory();
             System.out.println(inventory.getImages().getBytes());
             i.setInventoryId(inventory.getInventoryId());
@@ -88,11 +107,11 @@ public class InventoryController {
         inventoryData.setPrice(inventory.getPrice());
         Inventory updatedinventory = inventoryRepository.save(inventoryData);
         return new ResponseEntity<>(updatedinventory, HttpStatus.OK);
-    }
+    }*/
 
     @DeleteMapping("/inventory/{id}")
     public ResponseEntity<String> deleteInventory(@PathVariable("id") String id) {
-        inventoryRepository.delete(id);
+        inventoryRepository.cr(id);
         return new ResponseEntity<>(id,HttpStatus.OK);
     }
 

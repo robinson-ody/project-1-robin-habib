@@ -26,7 +26,7 @@ import java.util.List;
 @RequestMapping("/api")
 @CrossOrigin(origins = "*")
 //public class TransactionController implements MongoTemplateRepository {
-    public class TransactionController {
+public class TransactionController {
 
     @Autowired
     TransactionRepository transactionRepository;
@@ -70,7 +70,7 @@ import java.util.List;
                 t.setSuccess("Employee Not Found");
                 return t;
             }
-        }*//*
+        }//
         return new ResponseEntity<>(updatedtransaction, HttpStatus.OK);
     }*/
 
@@ -91,10 +91,10 @@ import java.util.List;
                 transactionRepository.save(transaction);
             }
             else
-                {
-            inventoryData.setAvailable(inventoryData.getAvailable()-transactions.get(i).getQty());
-            System.out.println(inventoryData.getAvailable());
-            inventoryRepository.save(inventoryData);}
+            {
+                inventoryData.setAvailable(inventoryData.getAvailable()-transactions.get(i).getQty());
+                System.out.println(inventoryData.getAvailable());
+                inventoryRepository.save(inventoryData);}
         }
         if(employeeData.getRole().equals("MANAGER")){
             transaction.setStatus("APPROVED");
@@ -112,18 +112,18 @@ import java.util.List;
                     transactionRepository.save(transaction);
                 }*/
                 else{
-                EmployeeItems a = new EmployeeItems();
-                InventoryUsers b = new InventoryUsers();
-                a.setQty(transactions.get(i).getQty());
-                a.setInventoryId(transactions.get(i).getInventoryId());
-                b.setEmail(transaction.getEmail());
-                b.setQty(transactions.get(i).getQty());
-                invenUsers.add(b);
+                    EmployeeItems a = new EmployeeItems();
+                    InventoryUsers b = new InventoryUsers();
+                    a.setQty(transactions.get(i).getQty());
+                    a.setInventoryId(transactions.get(i).getInventoryId());
+                    b.setEmail(transaction.getEmail());
+                    b.setQty(transactions.get(i).getQty());
+                    invenUsers.add(b);
 //                empItems.get(i).setInventoryId(transactions.get(i).getInventoryId());
-                empItems.add(a);
-                employeeRepository.save(employeeData);
-                inventoryRepository.save(inventoryData2);
-                transactionRepository.save(transaction);
+                    empItems.add(a);
+                    employeeRepository.save(employeeData);
+                    inventoryRepository.save(inventoryData2);
+                    transactionRepository.save(transaction);
                 }
             }
         }
@@ -185,12 +185,11 @@ import java.util.List;
                     a.setQty(transaction.get(i).getQty());
                     a.setInventoryId(transaction.get(i).getInventoryId());
 //                empItems.get(i).setInventoryId(transactions.get(i).getInventoryId());
-                    empItem3.add(a);
-                    transactionData.setStatus("APPROVED");
-                    employeeRepository.save(employeeData);
-                    inventoryRepository.save(inventoryData);
-                    transactionRepository.save(transactionData);
-                }
+                empItem3.add(a);
+                transactionData.setStatus("APPROVED");
+                employeeRepository.save(employeeData);
+                inventoryRepository.save(inventoryData);
+                transactionRepository.save(transactionData);
             }
             for(int i=0;i<1;i++){
                 InventoryUsers b = new InventoryUsers();
@@ -216,27 +215,27 @@ import java.util.List;
         List<TransData> transaction = transactionData.getTranscData();
 
 
-            if (employeeData.getEmail().equals(request.getEmail())){
-                for (int i = 0; i < transaction.size(); i++) {
-                    if (transaction.get(i).getInventoryId().equals(inventoryData.getInventoryId())) {
-                        inventoryData.setAvailable(inventoryData.getAvailable() + transaction.get(i).getQty());
-                        Update updateObj = new Update()
-                                .pull("emplItems", new BasicDBObject("emplItems.inventoryId",request.getInventoryId()));
-                        System.out.println("UPDATE OBJ: " + updateObj.toString());
-                        transactionData.setStatus("RETURNED");
-                        transactionRepository.save(transactionData);
-                        inventoryRepository.save(inventoryData);
-                        t.setSuccess("Transaction RETURNED");
-                        return t; }
-                    else {
-                        t.setSuccess("ITEM/s NOT FOUND");
-                        return t; }
-                }
+        if (employeeData.getEmail().equals(request.getEmail())){
+            for (int i = 0; i < transaction.size(); i++) {
+                if (transaction.get(i).getInventoryId().equals(inventoryData.getInventoryId())) {
+                    inventoryData.setAvailable(inventoryData.getAvailable() + transaction.get(i).getQty());
+                    Update updateObj = new Update()
+                            .pull("emplItems", new BasicDBObject("emplItems.inventoryId",request.getInventoryId()));
+                    System.out.println("UPDATE OBJ: " + updateObj.toString());
+                    transactionData.setStatus("RETURNED");
+                    transactionRepository.save(transactionData);
+                    inventoryRepository.save(inventoryData);
+                    t.setSuccess("Transaction RETURNED");
+                    return t; }
+                else {
+                    t.setSuccess("ITEM/s NOT FOUND");
+                    return t; }
             }
-            else {
-                t.setSuccess("Employee Not Found");
-                return t;
-            }
+        }
+        else {
+            t.setSuccess("Employee Not Found");
+            return t;
+        }
         t.setSuccess("Transaction FAILED");
         return t;
     }

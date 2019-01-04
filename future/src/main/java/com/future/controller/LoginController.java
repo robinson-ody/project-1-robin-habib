@@ -31,6 +31,12 @@ public class LoginController {
                 a.setName(employeeData.getName());
                 a.setRole(employeeData.getRole());
                 return a;}
+            else if(employeeData.getRole().equals("USER")){
+                a.setSuccess(true);
+                a.setName(employeeData.getName());
+                a.setRole(employeeData.getRole());
+                return a;
+            }
             else if(employeeData.getRole().equals("MANAGER")){
                 a.setSuccess(true);
                 a.setName(employeeData.getName());
