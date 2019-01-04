@@ -42,7 +42,7 @@ import java.util.List;
         return (List<Transaction>) transactionRepository.findAll();
     }
 
-    @PutMapping("/transaction/{id}")
+/*    @PutMapping("/transaction/{id}")
     public ResponseEntity<Transaction> updateTransaction(@PathVariable("id") String id, @RequestBody Transaction transaction) {
         Transaction transactionData = transactionRepository.findOne(id);
         if (transaction == null) {
@@ -50,8 +50,28 @@ import java.util.List;
         }
         transactionData.setStatus(transaction.getStatus());
         Transaction updatedtransaction = transactionRepository.save(transactionData);
+        *//*Transaction transactionDataPut = transactionRepository.findById(request.getId());
+        List<TransData> transactionPut = transactionData.getTranscData();
+        if(transactionData.getStatus().equals("REJECTED")){
+                for (int i = 0; i < transaction.size(); i++) {
+                    if (transaction.get(i).getInventoryId().equals(inventoryData.getInventoryId())) {
+                        inventoryData.setAvailable(inventoryData.getAvailable() + transaction.get(i).getQty());
+                        inventoryRepository.save(inventoryData);
+
+                        t.setSuccess("Transaction REJECTED");
+                        return t; }
+                    else {
+                        t.setSuccess("ITEM/s NOT FOUND");
+                        return t; }
+                }
+            }
+            else {
+                t.setSuccess("Employee Not Found");
+                return t;
+            }
+        }*//*
         return new ResponseEntity<>(updatedtransaction, HttpStatus.OK);
-    }
+    }*/
 
     @PostMapping("/transaction/List")
     public Transaction createTransaction(@RequestBody Transaction transaction) {
@@ -121,14 +141,17 @@ import java.util.List;
         return transactionRepository.save(transaction);
     }
 
-    @PostMapping(value = "/transaction/assignment", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/transaction/assignment", produces = MediaType.APPLICATION_JSON_VALUE)
     public TransactionResponse authenticate(@RequestBody TransactionRequest request) {
         TransactionResponse t = new TransactionResponse();
         Employee employeeData = employeeRepository.findByEmail(request.getEmail());
         Inventory inventoryData = inventoryRepository.findByInventoryId(request.getInventoryId());
         Transaction transactionData = transactionRepository.findById(request.getId());
         List<TransData> transaction = transactionData.getTranscData();
-        List<EmployeeItems> empItems = employeeData.getEmplItems();
+        List<EmployeeItems> empItem3 = employeeData.getEmplItems();
+        System.out.println(empItem3);
+        System.out.println(employeeData.getEmplItems());
+        List<InventoryUsers> invenUser2=inventoryData.getInvenUsers();
 
         if (transaction == null) {
             t.setSuccess("Transaction NULL");
@@ -139,7 +162,9 @@ import java.util.List;
                 for (int i = 0; i < transaction.size(); i++) {
                     if (transaction.get(i).getInventoryId().equals(inventoryData.getInventoryId())) {
                             inventoryData.setAvailable(inventoryData.getAvailable() + transaction.get(i).getQty());
+                            transactionData.setStatus("REJECTED");
                             inventoryRepository.save(inventoryData);
+                            transactionRepository.save(transactionData);
                             t.setSuccess("Transaction REJECTED");
                             return t; }
                     else {
@@ -152,6 +177,24 @@ import java.util.List;
                 return t;
             }
         }
+        else if (request.getStatus().equals("APPROVED")){
+            for (int i=0;i<transaction.size();i++){
+                    EmployeeItems a = new EmployeeItems();
+                    InventoryUsers b = new InventoryUsers();
+                    a.setQty(transaction.get(i).getQty());
+                    a.setInventoryId(transaction.get(i).getInventoryId());
+                    b.setEmail(request.getEmail());
+                    b.setQty(transaction.get(i).getQty());
+                    invenUser2.add(b);
+//                empItems.get(i).setInventoryId(transactions.get(i).getInventoryId());
+                    empItem3.add(a);
+                    transactionData.setStatus("APPROVED");
+                    employeeRepository.save(employeeData);
+                    inventoryRepository.save(inventoryData);
+                    transactionRepository.save(transactionData);
+                }
+            }
+
         t.setSuccess("Transaction FAILED");
         return t;
     }
@@ -164,6 +207,8 @@ import java.util.List;
         Inventory inventoryData = inventoryRepository.findByInventoryId(request.getInventoryId());
         Transaction transactionData = transactionRepository.findById(request.getId());
         List<TransData> transaction = transactionData.getTranscData();
+
+
             if (employeeData.getEmail().equals(request.getEmail())){
                 for (int i = 0; i < transaction.size(); i++) {
                     if (transaction.get(i).getInventoryId().equals(inventoryData.getInventoryId())) {
