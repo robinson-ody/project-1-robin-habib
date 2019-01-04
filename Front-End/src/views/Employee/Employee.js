@@ -91,12 +91,12 @@ export default class Employee extends React.Component{
     filterData(ev){
         let dataTemp = [];
 
-        for(let i = 0 ; i < this.state.data.length ; i++){
+for(let i = 0 ; i < this.state.data.length ; i++){
             if(this.state.data[i].email.toLowerCase().includes(ev.target.value.toLowerCase())){
                 dataTemp.push(this.state.data[i])
             } else if(this.state.data[i].name.toLowerCase().includes(ev.target.value.toLowerCase())) {
                 dataTemp.push(this.state.data[i])
-            } else if(this.state.data[i].birthday.toString().includes(ev.target.value.toLowerCase())) {
+            } else if(this.state.data[i].birthday.toString().includes(ev.target.value.toLowerCase().dateTime)) {
                 dataTemp.push(this.state.data[i])
             } else if(this.state.data[i].gender.toLowerCase().includes(ev.target.value.toLowerCase())) {
                 dataTemp.push(this.state.data[i])
