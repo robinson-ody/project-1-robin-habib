@@ -9,8 +9,10 @@ import com.future.model.requestResponse.TransactionResponse;
 import com.future.repository.EmployeeRepository;
 import com.future.repository.InventoryRepository;
 import com.future.repository.TransactionRepository;
+import com.mongodb.BasicDBObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -84,13 +86,6 @@ import java.util.List;
                     inventoryRepository.save(inventoryData2);
                     transactionRepository.save(transaction);
                 }
-                else if (transactions.get(i).getInventoryId().equals(null)){
-                    empItems.get(i).setInventoryId(empItems.get(i).getInventoryId()+transactions.get(i).getInventoryId());
-                    empItems.get(i).setQty(empItems.get(i).getQty()+transactions.get(i).getQty());
-                    employeeRepository.save(employeeData);
-                    inventoryRepository.save(inventoryData2);
-                    transactionRepository.save(transaction);
-                }
                 else{
                 EmployeeItems a = new EmployeeItems();
                 InventoryUsers b = new InventoryUsers();
@@ -108,6 +103,10 @@ import java.util.List;
             }
         }
         else if (employeeData.getRole().equals("ADMIN")){
+            transaction.setStatus("PENDING");
+            transactionRepository.save(transaction);
+        }
+        else if (employeeData.getRole().equals("USER")){
             transaction.setStatus("PENDING");
             transactionRepository.save(transaction);
         }
@@ -149,6 +148,39 @@ import java.util.List;
                 return t;
             }
         }
+        t.setSuccess("Transaction FAILED");
+        return t;
+    }
+
+
+    @PostMapping(value = "/transaction/return", produces = MediaType.APPLICATION_JSON_VALUE)
+    public TransactionResponse returned(@RequestBody TransactionRequest request) {
+        TransactionResponse t = new TransactionResponse();
+        Employee employeeData = employeeRepository.findByEmail(request.getEmail());
+        Inventory inventoryData = inventoryRepository.findByInventoryId(request.getInventoryId());
+        Transaction transactionData = transactionRepository.findById(request.getId());
+        List<TransData> transaction = transactionData.getTranscData();
+            if (employeeData.getEmail().equals(request.getEmail())){
+                for (int i = 0; i < transaction.size(); i++) {
+                    if (transaction.get(i).getInventoryId().equals(inventoryData.getInventoryId())) {
+                        inventoryData.setAvailable(inventoryData.getAvailable() + transaction.get(i).getQty());
+                        inventoryRepository.save(inventoryData);
+                        t.setSuccess("Transaction RETURNED");
+
+                        Update updateObj = new Update()
+                                .pull("emplItems", new BasicDBObject("emplItems.inventoryId",request.getInventoryId()));
+
+                        System.out.println("UPDATE OBJ: " + updateObj.toString());
+                        return t; }
+                    else {
+                        t.setSuccess("ITEM/s NOT FOUND");
+                        return t; }
+                }
+            }
+            else {
+                t.setSuccess("Employee Not Found");
+                return t;
+            }
         t.setSuccess("Transaction FAILED");
         return t;
     }

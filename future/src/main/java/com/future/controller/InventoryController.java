@@ -1,5 +1,6 @@
 package com.future.controller;
 
+import com.future.model.Image;
 import com.future.model.Inventory;
 import com.future.repository.EmployeeRepository;
 import com.future.repository.InventoryRepository;
@@ -34,6 +35,13 @@ public class InventoryController {
         inventory.setAvailable(inventory.getStock());
         return inventoryRepository.save(inventory);
     }
+
+/*    @PostMapping("/inventory/create")
+    public Inventory createInventory(@ModelAttribute Image inventory) {
+        inventory.setAvailable(inventory.getStock());
+        Inventory inventoryData = inventoryRepository.findByInventoryId(inventory.getInventoryId());
+        return inventoryRepository.save(inventory);
+    }*/
 
     @PutMapping("/inventory/{id}")
     public ResponseEntity<Inventory> updateInventory(@PathVariable("id") String id, @RequestBody Inventory inventory) {
