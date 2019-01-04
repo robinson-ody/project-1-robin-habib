@@ -42,7 +42,7 @@ import java.util.List;
         return (List<Transaction>) transactionRepository.findAll();
     }
 
-    @PutMapping("/transaction/{id}")
+/*    @PutMapping("/transaction/{id}")
     public ResponseEntity<Transaction> updateTransaction(@PathVariable("id") String id, @RequestBody Transaction transaction) {
         Transaction transactionData = transactionRepository.findOne(id);
         if (transaction == null) {
@@ -50,7 +50,7 @@ import java.util.List;
         }
         transactionData.setStatus(transaction.getStatus());
         Transaction updatedtransaction = transactionRepository.save(transactionData);
-        /*Transaction transactionDataPut = transactionRepository.findById(request.getId());
+        *//*Transaction transactionDataPut = transactionRepository.findById(request.getId());
         List<TransData> transactionPut = transactionData.getTranscData();
         if(transactionData.getStatus().equals("REJECTED")){
                 for (int i = 0; i < transaction.size(); i++) {
@@ -69,9 +69,9 @@ import java.util.List;
                 t.setSuccess("Employee Not Found");
                 return t;
             }
-        }*/
+        }*//*
         return new ResponseEntity<>(updatedtransaction, HttpStatus.OK);
-    }
+    }*/
 
     @PostMapping("/transaction/List")
     public Transaction createTransaction(@RequestBody Transaction transaction) {
@@ -175,12 +175,6 @@ import java.util.List;
         }
         else if (request.getStatus().equals("APPROVED")){
             for (int i=0;i<transaction.size();i++){
-                if (transaction.get(i).getInventoryId().equals(employeeData.getEmplItems().get(i).getInventoryId())){
-                    empItem3.get(i).setQty(empItem3.get(i).getQty()+transaction.get(i).getQty());
-                    employeeRepository.save(employeeData);
-                    inventoryRepository.save(inventoryData);
-                }
-                else{
                     EmployeeItems a = new EmployeeItems();
                     InventoryUsers b = new InventoryUsers();
                     a.setQty(transaction.get(i).getQty());
@@ -190,11 +184,13 @@ import java.util.List;
                     invenUser2.add(b);
 //                empItems.get(i).setInventoryId(transactions.get(i).getInventoryId());
                     empItem3.add(a);
+                    transactionData.setStatus("APPROVED");
                     employeeRepository.save(employeeData);
                     inventoryRepository.save(inventoryData);
+                    transactionRepository.save(transactionData);
                 }
             }
-        }
+
         t.setSuccess("Transaction FAILED");
         return t;
     }
