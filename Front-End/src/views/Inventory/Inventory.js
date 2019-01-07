@@ -5,13 +5,11 @@ import axios from 'axios';
 import image from "../../elements/black.png";
 import trashIcon from "../../elements/trash-copy-8.png";
 import addNewBtn from "../../elements/add-new-btn.png";
-import PrintIcon from "../../elements/print-icon.png";
+// import PrintIcon from "../../elements/print-icon.png";
 import cancelBtn from '../../elements/cancel-btn.jpg';
 import okBtn from '../../elements/ok-btn.jpg';
 import addNewPlaceholder from '../../elements/placeholder-image.svg';
 import SearchIcon from "../../elements/icon-search.png";
-import multer from 'multer';
-import PrintTemplate from 'react-print';
 
 export default class Inventory extends React.Component{
 	constructor(props){
@@ -27,7 +25,8 @@ export default class Inventory extends React.Component{
             shownData: [],
             activeInventory: '',
             userList: [],
-            image: null
+            image: null,
+            check: {}
 		};
 
 		this.tableRequest = React.createRef();
@@ -56,9 +55,17 @@ export default class Inventory extends React.Component{
             });
     }
 
-    deleteHandler(ev){
-        axios.delete('http://localhost:8080/api/inventory/' + ev.target.id)
-            .then(()=> this.getData())
+    deleteHandler(id){
+	    axios.get('http://localhost:8080/api/inventory/' + id)
+            .then(response => {this.setState({check: response.data})})
+            .then(()=> {
+                if(this.state.check.stock !== this.state.check.available){
+                    this.warningWindowOn()
+                } else if(this.state.check.stock === this.state.check.available){
+                    axios.delete('http://localhost:8080/api/inventory/' + id)
+                        .then(()=> this.getData())
+                }
+            })
     }
 
     requestWindowOn(id){
@@ -126,14 +133,42 @@ export default class Inventory extends React.Component{
     };
 
     addNewInventory(){
-        axios.post('http://localhost:8080/api/inventory/create', {detail: this.state.detail, invenUsers: [], inventoryId: this.state.inventoryId, price: this.state.price, stock: this.state.stock})
+        axios.post('http://localhost:8080/api/inventory/create',
+            {detail: this.state.detail, invenUsers: [], inventoryId: this.state.inventoryId, price: this.state.price, stock: this.state.stock})
+            .then(()=> {this.uploadFile()})
             .then(()=> {this.addWindowOff()})
             .then(()=> {this.getData()})
-            .then(()=> {this.setState({inventoryId: ''})})
-            .then(()=> {this.setState({detail: ''})})
-            .then(()=> {this.setState({price: ''})})
-            .then(()=> {this.setState({stock: ''})})
+            .then(()=> {
+                this.setState({inventoryId: ''});
+                this.setState({detail: ''});
+                this.setState({price: ''});
+                this.setState({stock: ''});
+            })
     };
+
+    uploadFile(ev){
+        let data = new FormData();
+        console.log('Gambar yang diupload: ' + this.state.image);
+        data.append('image', this.state.image);
+        console.log('InventoryID yang dikirim: ' + this.state.inventoryId);
+        data.append('inventoryId', this.state.inventoryId);
+        for (let isi of data) {console.log(isi);}
+        const config = {headers: {'content-type': 'multipart/form-data'}};
+        console.log('START POSTING');
+        axios.post('http://localhost:8080/api/create/abcd', data, config)
+            .then(res => {
+                console.log(res);
+                alert('File berhasil diupload')
+            })
+            .catch(error => {
+                console.log(error);
+                alert('File gagal diupload')
+            })
+    }
+
+    getFiles(ev){
+        this.setState({image: ev.target.files[0]})
+    }
 
     static thousandSeparator(e){
         let result = '';
@@ -189,12 +224,12 @@ export default class Inventory extends React.Component{
     }
 
     warningWindowOn(){
-        this.seeUsers.current.style.display = 'block';
+        this.warningWindow.current.style.display = 'block';
         this.blackBg.current.style.display = 'block';
     }
 
     warningWindowOff(){
-        this.seeUsers.current.style.display = 'none';
+        this.warningWindow.current.style.display = 'none';
         this.blackBg.current.style.display = 'none';
     }
 
@@ -216,13 +251,14 @@ export default class Inventory extends React.Component{
                                         {Inventory.thousandSeparator(item.price)}
                                     </span>
                         </td>
-                        <td className='productImage'><img src={image} width='20px' alt='Product'/></td>
+                        <td className='productImage'>{this.imageFetcher(item.inventoryId)}</td>
+                        {/*<img src={image} width='20px' alt='Product'/>*/}
                         <td className='seeUsers' onClick={()=> {this.seeUsersOn(item.id, item.inventoryId)}}>
                             See Users
                         </td>
-                        <td><img onClick={()=> {this.printHandler(item.id)}} src={PrintIcon} id='printIcon' className='printIcon' alt='Print Icon'/></td>
-                        <td className='deleteIcon' onClick={this.deleteHandler.bind(this)} id={item.id}>
-                            <img id={item.id} src={trashIcon} width='15px' alt='Trash icon' />
+                        {/*<td><img onClick={()=> {this.printHandler(item.id)}} src={PrintIcon} id='printIcon' className='printIcon' alt='Print Icon'/></td>*/}
+                        <td className='deleteIcon' onClick={()=> this.deleteHandler(item.id)}>
+                            <img src={trashIcon} width='15px' alt='Trash icon' />
                         </td>
                     </tr>
                 ))
@@ -248,51 +284,28 @@ export default class Inventory extends React.Component{
                         <td className='seeUsers' onClick={()=> {this.seeUsersOn(item.id, item.inventoryId)}}>
                             See Users
                         </td>
-                        <td><img onClick={()=> {this.printHandler()}} src={PrintIcon} id='printIcon' className='printIcon' alt='Print Icon'/></td>
+                        {/*<td><img onClick={()=> {this.printHandler()}} src={PrintIcon} id='printIcon' className='printIcon' alt='Print Icon'/></td>*/}
                     </tr>
                 ))
             )
         }
     }
 
-    printHandler(){
-        this.props.printItem('TEST');
-        window.open('/print');
-    }
+    // printHandler(){
+    //     this.props.printItem('TEST');
+    //     window.open('/print');
+    // }
 
-    uploadFile(ev){
-        this.setState({image: ev.target.files[0]});
-        // console.log(this.state.image)
-        let data = new FormData();
-        // data.append('fileImage', ev.target.files[0]);
-        for (var i = 0; i < ev.target.files.length; i++)
-        {
-            let file = ev.target.files.item(i);
-            data.append('images[' + i + ']', file, file.name);
-        }
-
-        const config = {
-            headers: {
-                'content-type': 'multipart/form-data'
-                // 'Accept': 'application/octet-stream'
-            }
-        };
-        axios.post('http://localhost:8080/api/files', data, config)
-            .then(response => response.json())
-            .then(res => {
-                console.log(res);
-                alert('File berhasil diupload')
-            })
-            .catch(error => {
-                console.log(error);
-                alert('File gagal diupload')
-            })
+    imageFetcher(inventoryId){
+        axios.post('http://localhost:8080/api/retrieve?inventoryId=' + inventoryId)
+            .then(res => {console.log(res)})
     }
 
     render(){
         document.title = "Inventory | Blibli Inventory System";
 
-        return <div>
+        return(
+        <div>
             <div ref={this.blackBg} className='blackBg'/>
 
             {/*WINDOW UNTUK REQUEST ITEM*/}
@@ -339,7 +352,7 @@ export default class Inventory extends React.Component{
                 </div>
 
                 <div className='tableBody'>
-                    <input type='file' name='file' id='file' className='inputFile' onChangeCapture={this.uploadFile.bind(this)} accept='image/*'/>
+                    <input onChangeCapture={this.getFiles.bind(this)} type='file' name='file' id='file' className='inputFile' accept='image/*'/>
                     <label htmlFor="file" id='previewImage'><img src={addNewPlaceholder} className="placeholder-image" alt="Add New"/></label>
                     <input value={this.state.inventoryId} onChangeCapture={this.valueSetter.bind(this)} name='inventoryId'
                            type='text' placeholder='Inventory ID'/>
@@ -383,7 +396,7 @@ export default class Inventory extends React.Component{
             {/*END OF WINDOW UNTUK SEE USERS*/}
 
             {/*WARNING WINDOW*/}
-            <div ref={this.warningWindow} className='tableSeeUsers'>
+            <div ref={this.warningWindow} className='warningWindow'>
                 <div className='tableHeader'>
                     <div className='tableTitle'>Warning!</div>
                     <img src={okBtn} alt='Ok Button' className='confirmationBtn' onClick={() => this.warningWindowOff()}/>
@@ -419,9 +432,9 @@ export default class Inventory extends React.Component{
                             Request Item
                         </span>
                     </div>
-
-                    {/*<img onClick={()=> {this.printHandler()}} src={PrintIcon} id='printIcon' className='printIcon' alt='Print Icon'/>*/}
                 </div>
+
+                {/*<img onClick={()=> {this.printHandler()}} src={PrintIcon} id='printIcon' className='printIcon' alt='Print Icon'/>*/}
 
                 <div className='tableBody'>
                     <table>
@@ -436,7 +449,7 @@ export default class Inventory extends React.Component{
                             <th className='productImage'>Image</th>
                             <th className='seeUsers'/>
                             <th ref={this.deleteButton} className='deleteIcon'/>
-                            <th className='printIcon'/>
+                            {/*<th className='printIcon'/>*/}
                         </tr>
                         </thead>
 
@@ -445,8 +458,8 @@ export default class Inventory extends React.Component{
                         </tbody>
                     </table>
                 </div>
-
             </div>
         </div>
+        )
     }
-}
+};

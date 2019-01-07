@@ -9,12 +9,14 @@ export default class Sidebar extends React.Component {
             activeView : 'inventory'
         };
         this.employeeMenu = React.createRef();
+        this.returnMenu = React.createRef();
     }
 
     componentDidMount(){
         console.log(this.props.role);
         if(this.props.role === 'ADMIN'){
             this.employeeMenu.current.style.display = 'block';
+            this.returnMenu.current.style.display = 'block';
         }
     }
 
@@ -38,7 +40,7 @@ export default class Sidebar extends React.Component {
                     <div id='inventory' onClick={(ev)=> menuClick(ev.target.valueOf().id)} className='menu active'>Inventory</div>
                     <div style={{display:'none'}} ref={this.employeeMenu} id='employee' onClick={(ev)=> menuClick(ev.target.valueOf().id)} className='menu'>Employee</div>
                     <div id='transaction' onClick={(ev)=> menuClick(ev.target.valueOf().id)} className='menu'>Transaction</div>
-                    <div id='returnItem' onClick={(ev)=> menuClick(ev.target.valueOf().id)} className='menu'>Return Item</div>
+                    <div style={{display:'none'}} ref={this.returnMenu} id='returnItem' onClick={(ev)=> menuClick(ev.target.valueOf().id)} className='menu'>Return Item</div>
                 </div>
 
                 <div onClick={()=> this.props.isAuth(false)} className='menu-container logoutContainer'>

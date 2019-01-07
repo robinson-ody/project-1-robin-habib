@@ -266,6 +266,25 @@ td.productImage {
     padding: 18px 8px 0 18px;
 }
 
+.warningWindow{
+    display: none;
+    position: fixed;
+    width: 441px;
+    margin: auto;
+    z-index: 4;
+    top: 210px;
+    left: 462px;
+}
+
+.warningWindow .tableHeader {
+    height: 58px;
+    padding: 18px 8px 0 18px;
+}
+
+.warningWindow .tableBody {
+    height: 100px;
+}
+
 .confirmationBtn{
     -webkit-border-radius: 31px;
     -moz-border-radius: 31px;

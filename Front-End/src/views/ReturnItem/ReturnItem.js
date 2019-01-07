@@ -35,8 +35,8 @@ export default class ReturnItem extends React.Component{
         {this.state.transactionDetail.map((item, index)=>{
             // console.log({email: this.props.email, id: this.state.activeTransaction, inventoryId: item.inventoryId, status: 'REJECTED'})
             axios.put(
-                'http://localhost:8080/api/transaction/assignment',
-                {email: this.props.email, id: this.state.activeTransaction, inventoryId: item.inventoryId, status: 'REJECTED'}
+                'http://localhost:8080/api/transaction/return',
+                {email: this.props.email, id: this.state.activeTransaction, inventoryId: item.inventoryId}
             )
                 .then(()=> {this.componentDidMount()})
                 .then(()=> {this.setState({activeTransaction: ''})})

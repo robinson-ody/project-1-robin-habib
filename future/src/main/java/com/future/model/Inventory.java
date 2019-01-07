@@ -25,7 +25,6 @@ public class Inventory {
     private Binary file;
     private Date createdAt = new Date();
     private List<InventoryUsers> invenUsers;
-    private String imagePath;
 
 
     public String getDocType() {
@@ -42,14 +41,6 @@ public class Inventory {
 
     public void setFile(Binary file) {
         this.file = file;
-    }
-
-    public String getImagePath() {
-        return imagePath;
-    }
-
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
     }
 
     public String getId() {
