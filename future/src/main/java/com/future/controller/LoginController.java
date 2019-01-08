@@ -26,23 +26,11 @@ public class LoginController {
             return a;
         }
         if (request.getEmail().equals(employeeData.getEmail()) && request.getPassword().equals(employeeData.getPassword())) {
-            if(employeeData.getRole().equals("ADMIN")){
+            if(employeeData.getRole().equals("ADMIN")||employeeData.getRole().equals("USER")||employeeData.getRole().equals("MANAGER")){
                 a.setSuccess(true);
                 a.setName(employeeData.getName());
                 a.setRole(employeeData.getRole());
                 return a;}
-            (employeeData.getRole().equals("USER")){
-                a.setSuccess(true);
-                a.setName(employeeData.getName());
-                a.setRole(employeeData.getRole());
-                return a;
-            }
-            else if(employeeData.getRole().equals("MANAGER")){
-                a.setSuccess(true);
-                a.setName(employeeData.getName());
-                a.setRole(employeeData.getRole());
-                return a;
-            }
             else {
                 a.setSuccess(false);
             }

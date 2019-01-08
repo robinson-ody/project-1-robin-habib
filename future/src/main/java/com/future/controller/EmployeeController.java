@@ -2,6 +2,7 @@ package com.future.controller;
 
 import com.future.model.Employee;
 import com.future.repository.EmployeeRepository;
+import com.future.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,9 +17,12 @@ public class EmployeeController {
     @Autowired
     private EmployeeRepository employeeRepository;
 
+    @Autowired
+    private EmployeeService employeeService;
+
     @GetMapping("/employee")
     public List<Employee> getAllEmployee() {
-        return (List<Employee>) employeeRepository.findAll();
+        return (List<Employee>) employeeService.findAll();
     }
 
     @GetMapping("/employee/{id}")
