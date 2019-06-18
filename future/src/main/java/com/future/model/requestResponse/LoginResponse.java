@@ -4,7 +4,6 @@ public class LoginResponse {
     private String name;
     private String role;
     private boolean success;
-
     public boolean isSuccess() {
         return success;
     }

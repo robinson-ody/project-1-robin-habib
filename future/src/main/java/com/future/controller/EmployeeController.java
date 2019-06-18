@@ -14,50 +14,33 @@ import java.util.List;
 @RequestMapping("/api")
 @CrossOrigin(origins = "*")
 public class EmployeeController {
-    @Autowired
-    private EmployeeRepository employeeRepository;
 
     @Autowired
     private EmployeeService employeeService;
 
     @GetMapping("/employee")
     public List<Employee> getAllEmployee() {
-        return (List<Employee>) employeeService.findAll();
+        return employeeService.findAll();
     }
 
     @GetMapping("/employee/{id}")
     public Employee getSingleEmployee(@PathVariable("id") String id) {
-        return (Employee) employeeRepository.findOne(id);
+        return employeeService.singleEmployee(id);
     }
 
     @PostMapping("/employee/create")
     public Employee createEmployee(@RequestBody Employee employee) {
-        return employeeRepository.save(employee);
+        return employeeService.createEmployee(employee);
     }
 
     @PutMapping("/employee/{id}")
     public ResponseEntity<Employee> updateEmployee(@PathVariable("id") String id, @RequestBody Employee employee) {
-        Employee employeeData = employeeRepository.findOne(id);
-        if (employee == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        employeeData.setEmail(employee.getEmail());
-        employeeData.setPassword(employee.getPassword());
-        employeeData.setName(employee.getName());
-        employeeData.setBirthday(employee.getBirthday());
-        employeeData.setGender(employee.getGender());
-        employeeData.setDivision(employee.getDivision());
-        employeeData.setSuperior(employee.getSuperior());
-        employeeData.setRole(employee.getRole());
-
-        Employee updatedemployee = employeeRepository.save(employeeData);
-        return new ResponseEntity<>(updatedemployee, HttpStatus.OK);
+        return employeeService.updateEmployee(id,employee);
     }
 
     @DeleteMapping("/employee/{id}")
     public ResponseEntity<String> deleteEmployee(@PathVariable("id") String id) {
-        employeeRepository.delete(id);
-        return new ResponseEntity<>(id,HttpStatus.OK);
+       return employeeService.deleteEmployee(id);
     }
 
 

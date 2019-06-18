@@ -7,7 +7,6 @@ import org.springframework.data.annotation.Id;
 import java.util.Date;
 import java.util.List;
 @JsonIgnoreProperties(value = {"createdAt"}, allowGetters = true)
-
 public class Transaction {
     @Id
     private String id;
